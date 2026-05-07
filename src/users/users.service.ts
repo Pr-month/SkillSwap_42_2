@@ -5,7 +5,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 @Injectable()
 export class UsersService {
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    return `This action adds a new user with data ${JSON.stringify(createUserDto)}`;
   }
 
   findAll() {
@@ -17,7 +17,7 @@ export class UsersService {
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+    return `This action updates a #${id} user with data ${JSON.stringify(updateUserDto)}}`;
   }
 
   remove(id: number) {
