@@ -47,16 +47,16 @@ export class User {
   avatar!: string;
 
   // TODO: Add a relation to skills
-  @Column({ type: 'int', nullable: true })
-  skills!: number;
+  @Column('simple-array')
+  skills!: string[];
 
-  // TODO: Add a relation to skill categories
-  @Column({ type: 'int', nullable: true })
-  wantToLearn!: number;
+  // TODO: Add a relation to skills categories
+  @Column('simple-array')
+  wantToLearn!: string[];
 
-  // TODO: Add a relation to skill categories
-  @Column({ type: 'int', nullable: true })
-  favoriteSkills!: number;
+  // TODO: Add a relation to skills
+  @Column('simple-array')
+  favoriteSkills!: string[];
 
   @Column({ type: 'enum', enum: UserRole, default: UserRole.USER })
   role!: UserRole;
