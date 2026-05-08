@@ -7,4 +7,9 @@ export type TJwtPayload = {
   role: UserRole;
 };
 
-export type TAuthRequest = Request<never, unknown, TJwtPayload, unknown>;
+export type TAuthRequest = Request<
+  never,
+  unknown,
+  { user: TJwtPayload },
+  unknown
+>;
