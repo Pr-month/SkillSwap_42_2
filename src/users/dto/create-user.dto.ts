@@ -4,6 +4,7 @@ import {
   IsDateString,
   IsEmail,
   IsEnum,
+  IsOptional,
   IsString,
 } from 'class-validator';
 import { Gender } from '../entities/user.entity';
@@ -16,6 +17,7 @@ export class CreateUserDto {
   @IsString()
   password: string;
   @IsString()
+  @IsOptional()
   about: string;
   @IsDateString()
   birthdate: string;
