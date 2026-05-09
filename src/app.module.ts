@@ -6,21 +6,23 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
+import { databaseConfig, TDatabaseConfig } from './config/database.config';
+import { appConfig } from './config/app.config';
+import { jwtConfig } from './config/jwt.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      load: [appConfig, databaseConfig, jwtConfig],
     }),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT || '5432'),
-      username: process.env.DB_USER,
-      password: process.env.DB_PASS,
-      database: process.env.DB_NAME,
-      entities: [User],
-      synchronize: true, // только для разработки
+    TypeOrmModule.forRootAsync({
+      inject: [databaseConfig.KEY],
+      useFactory: (dbConfig: TDatabaseConfig) => ({
+        ...dbConfig,
+        entities: [User],
+        synchronize: true, // только для разработки
+      }),
     }),
     AuthModule,
     UsersModule,
