@@ -1,4 +1,4 @@
-import bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcrypt';
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -17,91 +17,59 @@ export class UsersService {
     private readonly usersRepository: Repository<User>,
   ) {}
 
-  private findUserMapper(): (User) => FindUserDto {
-    return (root: User) => {
-      return {
-        name: root.name,
-        email: root.email,
-        about: root.about,
-        birthdate: root.birthdate.toDateString(),
-        city: root.city,
-        gender: root.gender,
-        wantToLearn: root.wantToLearn,
-        createdAt: root.createdAt.toDateString(),
-      };
-    };
+  private findUserMapper = (root: User): FindUserDto => ({
+    id: root.id,
+    name: root.name,
+    email: root.email,
+    about: root.about,
+    birthdate: root.birthdate,
+    city: root.city,
+    gender: root.gender,
+    wantToLearn: root.wantToLearn,
+    createdAt: root.createdAt,
+  });
+
+  private async generateHash(str: string) {
+    return await bcrypt.hash(str, this.config.hashSalt);
   }
 
   async create(createUserDto: CreateUserDto) {
-    const now = new Date();
-    const createdAt = now.toDateString();
-    const hash = await bcrypt.hash(
-      createUserDto.password,
-      this.config.hashSalt,
-    );
+    const hash = await this.generateHash(createUserDto.password);
     // TODO: Add avatar Url after files service completion
     const newUser = this.usersRepository.create({
       ...createUserDto,
       password: hash,
-      createdAt: createdAt,
-      updatedAt: createdAt,
       skills: [],
-      wantToLearn: [],
       favoriteSkills: [],
       role: UserRole.USER,
-      avatar: '',
-      refreshToken: '',
-      about: '',
     });
-    return [newUser].map(this.findUserMapper())[0];
+    const savedUser = await this.usersRepository.save(newUser);
+    return this.findUserMapper(savedUser);
   }
 
   async findAll() {
     const users = await this.usersRepository.find({});
-    return users.map(this.findUserMapper());
+    return users.map(this.findUserMapper);
   }
 
   async findOneById(id: string) {
-    const user = await this.usersRepository.findOne({
-      where: {
-        id: id,
-      },
-    });
-    return [user].map(this.findUserMapper())[0];
+    const user = await this.usersRepository.findOneBy({ id });
+    return user ? this.findUserMapper(user) : null;
   }
 
   async findOneByEmail(email: string) {
-    const user = await this.usersRepository.findOne({
-      where: {
-        email: email,
-      },
-    });
-    return [user].map(this.findUserMapper())[0];
+    const user = await this.usersRepository.findOneBy({ email });
+    return user ? this.findUserMapper(user) : null;
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
-    const now = new Date();
-    const updatedAt = now.toDateString();
-    let updatedUser;
+    const user = await this.usersRepository.findOneBy({ id });
+    if (!user) return null;
+    Object.assign(user, updateUserDto);
     if (updateUserDto.password) {
-      const hash = await bcrypt.hash(
-        updateUserDto.password,
-        this.config.hashSalt,
-      );
-      updatedUser = await this.usersRepository.save({
-        id: id,
-        password: hash,
-        updatedAt: updatedAt,
-      });
-    } else {
-      const updateObject = Object.fromEntries(
-        Object.entries(updateUserDto).filter(([key, value]) => key && value),
-      );
-      updatedUser = await this.usersRepository.save({
-        id: id,
-        ...updateObject,
-      });
+      user.password = await this.generateHash(updateUserDto.password);
     }
-    return [updatedUser].map(this.findUserMapper())[0];
+    await this.usersRepository.save(user);
+    return this.findUserMapper(user);
   }
 }
