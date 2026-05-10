@@ -31,8 +31,9 @@ export class UsersService {
     return `This action adds a new user with data ${JSON.stringify(createUserDto)}`;
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll() {
+    const users = await this.usersRepository.find({});
+    return users.map(this.findUserMapper());
   }
 
   async findOneById(id: string) {
