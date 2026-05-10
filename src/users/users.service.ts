@@ -79,7 +79,29 @@ export class UsersService {
     return [user].map(this.findUserMapper())[0];
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user with data ${JSON.stringify(updateUserDto)}}`;
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const now = new Date();
+    const updatedAt = now.toDateString();
+    let updatedUser;
+    if (updateUserDto.password) {
+      const hash = await bcrypt.hash(
+        updateUserDto.password,
+        this.config.hashSalt,
+      );
+      updatedUser = await this.usersRepository.save({
+        id: id,
+        password: hash,
+        updatedAt: updatedAt,
+      });
+    } else {
+      const updateObject = Object.fromEntries(
+        Object.entries(updateUserDto).filter(([key, value]) => key && value),
+      );
+      updatedUser = await this.usersRepository.save({
+        id: id,
+        ...updateObject,
+      });
+    }
+    return [updatedUser].map(this.findUserMapper())[0];
   }
 }
