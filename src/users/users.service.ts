@@ -1,26 +1,75 @@
-import { Injectable } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
+import { Inject, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { FindUserDto } from './dto/find-user.dto';
+import { User, UserRole } from './entities/user.entity';
+import { appConfig, TAppConfig } from '../config/app.config';
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    return `This action adds a new user with data ${JSON.stringify(createUserDto)}`;
+  constructor(
+    @Inject(appConfig.KEY)
+    private readonly config: TAppConfig,
+    @InjectRepository(User)
+    private readonly usersRepository: Repository<User>,
+  ) {}
+
+  private findUserMapper = (root: User): FindUserDto => ({
+    id: root.id,
+    name: root.name,
+    email: root.email,
+    about: root.about,
+    birthdate: root.birthdate,
+    city: root.city,
+    gender: root.gender,
+    wantToLearn: root.wantToLearn,
+    createdAt: root.createdAt,
+  });
+
+  private async generateHash(str: string) {
+    return await bcrypt.hash(str, this.config.hashSalt);
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async create(createUserDto: CreateUserDto) {
+    const hash = await this.generateHash(createUserDto.password);
+    // TODO: Add avatar Url after files service completion
+    const newUser = this.usersRepository.create({
+      ...createUserDto,
+      password: hash,
+      skills: [],
+      favoriteSkills: [],
+      role: UserRole.USER,
+    });
+    const savedUser = await this.usersRepository.save(newUser);
+    return this.findUserMapper(savedUser);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findAll() {
+    const users = await this.usersRepository.find({});
+    return users.map(this.findUserMapper);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user with data ${JSON.stringify(updateUserDto)}}`;
+  async findOneById(id: string) {
+    const user = await this.usersRepository.findOneBy({ id });
+    return user ? this.findUserMapper(user) : null;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async findOneByEmail(email: string) {
+    const user = await this.usersRepository.findOneBy({ email });
+    return user ? this.findUserMapper(user) : null;
+  }
+
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const user = await this.usersRepository.findOneBy({ id });
+    if (!user) return null;
+    Object.assign(user, updateUserDto);
+    if (updateUserDto.password) {
+      user.password = await this.generateHash(updateUserDto.password);
+    }
+    await this.usersRepository.save(user);
+    return this.findUserMapper(user);
   }
 }

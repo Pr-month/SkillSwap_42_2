@@ -28,14 +28,14 @@ export class User {
   @Column({ type: 'varchar', length: 255, unique: true })
   email!: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', select: false })
   password!: string;
 
   @Column({ type: 'text', nullable: true })
   about!: string;
 
   @Column({ type: 'date', nullable: true })
-  birthdate!: Date;
+  birthdate!: string;
 
   @Column({ type: 'varchar', length: 100, nullable: true })
   city!: string;
@@ -61,7 +61,7 @@ export class User {
   @Column({ type: 'enum', enum: UserRole, default: UserRole.USER })
   role!: UserRole;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ type: 'varchar', nullable: true, select: false })
   refreshToken!: string;
 
   @CreateDateColumn()
