@@ -1,14 +1,18 @@
-import { Injectable } from '@nestjs/common';
+import bcrypt from 'bcryptjs';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { FindUserDto } from './dto/find-user.dto';
-import { User } from './entities/user.entity';
+import { User, UserRole } from './entities/user.entity';
+import { appConfig, TAppConfig } from '../config/app.config';
 
 @Injectable()
 export class UsersService {
   constructor(
+    @Inject(appConfig.KEY)
+    private readonly config: TAppConfig,
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
   ) {}
@@ -23,12 +27,33 @@ export class UsersService {
         city: root.city,
         gender: root.gender,
         wantToLearn: root.wantToLearn,
+        createdAt: root.createdAt.toDateString(),
       };
     };
   }
 
-  create(createUserDto: CreateUserDto) {
-    return `This action adds a new user with data ${JSON.stringify(createUserDto)}`;
+  async create(createUserDto: CreateUserDto) {
+    const now = new Date();
+    const createdAt = now.toDateString();
+    const hash = await bcrypt.hash(
+      createUserDto.password,
+      this.config.hashSalt,
+    );
+    // TODO: Add avatar Url after files service completion
+    const newUser = this.usersRepository.create({
+      ...createUserDto,
+      password: hash,
+      createdAt: createdAt,
+      updatedAt: createdAt,
+      skills: [],
+      wantToLearn: [],
+      favoriteSkills: [],
+      role: UserRole.USER,
+      avatar: '',
+      refreshToken: '',
+      about: '',
+    });
+    return [newUser].map(this.findUserMapper())[0];
   }
 
   async findAll() {

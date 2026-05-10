@@ -8,4 +8,5 @@ export class FindUserDto {
   city: string;
   gender: Gender;
   wantToLearn: string[];
+  createdAt: string;
 }
