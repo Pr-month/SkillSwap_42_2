@@ -3,9 +3,11 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import { User } from '../users/entities/user.entity';
+import { User, UserRole } from '../users/entities/user.entity';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { jwtConfig, TJwtConfig } from '../config/jwt.config';
+import { appConfig, TAppConfig } from '../config/app.config';
+import { TJwtPayload } from './auth.types';
 
 @Injectable()
 export class AuthService {
@@ -15,13 +17,18 @@ export class AuthService {
     private readonly jwtService: JwtService,
     @Inject(jwtConfig.KEY)
     private readonly jwtConf: TJwtConfig,
+    @Inject(appConfig.KEY)
+    private readonly appConf: TAppConfig,
   ) {}
 
   async register(dto: CreateUserDto) {
     const existing = await this.userRepository.findOneBy({ email: dto.email });
     if (existing) throw new ConflictException('Email already in use');
 
-    const hashedPassword = await bcrypt.hash(dto.password, 10);
+    const hashedPassword = await bcrypt.hash(
+      dto.password,
+      this.appConf.hashSalt,
+    );
     const user = this.userRepository.create({
       ...dto,
       password: hashedPassword,
@@ -33,8 +40,8 @@ export class AuthService {
     return tokens;
   }
 
-  private async generateTokens(userId: string, email: string, role: string) {
-    const payload = { sub: userId, email, role };
+  private async generateTokens(userId: string, email: string, role: UserRole) {
+    const payload: TJwtPayload = { sub: userId, email, role };
 
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(payload),
@@ -48,7 +55,7 @@ export class AuthService {
   }
 
   private async saveRefreshToken(userId: string, refreshToken: string) {
-    const hashed = await bcrypt.hash(refreshToken, 10);
+    const hashed = await bcrypt.hash(refreshToken, this.appConf.hashSalt);
     await this.userRepository.update(userId, { refreshToken: hashed });
   }
 }
