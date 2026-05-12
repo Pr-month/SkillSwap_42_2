@@ -1,7 +1,15 @@
-import { Body, Controller, HttpCode, Post, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  Post,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { TAuthRequest } from './auth.types';
+import { JwtAuthGuard } from './guards/jwt-access.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -13,6 +21,7 @@ export class AuthController {
   }
 
   @Post('logout')
+  @UseGuards(JwtAuthGuard)
   @HttpCode(200)
   logout(@Req() req: TAuthRequest) {
     const userId = req.user.sub;
