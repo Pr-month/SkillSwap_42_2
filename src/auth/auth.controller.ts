@@ -4,8 +4,10 @@ import {
   HttpCode,
   Post,
   Req,
+  Res,
   UseGuards,
 } from '@nestjs/common';
+import { Response } from 'express';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { TAuthRequest } from './auth.types';
@@ -23,8 +25,13 @@ export class AuthController {
   @Post('logout')
   @UseGuards(JwtAuthGuard)
   @HttpCode(200)
-  logout(@Req() req: TAuthRequest) {
+  async logout(
+    @Req() req: TAuthRequest,
+    @Res({ passthrough: true }) res: Response,
+  ) {
     const userId = req.user.sub;
-    return this.authService.logout(userId);
+    await this.authService.logout(userId);
+    res.clearCookie('refresh_token');
+    return { message: 'Logout successful' };
   }
 }
