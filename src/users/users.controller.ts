@@ -40,6 +40,16 @@ export class UsersController {
     return this.usersService.findOneById(id);
   }
 
+  @Patch('me')
+  @UseGuards(JwtAuthGuard)
+  updateCurrent(
+    @Req() req: TAuthRequest,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    const userId = req.user.sub;
+    return this.usersService.update(userId, updateUserDto);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto);
