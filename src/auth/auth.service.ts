@@ -41,8 +41,10 @@ export class AuthService {
   }
 
   async logout(userId: string) {
-    await this.userRepository.update(userId, { refreshToken: '' });
-    return 'Logout successful';
+    const updatedUser = await this.userRepository.update(userId, {
+      refreshToken: null,
+    });
+    return updatedUser;
   }
 
   private async generateTokens(userId: string, email: string, role: UserRole) {

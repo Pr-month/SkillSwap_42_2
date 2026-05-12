@@ -62,7 +62,7 @@ export class User {
   role!: UserRole;
 
   @Column({ type: 'varchar', nullable: true, select: false })
-  refreshToken!: string;
+  refreshToken!: string | null;
 
   @CreateDateColumn()
   createdAt!: Date;
