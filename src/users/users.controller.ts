@@ -28,16 +28,16 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOneById(id);
-  }
-
   @Get('me')
   @UseGuards(JwtAuthGuard)
   findCurrent(@Req() req: TAuthRequest) {
     const userId = req.user.sub;
     return this.usersService.findOneById(userId);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.usersService.findOneById(id);
   }
 
   @Patch(':id')
