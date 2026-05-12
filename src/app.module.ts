@@ -5,7 +5,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { User } from './users/entities/user.entity';
 import { databaseConfig, TDatabaseConfig } from './config/database.config';
 import { appConfig } from './config/app.config';
 import { jwtConfig } from './config/jwt.config';
@@ -20,8 +19,6 @@ import { jwtConfig } from './config/jwt.config';
       inject: [databaseConfig.KEY],
       useFactory: (dbConfig: TDatabaseConfig) => ({
         ...dbConfig,
-        entities: [User],
-        synchronize: true, // только для разработки
       }),
     }),
     AuthModule,
