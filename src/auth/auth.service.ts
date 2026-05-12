@@ -62,6 +62,21 @@ export class AuthService {
     return tokens;
   }
 
+  async refresh(userId: string, refreshToken: string) {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+      select: ['id', 'email', 'role', 'refreshToken'],
+    });
+    if (!user || !user.refreshToken) throw new UnauthorizedException();
+
+    const tokenMatch = await bcrypt.compare(refreshToken, user.refreshToken);
+    if (!tokenMatch) throw new UnauthorizedException('Refresh token invalid');
+
+    const tokens = await this.generateTokens(user.id, user.email, user.role);
+    await this.saveRefreshToken(user.id, tokens.refreshToken);
+    return tokens;
+  }
+
   async logout(userId: string) {
     const updatedUser = await this.userRepository.update(userId, {
       refreshToken: null,
