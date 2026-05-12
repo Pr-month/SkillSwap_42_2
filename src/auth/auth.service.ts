@@ -47,11 +47,7 @@ export class AuthService {
   }
 
   async login(dto: LoginDto) {
-    const user: Pick<User, 'id' | 'email' | 'password' | 'role'> | null =
-      await this.userRepository.findOne({
-        where: { email: dto.email },
-        select: ['id', 'email', 'password', 'role'],
-      });
+    const user = await this.userRepository.findOneBy({ email: dto.email });
     if (!user) throw new UnauthorizedException('Invalid credentials');
 
     const passwordMatch = await bcrypt.compare(dto.password, user.password);
@@ -63,10 +59,7 @@ export class AuthService {
   }
 
   async refresh(userId: string, refreshToken: string) {
-    const user = await this.userRepository.findOne({
-      where: { id: userId },
-      select: ['id', 'email', 'role', 'refreshToken'],
-    });
+    const user = await this.userRepository.findOneBy({ id: userId });
     if (!user || !user.refreshToken) throw new UnauthorizedException();
 
     const tokenMatch = await bcrypt.compare(refreshToken, user.refreshToken);

@@ -71,10 +71,7 @@ export class UsersService {
   }
 
   async updatePassword(id: string, oldPassword: string, newPassword: string) {
-    const user = await this.usersRepository.findOne({
-      where: { id },
-      select: ['password'],
-    });
+    const user = await this.usersRepository.findOneBy({ id });
     if (!user) return null;
 
     const isMatch = await bcrypt.compare(oldPassword, user.password);
