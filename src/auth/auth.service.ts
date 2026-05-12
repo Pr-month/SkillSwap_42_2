@@ -40,6 +40,11 @@ export class AuthService {
     return tokens;
   }
 
+  async logout(userId: string) {
+    await this.userRepository.update(userId, { refreshToken: '' });
+    return 'Logout successful';
+  }
+
   private async generateTokens(userId: string, email: string, role: UserRole) {
     const payload: TJwtPayload = { sub: userId, email, role };
 
