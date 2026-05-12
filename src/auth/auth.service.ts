@@ -1,4 +1,9 @@
-import { Injectable, ConflictException, Inject } from '@nestjs/common';
+import {
+  Injectable,
+  ConflictException,
+  Inject,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -8,6 +13,7 @@ import { CreateUserDto } from '../users/dto/create-user.dto';
 import { jwtConfig, TJwtConfig } from '../config/jwt.config';
 import { appConfig, TAppConfig } from '../config/app.config';
 import { TJwtPayload } from './auth.types';
+import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
@@ -34,6 +40,22 @@ export class AuthService {
       password: hashedPassword,
     });
     await this.userRepository.save(user);
+
+    const tokens = await this.generateTokens(user.id, user.email, user.role);
+    await this.saveRefreshToken(user.id, tokens.refreshToken);
+    return tokens;
+  }
+
+  async login(dto: LoginDto) {
+    const user: Pick<User, 'id' | 'email' | 'password' | 'role'> | null =
+      await this.userRepository.findOne({
+        where: { email: dto.email },
+        select: ['id', 'email', 'password', 'role'],
+      });
+    if (!user) throw new UnauthorizedException('Invalid credentials');
+
+    const passwordMatch = await bcrypt.compare(dto.password, user.password);
+    if (!passwordMatch) throw new UnauthorizedException('Invalid credentials');
 
     const tokens = await this.generateTokens(user.id, user.email, user.role);
     await this.saveRefreshToken(user.id, tokens.refreshToken);
