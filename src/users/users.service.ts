@@ -85,6 +85,7 @@ export class UsersService {
     const hash = await this.generateHash(newPassword);
     const updatedUser = await this.usersRepository.update(id, {
       password: hash,
+      refreshToken: null,
     });
     return updatedUser;
   }
