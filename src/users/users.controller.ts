@@ -13,6 +13,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-access.guard';
 import { TAuthRequest } from 'src/auth/auth.types';
+import { UpdatePasswordDto } from './dto/update-password.dto';
 
 @Controller('users')
 export class UsersController {
@@ -54,10 +55,14 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   async updateCurrentPassword(
     @Req() req: TAuthRequest,
-    @Body() updateUserDto: UpdateUserDto,
+    @Body() updatePasswordDto: UpdatePasswordDto,
   ) {
     const userId = req.user.sub;
-    await this.usersService.updatePassword(userId, updateUserDto.password!);
+    await this.usersService.updatePassword(
+      userId,
+      updatePasswordDto.oldPassword,
+      updatePasswordDto.newPassword,
+    );
     return { message: 'Password successfully changed' };
   }
 

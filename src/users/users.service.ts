@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcrypt';
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -70,8 +70,19 @@ export class UsersService {
     return this.findUserMapper(user);
   }
 
-  async updatePassword(id: string, password: string) {
-    const hash = await this.generateHash(password);
+  async updatePassword(id: string, oldPassword: string, newPassword: string) {
+    const user = await this.usersRepository.findOne({
+      where: { id },
+      select: ['password'],
+    });
+    if (!user) return null;
+
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      throw new UnauthorizedException('Current password is incorrect');
+    }
+
+    const hash = await this.generateHash(newPassword);
     const updatedUser = await this.usersRepository.update(id, {
       password: hash,
     });
