@@ -5,7 +5,8 @@ import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { FindUserDto } from './dto/find-user.dto';
-import { User, UserRole } from './entities/user.entity';
+import { User } from './entities/user.entity';
+import { UserRole } from './users.enums';
 import { appConfig, TAppConfig } from '../config/app.config';
 
 @Injectable()

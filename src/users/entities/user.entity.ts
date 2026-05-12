@@ -5,17 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-
-export enum UserRole {
-  USER = 'USER',
-  ADMIN = 'ADMIN',
-}
-
-export enum Gender {
-  MALE = 'MALE',
-  FEMALE = 'FEMALE',
-  OTHER = 'OTHER',
-}
+import { Gender, UserRole } from '../users.enums';
 
 @Entity('users')
 export class User {

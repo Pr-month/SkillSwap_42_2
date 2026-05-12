@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { UserRole } from '../users/entities/user.entity';
+import { UserRole } from '../users/users.enums';
 
 export type TJwtPayload = {
   sub: string;

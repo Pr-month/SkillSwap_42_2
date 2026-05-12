@@ -1,4 +1,4 @@
-import { Gender } from '../entities/user.entity';
+import { Gender } from '../users.enums';
 
 export class FindUserDto {
   id: string;
