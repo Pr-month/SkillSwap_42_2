@@ -50,6 +50,16 @@ export class UsersController {
     return this.usersService.update(userId, updateUserDto);
   }
 
+  @Patch('me/password')
+  @UseGuards(JwtAuthGuard)
+  updateCurrentPassword(
+    @Req() req: TAuthRequest,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    const userId = req.user.sub;
+    return this.usersService.update(userId, updateUserDto);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto);
