@@ -1,6 +1,6 @@
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy } from 'passport-jwt';
+import { Strategy } from 'passport-jwt';
 import { Request } from 'express';
 import { jwtConfig, TJwtConfig } from '../../config/jwt.config';
 import { TJwtPayload } from '../auth.types';
@@ -15,7 +15,8 @@ export class JwtRefreshStrategy extends PassportStrategy(
     protected jwtConfig: TJwtConfig,
   ) {
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: (req: Request) =>
+        (req?.cookies?.['refresh_token'] as string) ?? null,
       secretOrKey: jwtConfig.refreshSecret,
       ignoreExpiration: false,
       passReqToCallback: true,
@@ -26,10 +27,7 @@ export class JwtRefreshStrategy extends PassportStrategy(
     req: Request,
     payload: TJwtPayload,
   ): TJwtPayload & { refreshToken: string } {
-    const refreshToken = req
-      .get('Authorization')
-      ?.replace('Bearer ', '')
-      .trim();
+    const refreshToken = req.cookies?.['refresh_token'] as string | null;
     if (!refreshToken) throw new UnauthorizedException();
     return {
       sub: payload.sub,
