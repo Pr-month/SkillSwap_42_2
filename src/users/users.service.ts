@@ -66,10 +66,15 @@ export class UsersService {
     const user = await this.usersRepository.findOneBy({ id });
     if (!user) return null;
     Object.assign(user, updateUserDto);
-    if (updateUserDto.password) {
-      user.password = await this.generateHash(updateUserDto.password);
-    }
     await this.usersRepository.save(user);
     return this.findUserMapper(user);
+  }
+
+  async updatePassword(id: string, password: string) {
+    const hash = await this.generateHash(password);
+    const updatedUser = await this.usersRepository.update(id, {
+      password: hash,
+    });
+    return updatedUser;
   }
 }

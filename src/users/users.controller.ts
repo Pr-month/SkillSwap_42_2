@@ -52,12 +52,13 @@ export class UsersController {
 
   @Patch('me/password')
   @UseGuards(JwtAuthGuard)
-  updateCurrentPassword(
+  async updateCurrentPassword(
     @Req() req: TAuthRequest,
     @Body() updateUserDto: UpdateUserDto,
   ) {
     const userId = req.user.sub;
-    return this.usersService.update(userId, updateUserDto);
+    await this.usersService.updatePassword(userId, updateUserDto.password!);
+    return { message: 'Password successfully changed' };
   }
 
   @Patch(':id')
