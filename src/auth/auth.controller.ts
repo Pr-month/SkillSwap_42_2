@@ -1,10 +1,21 @@
-import { Body, Controller, HttpCode, Inject, Post, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  Inject,
+  Post,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
+import { Response } from 'express';
+import * as ms from 'ms';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
+import { TAuthRequest } from './auth.types';
 import { LoginDto } from './dto/login.dto';
-import { Response } from 'express';
-import { jwtConfig, TJwtConfig } from 'src/config/jwt.config';
-import * as ms from 'ms';
+import { JwtAuthGuard } from './guards/jwt-access.guard';
+import { jwtConfig, TJwtConfig } from '../config/jwt.config';
 
 @Controller('auth')
 export class AuthController {
@@ -43,5 +54,18 @@ export class AuthController {
       maxAge: ms(this.jwtConf.refreshExpiresIn),
       path: '/auth',
     });
+  }
+
+  @Post('logout')
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(200)
+  async logout(
+    @Req() req: TAuthRequest,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    const userId = req.user.sub;
+    await this.authService.logout(userId);
+    res.clearCookie('refresh_token');
+    return { message: 'Logout successful' };
   }
 }
