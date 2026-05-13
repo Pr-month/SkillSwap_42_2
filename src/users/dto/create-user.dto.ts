@@ -7,7 +7,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { Gender } from '../entities/user.entity';
+import { Gender } from '../users.enums';
 
 export class CreateUserDto {
   @IsString()

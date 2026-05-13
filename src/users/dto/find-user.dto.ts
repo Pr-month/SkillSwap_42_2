@@ -1,4 +1,4 @@
-import { Gender } from '../entities/user.entity';
+import { Gender } from '../users.enums';
 
 // TODO: delete if won't be needed
 export class FindUserDto {

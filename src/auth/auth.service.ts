@@ -12,7 +12,7 @@ import { appConfig, TAppConfig } from '../config/app.config';
 import { TJwtPayload } from './auth.types';
 import { LoginDto } from './dto/login.dto';
 import { UsersService } from 'src/users/users.service';
-import { UserRole } from 'src/users/entities/user.entity';
+import { UserRole } from '../users/users.enums';
 
 @Injectable()
 export class AuthService {
