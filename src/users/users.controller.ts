@@ -6,7 +6,9 @@ import {
   Param,
   UseGuards,
   Req,
+  Res,
 } from '@nestjs/common';
+import { Response } from 'express';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-access.guard';
@@ -49,6 +51,7 @@ export class UsersController {
   async updateCurrentPassword(
     @Req() req: TAuthRequest,
     @Body() updatePasswordDto: UpdatePasswordDto,
+    @Res({ passthrough: true }) res: Response,
   ) {
     const userId = req.user.sub;
     await this.usersService.updatePassword(
@@ -56,6 +59,7 @@ export class UsersController {
       updatePasswordDto.oldPassword,
       updatePasswordDto.newPassword,
     );
+    res.clearCookie('refresh_token');
     return { message: 'Password successfully changed' };
   }
 }
