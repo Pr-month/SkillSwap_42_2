@@ -8,11 +8,14 @@ import { User } from '../users/entities/user.entity';
 import { jwtConfig, TJwtConfig } from '../config/jwt.config';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
+import { UsersModule } from '../users/users.module';
+import { UsersService } from '../users/users.service';
 
 @Module({
   imports: [
     PassportModule,
     TypeOrmModule.forFeature([User]),
+    UsersModule,
     JwtModule.registerAsync({
       inject: [jwtConfig.KEY],
       useFactory: (jwtConfig: TJwtConfig) => ({
@@ -24,6 +27,6 @@ import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy, JwtRefreshStrategy],
+  providers: [AuthService, UsersService, JwtStrategy, JwtRefreshStrategy],
 })
 export class AuthModule {}
