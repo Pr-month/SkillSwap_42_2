@@ -16,18 +16,6 @@ export class UsersService {
     private readonly usersRepository: Repository<User>,
   ) {}
 
-  // private findUserMapper = (root: User): FindUserDto => ({
-  //   id: root.id,
-  //   name: root.name,
-  //   email: root.email,
-  //   about: root.about,
-  //   birthdate: root.birthdate,
-  //   city: root.city,
-  //   gender: root.gender,
-  //   wantToLearn: root.wantToLearn,
-  //   createdAt: root.createdAt,
-  // });
-
   private async generateHash(str: string) {
     return await bcrypt.hash(str, this.config.hashSalt);
   }
