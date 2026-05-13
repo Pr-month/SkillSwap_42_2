@@ -1,5 +1,6 @@
 import { Gender } from '../users.enums';
 
+// TODO: delete if won't be needed
 export class FindUserDto {
   id: string;
   name: string;

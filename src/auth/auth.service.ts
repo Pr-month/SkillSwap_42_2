@@ -5,22 +5,19 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import { User } from '../users/entities/user.entity';
-import { UserRole } from '../users/users.enums';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { jwtConfig, TJwtConfig } from '../config/jwt.config';
 import { appConfig, TAppConfig } from '../config/app.config';
 import { TJwtPayload } from './auth.types';
 import { LoginDto } from './dto/login.dto';
+import { UsersService } from 'src/users/users.service';
+import { UserRole } from '../users/users.enums';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    private readonly userService: UsersService,
     private readonly jwtService: JwtService,
     @Inject(jwtConfig.KEY)
     private readonly jwtConf: TJwtConfig,
@@ -29,30 +26,25 @@ export class AuthService {
   ) {}
 
   async register(dto: CreateUserDto) {
-    const existing = await this.userRepository.findOneBy({ email: dto.email });
+    const existing = await this.userService.findOneByEmail(dto.email);
     if (existing) throw new ConflictException('Email already in use');
 
     const hashedPassword = await bcrypt.hash(
       dto.password,
       this.appConf.hashSalt,
     );
-    const user = this.userRepository.create({
+
+    const user = await this.userService.create({
       ...dto,
       password: hashedPassword,
     });
-    await this.userRepository.save(user);
-
     const tokens = await this.generateTokens(user.id, user.email, user.role);
     await this.saveRefreshToken(user.id, tokens.refreshToken);
     return tokens;
   }
 
   async login(dto: LoginDto) {
-    const user: Pick<User, 'id' | 'email' | 'password' | 'role'> | null =
-      await this.userRepository.findOne({
-        where: { email: dto.email },
-        select: ['id', 'email', 'password', 'role'],
-      });
+    const user = await this.userService.findOneByEmail(dto.email);
     if (!user) throw new UnauthorizedException('Invalid credentials');
 
     const passwordMatch = await bcrypt.compare(dto.password, user.password);
@@ -64,10 +56,7 @@ export class AuthService {
   }
 
   async refresh(userId: string, refreshToken: string) {
-    const user = await this.userRepository.findOne({
-      where: { id: userId },
-      select: ['id', 'email', 'role', 'refreshToken'],
-    });
+    const user = await this.userService.findOneById(userId);
     if (!user || !user.refreshToken) throw new UnauthorizedException();
 
     const tokenMatch = await bcrypt.compare(refreshToken, user.refreshToken);
@@ -79,10 +68,7 @@ export class AuthService {
   }
 
   async logout(userId: string) {
-    const updatedUser = await this.userRepository.update(userId, {
-      refreshToken: null,
-    });
-    return updatedUser;
+    return await this.userService.setRefreshToken(userId, null);
   }
 
   private async generateTokens(userId: string, email: string, role: UserRole) {
@@ -101,6 +87,6 @@ export class AuthService {
 
   private async saveRefreshToken(userId: string, refreshToken: string) {
     const hashed = await bcrypt.hash(refreshToken, this.appConf.hashSalt);
-    await this.userRepository.update(userId, { refreshToken: hashed });
+    await this.userService.setRefreshToken(userId, hashed);
   }
 }

@@ -1,15 +1,15 @@
 import {
   Controller,
   Get,
-  Post,
   Body,
   Patch,
   Param,
   UseGuards,
   Req,
+  Res,
 } from '@nestjs/common';
+import { Response } from 'express';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-access.guard';
 import { TAuthRequest } from 'src/auth/auth.types';
@@ -18,11 +18,6 @@ import { UpdatePasswordDto } from './dto/update-password.dto';
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
-  }
 
   @Get()
   findAll() {
@@ -56,6 +51,7 @@ export class UsersController {
   async updateCurrentPassword(
     @Req() req: TAuthRequest,
     @Body() updatePasswordDto: UpdatePasswordDto,
+    @Res({ passthrough: true }) res: Response,
   ) {
     const userId = req.user.sub;
     await this.usersService.updatePassword(
@@ -63,11 +59,7 @@ export class UsersController {
       updatePasswordDto.oldPassword,
       updatePasswordDto.newPassword,
     );
+    res.clearCookie('refresh_token');
     return { message: 'Password successfully changed' };
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(id, updateUserDto);
   }
 }
