@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { databaseConfig, TDatabaseConfig } from './config/database.config';
 import { appConfig } from './config/app.config';
 import { jwtConfig } from './config/jwt.config';
+import { SkillsModule } from './skills/skills.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { jwtConfig } from './config/jwt.config';
     }),
     AuthModule,
     UsersModule,
+    SkillsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
