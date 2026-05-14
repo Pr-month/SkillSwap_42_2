@@ -4,8 +4,12 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { Gender, UserRole } from '../users.enums';
+import { Skill } from 'src/skills/entities/skill.entity';
 
 @Entity('users')
 export class User {
@@ -36,17 +40,16 @@ export class User {
   @Column({ type: 'varchar', length: 500, nullable: true })
   avatar!: string;
 
-  // TODO: Add a relation to skills
-  @Column({ type: 'simple-array', nullable: true })
-  skills!: string[];
+  @OneToMany(() => Skill, (skill) => skill.owner)
+  skills!: Skill[];
 
   // TODO: Add a relation to skills categories
   @Column({ type: 'simple-array', nullable: true })
   wantToLearn!: string[];
 
-  // TODO: Add a relation to skills
-  @Column({ type: 'simple-array', nullable: true })
-  favoriteSkills!: string[];
+  @ManyToMany(() => Skill)
+  @JoinTable()
+  favoriteSkills!: Skill[];
 
   @Column({ type: 'enum', enum: UserRole, default: UserRole.USER })
   role!: UserRole;
