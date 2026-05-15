@@ -20,8 +20,9 @@ import * as path from 'path';
             winston.format.timestamp(),
             winston.format.printf((info) => {
               const { timestamp, level, message, context } = info;
-              const ctx = context ? `[${String(context)}]` : '';
-              return `${String(timestamp)} ${level} ${ctx} ${String(message)}`;
+              // Явно проверяем тип context перед использованием
+              const contextStr = typeof context === 'string' ? `[${context}]` : '';
+              return `${String(timestamp)} ${level} ${contextStr} ${String(message)}`;
             }),
           ),
         }),
