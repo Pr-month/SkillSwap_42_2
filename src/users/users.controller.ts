@@ -7,18 +7,15 @@ import {
   UseGuards,
   Req,
   Res,
-  UseFilters,
 } from '@nestjs/common';
 import { Response } from 'express';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-access.guard';
-import { TAuthRequest } from 'src/auth/auth.types';
+import { JwtAuthGuard } from '../auth/guards/jwt-access.guard';
+import { TAuthRequest } from '../auth/auth.types';
 import { UpdatePasswordDto } from './dto/update-password.dto';
-import { AllExceptionFilter } from 'src/common/all-exception.filter';
 
 @Controller('users')
-@UseFilters(AllExceptionFilter)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 

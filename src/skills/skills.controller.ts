@@ -6,15 +6,12 @@ import {
   Patch,
   Param,
   Delete,
-  UseFilters,
 } from '@nestjs/common';
 import { SkillsService } from './skills.service';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { UpdateSkillDto } from './dto/update-skill.dto';
-import { AllExceptionFilter } from 'src/common/all-exception.filter';
 
 @Controller('skills')
-@UseFilters(AllExceptionFilter)
 export class SkillsController {
   constructor(private readonly skillsService: SkillsService) {}
 
