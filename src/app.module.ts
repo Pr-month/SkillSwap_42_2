@@ -9,6 +9,7 @@ import { databaseConfig, TDatabaseConfig } from './config/database.config';
 import { appConfig } from './config/app.config';
 import { jwtConfig } from './config/jwt.config';
 import { SkillsModule } from './skills/skills.module';
+import { LoggerModule } from './logger/logger.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { SkillsModule } from './skills/skills.module';
         ...dbConfig,
       }),
     }),
+    LoggerModule, // <-- Добавляем модуль логгера
     AuthModule,
     UsersModule,
     SkillsModule,
