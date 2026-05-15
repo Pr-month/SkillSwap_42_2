@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { WinstonModule } from 'nest-winston';
 import * as winston from 'winston';
-import 'winston-daily-rotate-file';
+import * as DailyRotateFile from 'winston-daily-rotate-file';
 import * as path from 'path';
 
 @Module({
@@ -18,14 +18,15 @@ import * as path from 'path';
           format: winston.format.combine(
             winston.format.colorize(),
             winston.format.timestamp(),
-            winston.format.printf(({ timestamp, level, message, context }) => {
-              const ctx = context ? `[${context}]` : '';
-              return `${timestamp} ${level} ${ctx} ${message}`;
+            winston.format.printf((info) => {
+              const { timestamp, level, message, context } = info;
+              const ctx = context ? `[${String(context)}]` : '';
+              return `${String(timestamp)} ${level} ${ctx} ${String(message)}`;
             }),
           ),
         }),
         // Ротация файлов для всех логов
-        new (require('winston-daily-rotate-file'))({
+        new DailyRotateFile({
           dirname: path.join(process.cwd(), 'logs'),
           filename: 'application-%DATE%.log',
           datePattern: 'YYYY-MM-DD',
@@ -34,7 +35,7 @@ import * as path from 'path';
           format: winston.format.json(),
         }),
         // Отдельный файл для ошибок
-        new (require('winston-daily-rotate-file'))({
+        new DailyRotateFile({
           dirname: path.join(process.cwd(), 'logs'),
           filename: 'error-%DATE%.log',
           datePattern: 'YYYY-MM-DD',
