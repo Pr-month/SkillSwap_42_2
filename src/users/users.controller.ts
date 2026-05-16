@@ -11,8 +11,8 @@ import {
 import { Response } from 'express';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-access.guard';
-import { TAuthRequest } from 'src/auth/auth.types';
+import { JwtAuthGuard } from '../auth/guards/jwt-access.guard';
+import { TAuthRequest } from '../auth/auth.types';
 import { UpdatePasswordDto } from './dto/update-password.dto';
 
 @Controller('users')
