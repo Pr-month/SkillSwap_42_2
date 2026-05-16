@@ -1,18 +1,17 @@
-import { Module, Inject } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { WinstonModule } from 'nest-winston';
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import * as path from 'path';
-import { appConfig, TAppConfig } from '../config/app.config';
 
 @Module({})
 export class LoggerModule {
-  static forRoot(appCfg: TAppConfig) {
+  static forRoot() {
     return {
       module: LoggerModule,
       imports: [
         WinstonModule.forRoot({
-          level: appCfg.logLevel,
+          level: process.env.LOG_LEVEL || 'info',
           format: winston.format.combine(
             winston.format.timestamp(),
             winston.format.json(),

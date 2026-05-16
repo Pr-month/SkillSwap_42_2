@@ -4,13 +4,14 @@ import { ValidationPipe } from '@nestjs/common';
 import { appConfig, TAppConfig } from './config/app.config';
 import * as cookieParser from 'cookie-parser';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+import { Logger } from 'winston';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     bufferLogs: true,
   });
 
-  const winstonLogger = app.get(WINSTON_MODULE_NEST_PROVIDER);
+  const winstonLogger = app.get<Logger>(WINSTON_MODULE_NEST_PROVIDER);
   app.useLogger(winstonLogger);
 
   app.use(cookieParser());
