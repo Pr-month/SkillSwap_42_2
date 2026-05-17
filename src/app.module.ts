@@ -9,6 +9,9 @@ import { databaseConfig, TDatabaseConfig } from './config/database.config';
 import { appConfig } from './config/app.config';
 import { jwtConfig } from './config/jwt.config';
 import { SkillsModule } from './skills/skills.module';
+import { FilesModule } from './files/files.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -22,9 +25,16 @@ import { SkillsModule } from './skills/skills.module';
         ...dbConfig,
       }),
     }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+      serveStaticOptions: {
+        index: false,
+      },
+    }),
     AuthModule,
     UsersModule,
     SkillsModule,
+    FilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
