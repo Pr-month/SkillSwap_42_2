@@ -11,7 +11,7 @@ interface ImageInterceptorOptions {
 export function ImageInterceptor(
   options: ImageInterceptorOptions = {},
 ): Type<NestInterceptor> {
-  const { fieldName = 'file', maxFileSize = 5 * 1024 * 1024 } = options;
+  const { fieldName = 'file', maxFileSize = 2 * 1024 * 1024 } = options;
 
   return FileInterceptor(fieldName, {
     fileFilter: (_, file, cb) => {
