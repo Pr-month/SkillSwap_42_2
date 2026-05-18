@@ -1,10 +1,12 @@
-import { IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 import { PaginationDto } from '../../common/dto/pagination.dto';
 
 export class GetSkillsDto extends PaginationDto {
   @IsString()
-  search: string;
+  @IsOptional()
+  search?: string;
 
   @IsString()
-  category: string;
+  @IsOptional()
+  category?: string;
 }
