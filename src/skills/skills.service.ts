@@ -29,7 +29,7 @@ export class SkillsService {
       .take(+limit)
       .getManyAndCount();
     const totalPages = Math.floor(total / limit);
-    if (total > 0 && totalPages < page)
+    if ((total == 0 && page > 1) || totalPages < page)
       throw new NotFoundException('Page is out of range');
     return {
       data: skills,
