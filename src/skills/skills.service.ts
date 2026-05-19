@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Brackets, Repository } from 'typeorm';
 import { CreateSkillDto } from './dto/create-skill.dto';
@@ -6,12 +10,14 @@ import { UpdateSkillDto } from './dto/update-skill.dto';
 import { GetSkillsDto } from './dto/get-skills.dto';
 import { Skill } from './entities/skill.entity';
 import { GetSkillsResponseDto } from './dto/get-skills-response.dto';
+import { FilesService } from '../files/files.service';
 
 @Injectable()
 export class SkillsService {
   constructor(
     @InjectRepository(Skill)
     private readonly skillsRepository: Repository<Skill>,
+    private readonly filesService: FilesService,
   ) {}
 
   create(createSkillDto: CreateSkillDto, ownerId: string) {
@@ -63,7 +69,23 @@ export class SkillsService {
     return `This action updates a #${id} skill with data ${JSON.stringify(updateSkillDto)}`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} skill`;
+  async remove(id: string, ownerId: string) {
+    const skill = await this.findSkillOwnedByUser(id, ownerId);
+    skill.images.forEach((image) => this.filesService.deleteFile(image));
+    return this.skillsRepository.remove(skill);
+  }
+
+  private async findSkillOwnedByUser(skillId: string, ownerId: string) {
+    const skill = await this.skillsRepository.findOne({
+      where: { id: skillId },
+      relations: ['owner'],
+    });
+
+    if (!skill) throw new NotFoundException('Skill not found');
+
+    if (ownerId !== skill.owner.id)
+      throw new ForbiddenException('User does not own the skill');
+
+    return skill;
   }
 }
