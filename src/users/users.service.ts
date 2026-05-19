@@ -12,8 +12,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UserRole } from './users.enums';
 import { appConfig, TAppConfig } from '../config/app.config';
-import { PaginationDto } from 'src/common/dto/pagination.dto';
-import { PaginatedResponseDto } from 'src/common/dto/paginated-response.dto';
+import { PaginationDto } from '../common/dto/pagination.dto';
+import { PaginatedResponseDto } from '../common/dto/paginated-response.dto';
 import { FindUserDto } from './dto/find-user.dto';
 
 @Injectable()
@@ -40,7 +40,7 @@ export class UsersService {
       role: UserRole.USER,
     });
     const savedUser = await this.usersRepository.save(newUser);
-    return savedUser;
+    return new FindUserDto(savedUser);
   }
 
   async findAll(
@@ -58,7 +58,7 @@ export class UsersService {
     if (totalPages < page) throw new NotFoundException('Page is out of range');
 
     return {
-      data: users,
+      data: users.map((user) => new FindUserDto(user)),
       page,
       totalPages,
     };
@@ -66,12 +66,12 @@ export class UsersService {
 
   async findOneById(id: string) {
     const user = await this.usersRepository.findOneBy({ id });
-    return user;
+    return user === null ? user : new FindUserDto(user);
   }
 
   async findOneByEmail(email: string) {
     const user = await this.usersRepository.findOneBy({ email });
-    return user;
+    return user === null ? user : new FindUserDto(user);
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
@@ -79,7 +79,7 @@ export class UsersService {
     if (!user) return null;
     Object.assign(user, updateUserDto);
     await this.usersRepository.save(user);
-    return user;
+    return new FindUserDto(user);
   }
 
   async updatePassword(id: string, oldPassword: string, newPassword: string) {
