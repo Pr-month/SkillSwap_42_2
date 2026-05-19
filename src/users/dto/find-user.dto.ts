@@ -8,6 +8,7 @@ export class FindUserDto {
   email: string;
   @Exclude()
   password: string;
+  @Exclude()
   role: UserRole;
   about: string;
   birthdate: string;
