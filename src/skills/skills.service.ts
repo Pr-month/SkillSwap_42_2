@@ -1,27 +1,58 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Brackets, Repository } from 'typeorm';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { UpdateSkillDto } from './dto/update-skill.dto';
-import { InjectRepository } from '@nestjs/typeorm';
+import { GetSkillsDto } from './dto/get-skills.dto';
 import { Skill } from './entities/skill.entity';
-import { Repository } from 'typeorm';
+import { GetSkillsResponseDto } from './dto/get-skills-response.dto';
 
 @Injectable()
 export class SkillsService {
   constructor(
     @InjectRepository(Skill)
-    private readonly skillRepository: Repository<Skill>,
+    private readonly skillsRepository: Repository<Skill>,
   ) {}
 
   create(createSkillDto: CreateSkillDto, ownerId: string) {
-    const newSkill = this.skillRepository.create({
+    const newSkill = this.skillsRepository.create({
       ...createSkillDto,
       owner: { id: ownerId },
     });
-    return this.skillRepository.save(newSkill);
+    return this.skillsRepository.save(newSkill);
   }
 
-  findAll() {
-    return `This action returns all skills`;
+  async findAll(getSkillsDto: GetSkillsDto): Promise<GetSkillsResponseDto> {
+    const { page = 1, limit = 20, search = '', category } = getSkillsDto;
+
+    // TODO: add fields to category search when category entity is ready
+    const qb = this.skillsRepository.createQueryBuilder('skill');
+
+    if (category) {
+      qb.where('category = :category', { category });
+    }
+
+    qb.andWhere(
+      new Brackets((qb) => {
+        qb.where('skill.title ILIKE :title', {
+          title: `%${search}%`,
+        }).orWhere('category ILIKE :category', { category: `%${search}%` });
+      }),
+    );
+
+    const [skills, total] = await qb
+      .skip((page - 1) * limit)
+      .take(limit)
+      .orderBy('skill.createdAt', 'DESC')
+      .getManyAndCount();
+
+    const totalPages = total ? Math.ceil(total / limit) : 1;
+    if (totalPages < page) throw new NotFoundException('Page is out of range');
+    return {
+      data: skills,
+      page,
+      totalPages,
+    };
   }
 
   findOne(id: number) {
