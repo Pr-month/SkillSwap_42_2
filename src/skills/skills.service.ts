@@ -73,8 +73,9 @@ export class SkillsService {
         .map((image) => this.filesService.extractFilename(image))
         .forEach((filename) => this.filesService.deleteFile(filename));
     }
-
-    return await this.skillsRepository.update(id, updateSkillDto);
+    Object.assign(skill, updateSkillDto);
+    await this.skillsRepository.save(skill);
+    return new FindSkillDto(skill);
   }
 
   async remove(id: string, ownerId: string) {
