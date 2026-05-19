@@ -72,7 +72,12 @@ export class SkillsService {
 
   async remove(id: string, ownerId: string) {
     const skill = await this.findSkillOwnedByUser(id, ownerId);
-    skill.images.forEach((image) => this.filesService.deleteFile(image));
+    const imagesFilenames = skill.images.map((image) =>
+      this.filesService.extractFilename(image),
+    );
+    imagesFilenames.forEach((filename) =>
+      this.filesService.deleteFile(filename),
+    );
     await this.skillsRepository.remove(skill);
     return new FindSkillDto(skill);
   }
