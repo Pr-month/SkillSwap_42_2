@@ -62,10 +62,6 @@ export class SkillsService {
     };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} skill`;
-  }
-
   update(id: number, updateSkillDto: UpdateSkillDto) {
     return `This action updates a #${id} skill with data ${JSON.stringify(updateSkillDto)}`;
   }
