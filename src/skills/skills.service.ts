@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Brackets, Repository } from 'typeorm';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { UpdateSkillDto } from './dto/update-skill.dto';
 import { GetSkillsDto } from './dto/get-skills.dto';
@@ -20,17 +20,30 @@ export class SkillsService {
 
   async findAll(getSkillsDto: GetSkillsDto): Promise<GetSkillsResponseDto> {
     const { page = 1, limit = 20, search = '', category } = getSkillsDto;
-    const [skills, total] = await this.skillsRepository
-      .createQueryBuilder('skill')
-      // TODO: add category search when category entity is ready
-      .where('skill.title = :title', { title: search })
-      .andWhere('skill.category = :category', { category: category })
-      .skip(+page)
-      .take(+limit)
+
+    // TODO: add fields to category search when category entity is ready
+    const qb = this.skillsRepository.createQueryBuilder('skill');
+
+    if (category) {
+      qb.where('category = :category', { category });
+    }
+
+    qb.andWhere(
+      new Brackets((qb) => {
+        qb.where('skill.title ILIKE :title', {
+          title: `%${search}%`,
+        }).orWhere('category ILIKE :category', { category: `%${search}%` });
+      }),
+    );
+
+    const [skills, total] = await qb
+      .skip((page - 1) * limit)
+      .take(limit)
+      .orderBy('skill.createdAt', 'DESC')
       .getManyAndCount();
-    const totalPages = Math.floor(total / limit);
-    if ((total == 0 && page > 1) || totalPages < page)
-      throw new NotFoundException('Page is out of range');
+
+    const totalPages = total ? Math.ceil(total / limit) : 1;
+    if (totalPages < page) throw new NotFoundException('Page is out of range');
     return {
       data: skills,
       page,
