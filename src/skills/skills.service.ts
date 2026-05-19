@@ -62,8 +62,19 @@ export class SkillsService {
     };
   }
 
-  update(id: number, updateSkillDto: UpdateSkillDto) {
-    return `This action updates a #${id} skill with data ${JSON.stringify(updateSkillDto)}`;
+  async update(id: string, updateSkillDto: UpdateSkillDto, ownerId: string) {
+    const skill = await this.findSkillOwnedByUser(id, ownerId);
+
+    if (updateSkillDto.images && updateSkillDto.images.length > 0) {
+      const oldImagesForDeletion = skill.images.filter(
+        (item) => !updateSkillDto.images?.includes(item),
+      );
+      oldImagesForDeletion
+        .map((image) => this.filesService.extractFilename(image))
+        .forEach((filename) => this.filesService.deleteFile(filename));
+    }
+
+    return await this.skillsRepository.update(id, updateSkillDto);
   }
 
   async remove(id: string, ownerId: string) {
