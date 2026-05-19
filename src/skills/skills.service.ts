@@ -62,12 +62,20 @@ export class SkillsService {
     };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} skill`;
-  }
+  async update(id: string, updateSkillDto: UpdateSkillDto, ownerId: string) {
+    const skill = await this.findSkillOwnedByUser(id, ownerId);
 
-  update(id: number, updateSkillDto: UpdateSkillDto) {
-    return `This action updates a #${id} skill with data ${JSON.stringify(updateSkillDto)}`;
+    if (updateSkillDto.images && updateSkillDto.images.length > 0) {
+      const oldImagesForDeletion = skill.images.filter(
+        (item) => !updateSkillDto.images?.includes(item),
+      );
+      oldImagesForDeletion
+        .map((image) => this.filesService.extractFilename(image))
+        .forEach((filename) => this.filesService.deleteFile(filename));
+    }
+    Object.assign(skill, updateSkillDto);
+    await this.skillsRepository.save(skill);
+    return new FindSkillDto(skill);
   }
 
   async remove(id: string, ownerId: string) {
