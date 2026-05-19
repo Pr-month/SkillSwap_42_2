@@ -11,6 +11,7 @@ import { GetSkillsDto } from './dto/get-skills.dto';
 import { Skill } from './entities/skill.entity';
 import { GetSkillsResponseDto } from './dto/get-skills-response.dto';
 import { FilesService } from '../files/files.service';
+import { FindSkillDto } from './dto/find-skill.dto';
 
 @Injectable()
 export class SkillsService {
@@ -72,7 +73,8 @@ export class SkillsService {
   async remove(id: string, ownerId: string) {
     const skill = await this.findSkillOwnedByUser(id, ownerId);
     skill.images.forEach((image) => this.filesService.deleteFile(image));
-    return this.skillsRepository.remove(skill);
+    await this.skillsRepository.remove(skill);
+    return new FindSkillDto(skill);
   }
 
   private async findSkillOwnedByUser(skillId: string, ownerId: string) {

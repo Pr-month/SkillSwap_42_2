@@ -1,6 +1,6 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { appConfig, TAppConfig } from './config/app.config';
 import * as cookieParser from 'cookie-parser';
 import { AllExceptionFilter } from './common/all-exception.filter';
@@ -16,6 +16,7 @@ async function bootstrap() {
     }),
   );
   app.useGlobalFilters(new AllExceptionFilter());
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   const { port } = app.get<TAppConfig>(appConfig.KEY);
   await app.listen(port);
