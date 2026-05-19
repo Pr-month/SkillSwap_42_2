@@ -7,6 +7,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UserRole } from './users.enums';
 import { appConfig, TAppConfig } from '../config/app.config';
+import { FindUserDto } from './dto/find-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -32,22 +33,22 @@ export class UsersService {
       role: UserRole.USER,
     });
     const savedUser = await this.usersRepository.save(newUser);
-    return savedUser;
+    return new FindUserDto(savedUser);
   }
 
   async findAll() {
     const users = await this.usersRepository.find({});
-    return users;
+    return users.map((user) => new FindUserDto(user));
   }
 
   async findOneById(id: string) {
     const user = await this.usersRepository.findOneBy({ id });
-    return user;
+    return user === null ? user : new FindUserDto(user);
   }
 
   async findOneByEmail(email: string) {
     const user = await this.usersRepository.findOneBy({ email });
-    return user;
+    return user === null ? user : new FindUserDto(user);
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
@@ -55,7 +56,7 @@ export class UsersService {
     if (!user) return null;
     Object.assign(user, updateUserDto);
     await this.usersRepository.save(user);
-    return user;
+    return new FindUserDto(user);
   }
 
   async updatePassword(id: string, oldPassword: string, newPassword: string) {
