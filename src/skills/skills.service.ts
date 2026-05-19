@@ -14,8 +14,12 @@ export class SkillsService {
     private readonly skillsRepository: Repository<Skill>,
   ) {}
 
-  create(createSkillDto: CreateSkillDto) {
-    return `This action adds a new skill with data ${JSON.stringify(createSkillDto)}`;
+  create(createSkillDto: CreateSkillDto, ownerId: string) {
+    const newSkill = this.skillsRepository.create({
+      ...createSkillDto,
+      owner: { id: ownerId },
+    });
+    return this.skillsRepository.save(newSkill);
   }
 
   async findAll(getSkillsDto: GetSkillsDto): Promise<GetSkillsResponseDto> {

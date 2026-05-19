@@ -20,7 +20,7 @@ export class Skill {
   description: string;
 
   // TODO: Add a relation to skills categories
-  @Column({ type: 'varchar', length: 4, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   category: string;
 
   @Column({ type: 'simple-array', nullable: true })
