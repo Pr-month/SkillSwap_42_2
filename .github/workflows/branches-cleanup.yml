@@ -1,4 +1,4 @@
-name: CI - Weeek developers branches cleanup
+name: CI - Week developers branches cleanup
 
 on:
   pull_request:
