@@ -3,15 +3,14 @@ import { WinstonModule } from 'nest-winston';
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import * as path from 'path';
-import { appConfig } from '../config/app.config';
+import { appConfig, TAppConfig } from '../config/app.config';
 
 @Module({
   imports: [
     WinstonModule.forRootAsync({
-      useFactory: () => {
-        const logLevel = appConfig().logLevel;
+      useFactory: (appConf: TAppConfig) => {
         return {
-          level: logLevel,
+          level: appConf.logLevel,
           format: winston.format.combine(
             winston.format.timestamp(),
             winston.format.json(),
@@ -49,6 +48,7 @@ import { appConfig } from '../config/app.config';
           ],
         };
       },
+      inject: [appConfig.KEY],
     }),
   ],
 })
