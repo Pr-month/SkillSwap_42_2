@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [closed]
     branches:
-      - develop
+      - dev
 jobs:
   delete_branches:
     name: Delete developers branches
@@ -18,4 +18,4 @@ jobs:
         with:
           fetch-depth: 0
       - name: Delete branches by pattern
-        run: git branch -r | grep '${{ github.event.pull_request.head.ref }}_' | sed 's/  origin\///' | xargs git push origin --delete
+        run: git branch -r | grep '${{ github.event.pull_request.head.ref }}_' | sed 's/\s*origin\///' | xargs --no-run-if-empty git push origin --delete
