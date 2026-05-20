@@ -1,0 +1,21 @@
+name: CI - Week developers branches cleanup
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - dev
+jobs:
+  delete_branches:
+    name: Delete developers branches
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo branch
+        run: echo "Merged branch is ${{ github.event.pull_request.head.ref }}"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Delete branches by pattern
+        run: git branch -r | grep '${{ github.event.pull_request.head.ref }}_' | sed 's/\s*origin\///' | xargs --no-run-if-empty git push origin --delete
