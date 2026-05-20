@@ -1,5 +1,12 @@
-import { User } from 'src/users/entities/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from '../../users/entities/user.entity';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('skills')
 export class Skill {
@@ -13,7 +20,7 @@ export class Skill {
   description: string;
 
   // TODO: Add a relation to skills categories
-  @Column({ type: 'varchar', length: 4, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   category: string;
 
   @Column({ type: 'simple-array', nullable: true })
@@ -21,4 +28,10 @@ export class Skill {
 
   @ManyToOne(() => User, (user) => user.skills)
   owner: User;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

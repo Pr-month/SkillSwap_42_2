@@ -7,11 +7,14 @@ import {
   OneToMany,
   ManyToMany,
   JoinTable,
+  Unique,
 } from 'typeorm';
 import { Gender, UserRole } from '../users.enums';
-import { Skill } from 'src/skills/entities/skill.entity';
+import { Skill } from '../../skills/entities/skill.entity';
+import { DatabaseConstraints } from '../../common/database-constraints';
 
 @Entity('users')
+@Unique(DatabaseConstraints.UQ_USER_EMAIL, ['email'])
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
@@ -19,7 +22,7 @@ export class User {
   @Column({ type: 'varchar', length: 100 })
   name!: string;
 
-  @Column({ type: 'varchar', length: 255, unique: true })
+  @Column({ type: 'varchar', length: 255 })
   email!: string;
 
   @Column({ type: 'varchar' })

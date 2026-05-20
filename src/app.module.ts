@@ -11,6 +11,9 @@ import { jwtConfig } from './config/jwt.config';
 import { SkillsModule } from './skills/skills.module';
 import { LoggerModule } from './logger/logger.module';
 import { LoggerMiddleware } from './logger/logger.middleware';
+import { FilesModule } from './files/files.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -24,10 +27,17 @@ import { LoggerMiddleware } from './logger/logger.middleware';
         ...dbConfig,
       }),
     }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+      serveStaticOptions: {
+        index: false,
+      },
+    }),
     LoggerModule,
     AuthModule,
     UsersModule,
     SkillsModule,
+    FilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

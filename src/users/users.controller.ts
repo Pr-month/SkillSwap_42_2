@@ -7,21 +7,23 @@ import {
   UseGuards,
   Req,
   Res,
+  Query,
 } from '@nestjs/common';
 import { Response } from 'express';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-access.guard';
-import { TAuthRequest } from 'src/auth/auth.types';
+import { JwtAuthGuard } from '../auth/guards/jwt-access.guard';
+import { TAuthRequest } from '../auth/auth.types';
 import { UpdatePasswordDto } from './dto/update-password.dto';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  findAll(@Query() getUsersDto: PaginationDto) {
+    return this.usersService.findAll(getUsersDto);
   }
 
   @Get('me')
