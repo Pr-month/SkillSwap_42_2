@@ -4,10 +4,17 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
+  ManyToMany,
+  JoinTable,
+  Unique,
 } from 'typeorm';
 import { Gender, UserRole } from '../users.enums';
+import { Skill } from '../../skills/entities/skill.entity';
+import { DatabaseConstraints } from '../../common/database-constraints';
 
 @Entity('users')
+@Unique(DatabaseConstraints.UQ_USER_EMAIL, ['email'])
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
@@ -15,7 +22,7 @@ export class User {
   @Column({ type: 'varchar', length: 100 })
   name!: string;
 
-  @Column({ type: 'varchar', length: 255, unique: true })
+  @Column({ type: 'varchar', length: 255 })
   email!: string;
 
   @Column({ type: 'varchar' })
@@ -36,17 +43,20 @@ export class User {
   @Column({ type: 'varchar', length: 500, nullable: true })
   avatar!: string;
 
-  // TODO: Add a relation to skills
-  @Column({ type: 'simple-array', nullable: true })
-  skills!: string[];
+  @OneToMany(() => Skill, (skill) => skill.owner)
+  skills!: Skill[];
 
   // TODO: Add a relation to skills categories
   @Column({ type: 'simple-array', nullable: true })
   wantToLearn!: string[];
 
-  // TODO: Add a relation to skills
-  @Column({ type: 'simple-array', nullable: true })
-  favoriteSkills!: string[];
+  @ManyToMany(() => Skill)
+  @JoinTable({
+    name: 'user_favorite_skills',
+    joinColumn: { name: 'user_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'skill_id', referencedColumnName: 'id' },
+  })
+  favoriteSkills!: Skill[];
 
   @Column({ type: 'enum', enum: UserRole, default: UserRole.USER })
   role!: UserRole;

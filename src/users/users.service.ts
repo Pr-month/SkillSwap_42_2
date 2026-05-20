@@ -1,5 +1,10 @@
 import * as bcrypt from 'bcrypt';
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Inject,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -7,6 +12,9 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UserRole } from './users.enums';
 import { appConfig, TAppConfig } from '../config/app.config';
+import { PaginationDto } from '../common/dto/pagination.dto';
+import { PaginatedResponseDto } from '../common/dto/paginated-response.dto';
+import { FindUserDto } from './dto/find-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -32,22 +40,38 @@ export class UsersService {
       role: UserRole.USER,
     });
     const savedUser = await this.usersRepository.save(newUser);
-    return savedUser;
+    return new FindUserDto(savedUser);
   }
 
-  async findAll() {
-    const users = await this.usersRepository.find({});
-    return users;
+  async findAll(
+    getUsersDto: PaginationDto,
+  ): Promise<PaginatedResponseDto<FindUserDto>> {
+    const { page = 1, limit = 20 } = getUsersDto;
+
+    const [users, total] = await this.usersRepository
+      .createQueryBuilder('user')
+      .skip((page - 1) * limit)
+      .take(limit)
+      .orderBy('user.createdAt', 'DESC')
+      .getManyAndCount();
+    const totalPages = total ? Math.ceil(total / limit) : 1;
+    if (totalPages < page) throw new NotFoundException('Page is out of range');
+
+    return {
+      data: users.map((user) => new FindUserDto(user)),
+      page,
+      totalPages,
+    };
   }
 
   async findOneById(id: string) {
     const user = await this.usersRepository.findOneBy({ id });
-    return user;
+    return user === null ? user : new FindUserDto(user);
   }
 
   async findOneByEmail(email: string) {
     const user = await this.usersRepository.findOneBy({ email });
-    return user;
+    return user === null ? user : new FindUserDto(user);
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
@@ -55,7 +79,7 @@ export class UsersService {
     if (!user) return null;
     Object.assign(user, updateUserDto);
     await this.usersRepository.save(user);
-    return user;
+    return new FindUserDto(user);
   }
 
   async updatePassword(id: string, oldPassword: string, newPassword: string) {
