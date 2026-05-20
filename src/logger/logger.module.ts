@@ -3,15 +3,15 @@ import { WinstonModule } from 'nest-winston';
 import * as winston from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import * as path from 'path';
+import { appConfig } from '../config/app.config';
 
-@Module({})
-export class LoggerModule {
-  static forRoot() {
-    return {
-      module: LoggerModule,
-      imports: [
-        WinstonModule.forRoot({
-          level: process.env.LOG_LEVEL || 'info',
+@Module({
+  imports: [
+    WinstonModule.forRootAsync({
+      useFactory: () => {
+        const logLevel = appConfig().logLevel;
+        return {
+          level: logLevel,
           format: winston.format.combine(
             winston.format.timestamp(),
             winston.format.json(),
@@ -23,7 +23,8 @@ export class LoggerModule {
                 winston.format.timestamp(),
                 winston.format.printf((info) => {
                   const { timestamp, level, message, context } = info;
-                  const contextStr = typeof context === 'string' ? `[${context}]` : '';
+                  const contextStr =
+                    typeof context === 'string' ? `[${context}]` : '';
                   return `${String(timestamp)} ${level} ${contextStr} ${String(message)}`;
                 }),
               ),
@@ -46,9 +47,9 @@ export class LoggerModule {
               format: winston.format.json(),
             }),
           ],
-        }),
-      ],
-      exports: [WinstonModule],
-    };
-  }
-}
+        };
+      },
+    }),
+  ],
+})
+export class LoggerModule {}

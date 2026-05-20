@@ -1,3 +1,4 @@
+// src/app.module.ts
 import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
@@ -24,7 +25,7 @@ import { LoggerMiddleware } from './logger/logger.middleware';
         ...dbConfig,
       }),
     }),
-    LoggerModule.forRoot(),
+    LoggerModule,
     AuthModule,
     UsersModule,
     SkillsModule,

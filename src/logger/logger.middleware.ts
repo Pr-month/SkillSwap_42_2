@@ -1,3 +1,4 @@
+// src/logger/logger.middleware.ts
 import { Injectable, NestMiddleware, Inject } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
@@ -5,6 +6,8 @@ import { Logger } from 'winston';
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
+  private readonly context = 'HTTP';
+
   constructor(
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
   ) {}
@@ -14,7 +17,10 @@ export class LoggerMiddleware implements NestMiddleware {
     const userAgent = req.get('user-agent') || '';
     const startTime = Date.now();
 
-    this.logger.info(`IN: ${method} ${originalUrl} - IP: ${ip} - UA: ${userAgent}`, { context: 'HTTP' });
+    this.logger.info(
+      `IN: ${method} ${originalUrl} - IP: ${ip} - UA: ${userAgent}`,
+      { context: this.context },
+    );
 
     res.on('finish', () => {
       const duration = Date.now() - startTime;
@@ -22,11 +28,11 @@ export class LoggerMiddleware implements NestMiddleware {
       const logMessage = `${method} ${originalUrl} ${statusCode} - ${duration}ms`;
 
       if (statusCode >= 500) {
-        this.logger.error(`ERR: ${logMessage}`, { context: 'HTTP' });
+        this.logger.error(`ERR: ${logMessage}`, { context: this.context });
       } else if (statusCode >= 400) {
-        this.logger.warn(`WARN: ${logMessage}`, { context: 'HTTP' });
+        this.logger.warn(`WARN: ${logMessage}`, { context: this.context });
       } else {
-        this.logger.info(`OUT: ${logMessage}`, { context: 'HTTP' });
+        this.logger.info(`OUT: ${logMessage}`, { context: this.context });
       }
     });
 
