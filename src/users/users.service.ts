@@ -16,6 +16,7 @@ import { appConfig, TAppConfig } from '../config/app.config';
 import { PaginationDto } from '../common/dto/pagination.dto';
 import { PaginatedResponseDto } from '../common/dto/paginated-response.dto';
 import { FindUserDto } from './dto/find-user.dto';
+import { Skill } from '../skills/entities/skill.entity';
 
 @Injectable()
 export class UsersService {
@@ -109,13 +110,12 @@ export class UsersService {
       relations: ['favoriteSkills'],
     });
     if (!user) throw new UnauthorizedException();
-    if (user.favoriteSkills.map((skill) => skill.id).includes(skillId))
+    if (user.favoriteSkills.some((skill) => skill.id === skillId))
       throw new ConflictException('Skill is already in favorites');
-    const updatedUser = await this.usersRepository.save({
-      ...user,
-      favoriteSkills: [...user.favoriteSkills, { id: skillId }],
-    });
-    return new FindUserDto(updatedUser);
+
+    user.favoriteSkills.push({ id: skillId } as Skill);
+    await this.usersRepository.update(userId, user);
+    return new FindUserDto(user);
   }
 
   async setRefreshToken(id: string, refreshToken: string | null) {
