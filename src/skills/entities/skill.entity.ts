@@ -28,7 +28,7 @@ export class Skill {
   @Column({ type: 'simple-array', nullable: true })
   images: string[];
 
-  @ManyToOne(() => User, (user) => user.skills)
+  @ManyToOne(() => User, (user) => user.skills, { onDelete: 'CASCADE' })
   owner: User;
 
   @CreateDateColumn()
