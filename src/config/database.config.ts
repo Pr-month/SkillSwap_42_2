@@ -1,5 +1,6 @@
 import { ConfigType, registerAs } from '@nestjs/config';
 import { DataSourceOptions } from 'typeorm';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 export const databaseConfig = registerAs(
   'DATABASE_CONFIG',
@@ -12,6 +13,7 @@ export const databaseConfig = registerAs(
     database: process.env.DB_NAME ?? 'skill_swap_db',
     entities: [__dirname + '/../**/*.entity{.ts,.js}'],
     synchronize: process.env.NODE_ENV === 'development',
+    namingStrategy: new SnakeNamingStrategy(),
   }),
 );
 
