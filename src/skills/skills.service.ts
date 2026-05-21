@@ -12,12 +12,14 @@ import { Skill } from './entities/skill.entity';
 import { GetSkillsResponseDto } from './dto/get-skills-response.dto';
 import { FilesService } from '../files/files.service';
 import { FindSkillDto } from './dto/find-skill.dto';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class SkillsService {
   constructor(
     @InjectRepository(Skill)
     private readonly skillsRepository: Repository<Skill>,
+    private readonly usersService: UsersService,
     private readonly filesService: FilesService,
   ) {}
 
@@ -77,6 +79,10 @@ export class SkillsService {
     Object.assign(skill, updateSkillDto);
     await this.skillsRepository.save(skill);
     return new FindSkillDto(skill);
+  }
+
+  async addToFavorite(skillId: string, userId: string) {
+    await this.usersService.updateFavoriteSkills(userId, skillId);
   }
 
   async remove(id: string, ownerId: string) {

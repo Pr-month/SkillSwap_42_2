@@ -33,12 +33,19 @@ export class SkillsController {
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthGuard)
   update(
     @Param('id') id: string,
     @Req() req: TAuthRequest,
     @Body() updateSkillDto: UpdateSkillDto,
   ) {
     return this.skillsService.update(id, updateSkillDto, req.user.sub);
+  }
+
+  @Post(':id/favorite')
+  @UseGuards(JwtAuthGuard)
+  addToFavorite(@Param('id') skillId: string, @Req() req: TAuthRequest) {
+    return this.skillsService.addToFavorite(skillId, req.user.sub);
   }
 
   @Delete(':id')

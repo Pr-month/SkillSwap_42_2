@@ -1,5 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import {
+  ConflictException,
   Inject,
   Injectable,
   NotFoundException,
@@ -100,6 +101,21 @@ export class UsersService {
       refreshToken: null,
     });
     return updatedUser;
+  }
+
+  async updateFavoriteSkills(userId: string, skillId: string) {
+    const user = await this.usersRepository.findOne({
+      where: { id: userId },
+      relations: ['favoriteSkills'],
+    });
+    if (!user) throw new UnauthorizedException();
+    if (user.favoriteSkills.map((skill) => skill.id).includes(skillId))
+      throw new ConflictException('Skill is already in favorites');
+    const updatedUser = await this.usersRepository.save({
+      ...user,
+      favoriteSkills: [...user.favoriteSkills, { id: skillId }],
+    });
+    return new FindUserDto(updatedUser);
   }
 
   async setRefreshToken(id: string, refreshToken: string | null) {
