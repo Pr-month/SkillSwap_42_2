@@ -81,8 +81,8 @@ export class SkillsService {
     return new FindSkillDto(skill);
   }
 
-  async addToFavorite(skillId: string, userId: string) {
-    await this.usersService.updateFavoriteSkills(userId, skillId);
+  addToFavorite(skillId: string, userId: string) {
+    return this.usersService.updateFavoriteSkills(userId, skillId);
   }
 
   async remove(id: string, ownerId: string) {

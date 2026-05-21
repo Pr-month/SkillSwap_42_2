@@ -114,8 +114,8 @@ export class UsersService {
       throw new ConflictException('Skill is already in favorites');
 
     user.favoriteSkills.push({ id: skillId } as Skill);
-    await this.usersRepository.update(userId, user);
-    return new FindUserDto(user);
+    const updatedUser = await this.usersRepository.save(user);
+    return new FindUserDto(updatedUser);
   }
 
   async setRefreshToken(id: string, refreshToken: string | null) {
