@@ -77,10 +77,7 @@ export class UsersService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
-    const user = await this.usersRepository.findOne({
-      where: { id: id },
-      relations: { wantToLearn: true },
-    });
+    const user = await this.usersRepository.findOneBy({ id });
     const wantToLearn = updateUserDto.wantToLearn?.map((id) => ({ id }));
     if (!user) return null;
     Object.assign(user, { ...updateUserDto, wantToLearn: wantToLearn });
