@@ -1,6 +1,7 @@
-import { Skill } from 'src/skills/entities/skill.entity';
+import { Skill } from '../../skills/entities/skill.entity';
 import { Gender, UserRole } from '../users.enums';
 import { Exclude } from 'class-transformer';
+import { Category } from '../../categories/entities/category.entity';
 
 export class FindUserDto {
   id: string;
@@ -21,7 +22,7 @@ export class FindUserDto {
   favoriteSkills: Skill[];
   @Exclude()
   refreshToken: string | null;
-  wantToLearn: string[];
+  wantToLearn: Category[];
   createdAt: Date;
   updatedAt: Date;
 

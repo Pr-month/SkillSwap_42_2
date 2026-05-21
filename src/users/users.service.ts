@@ -31,11 +31,13 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto) {
     const hash = await this.generateHash(createUserDto.password);
+    const wantToLearn = createUserDto.wantToLearn.map((id) => ({ id }));
     // TODO: Add avatar Url after files service completion
     const newUser = this.usersRepository.create({
       ...createUserDto,
       password: hash,
       skills: [],
+      wantToLearn,
       favoriteSkills: [],
       role: UserRole.USER,
     });
