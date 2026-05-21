@@ -44,7 +44,7 @@ export class User {
   @Column({ type: 'varchar', length: 500, nullable: true })
   avatar!: string;
 
-  @OneToMany(() => Skill, (skill) => skill.owner)
+  @OneToMany(() => Skill, (skill) => skill.owner, { cascade: true })
   skills!: Skill[];
 
   @ManyToMany(() => Category)
