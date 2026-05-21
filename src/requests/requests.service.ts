@@ -5,7 +5,7 @@ import { UpdateRequestDto } from './dto/update-request.dto';
 @Injectable()
 export class RequestsService {
   create(createRequestDto: CreateRequestDto) {
-    return 'This action adds a new request';
+    return `This action adds a new request with ${JSON.stringify(createRequestDto)}`;
   }
 
   findAll() {
@@ -17,7 +17,7 @@ export class RequestsService {
   }
 
   update(id: number, updateRequestDto: UpdateRequestDto) {
-    return `This action updates a #${id} request`;
+    return `This action updates a #${id} request with ${JSON.stringify(updateRequestDto)}`;
   }
 
   remove(id: number) {
