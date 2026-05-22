@@ -33,6 +33,7 @@ export class SkillsController {
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthGuard)
   update(
     @Param('id') id: string,
     @Req() req: TAuthRequest,
