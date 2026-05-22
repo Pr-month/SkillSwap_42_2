@@ -1,5 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import {
+  ConflictException,
   Inject,
   Injectable,
   NotFoundException,
@@ -15,6 +16,7 @@ import { appConfig, TAppConfig } from '../config/app.config';
 import { PaginationDto } from '../common/dto/pagination.dto';
 import { PaginatedResponseDto } from '../common/dto/paginated-response.dto';
 import { FindUserDto } from './dto/find-user.dto';
+import { Skill } from '../skills/entities/skill.entity';
 
 @Injectable()
 export class UsersService {
@@ -100,6 +102,20 @@ export class UsersService {
       refreshToken: null,
     });
     return updatedUser;
+  }
+
+  async updateFavoriteSkills(userId: string, skillId: string) {
+    const user = await this.usersRepository.findOne({
+      where: { id: userId },
+      relations: ['favoriteSkills'],
+    });
+    if (!user) throw new UnauthorizedException();
+    if (user.favoriteSkills.some((skill) => skill.id === skillId))
+      throw new ConflictException('Skill is already in favorites');
+
+    user.favoriteSkills.push({ id: skillId } as Skill);
+    const updatedUser = await this.usersRepository.save(user);
+    return new FindUserDto(updatedUser);
   }
 
   async setRefreshToken(id: string, refreshToken: string | null) {
