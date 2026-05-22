@@ -12,6 +12,7 @@ import { Skill } from './entities/skill.entity';
 import { GetSkillsResponseDto } from './dto/get-skills-response.dto';
 import { FilesService } from '../files/files.service';
 import { FindSkillDto } from './dto/find-skill.dto';
+import { FindUserDto } from 'src/users/dto/find-user.dto';
 
 @Injectable()
 export class SkillsService {
@@ -61,6 +62,14 @@ export class SkillsService {
       page,
       totalPages,
     };
+  }
+
+  async findSkillWithOwner(id: string) {
+    const skill = await this.skillsRepository.findOne({
+      where: { id: id },
+      relations: ['owner'],
+    });
+    return skill;
   }
 
   async update(id: string, updateSkillDto: UpdateSkillDto, ownerId: string) {
