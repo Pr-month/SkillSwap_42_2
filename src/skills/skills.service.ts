@@ -35,7 +35,8 @@ export class SkillsService {
 
     const qb = this.skillsRepository
       .createQueryBuilder('skill')
-      .leftJoinAndSelect('skill.category', 'category');
+      .leftJoinAndSelect('skill.category', 'category')
+      .leftJoinAndSelect('category.parent', 'parent');
 
     if (category) {
       qb.where('category.id = :category', { category });
@@ -45,9 +46,13 @@ export class SkillsService {
       new Brackets((qb) => {
         qb.where('skill.title ILIKE :title', {
           title: `%${search}%`,
-        }).orWhere('category.name ILIKE :category', {
-          category: `%${search}%`,
-        });
+        })
+          .orWhere('category.name ILIKE :category', {
+            category: `%${search}%`,
+          })
+          .orWhere('parent.name ILIKE :parent', {
+            parent: `%${search}%`,
+          });
       }),
     );
 
