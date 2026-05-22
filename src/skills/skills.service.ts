@@ -35,18 +35,26 @@ export class SkillsService {
   async findAll(getSkillsDto: GetSkillsDto): Promise<GetSkillsResponseDto> {
     const { page = 1, limit = 20, search = '', category } = getSkillsDto;
 
-    // TODO: add fields to category search when category entity is ready
-    const qb = this.skillsRepository.createQueryBuilder('skill');
+    const qb = this.skillsRepository
+      .createQueryBuilder('skill')
+      .leftJoinAndSelect('skill.category', 'category')
+      .leftJoinAndSelect('category.parent', 'parent');
 
     if (category) {
-      qb.where('category = :category', { category });
+      qb.where('category.id = :category', { category });
     }
 
     qb.andWhere(
       new Brackets((qb) => {
         qb.where('skill.title ILIKE :title', {
           title: `%${search}%`,
-        }).orWhere('category ILIKE :category', { category: `%${search}%` });
+        })
+          .orWhere('category.name ILIKE :category', {
+            category: `%${search}%`,
+          })
+          .orWhere('parent.name ILIKE :parent', {
+            parent: `%${search}%`,
+          });
       }),
     );
 
