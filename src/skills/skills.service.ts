@@ -12,7 +12,6 @@ import { Skill } from './entities/skill.entity';
 import { GetSkillsResponseDto } from './dto/get-skills-response.dto';
 import { FilesService } from '../files/files.service';
 import { FindSkillDto } from './dto/find-skill.dto';
-import { FindUserDto } from 'src/users/dto/find-user.dto';
 
 @Injectable()
 export class SkillsService {
