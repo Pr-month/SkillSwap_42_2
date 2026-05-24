@@ -9,6 +9,7 @@ describe('RequestsController', () => {
     create: jest.fn(),
     findAll: jest.fn(),
     findIncoming: jest.fn(),
+    findOutgoing: jest.fn(),
     findOne: jest.fn(),
     update: jest.fn(),
     remove: jest.fn(),
