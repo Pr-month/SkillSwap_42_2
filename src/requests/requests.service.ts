@@ -9,6 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Request } from './entities/request.entity';
 import { RequestStatus } from './requests.enums';
+import { UserRole } from '../users/users.enums';
 
 @Injectable()
 export class RequestsService {
@@ -83,7 +84,25 @@ export class RequestsService {
     return this.requestsRepository.save(request);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} request`;
+  async remove(id: string, userId: string, userRole: UserRole) {
+    const request = await this.requestsRepository.findOne({
+      where: { id },
+      relations: ['sender'],
+    });
+
+    if (!request) {
+      throw new NotFoundException('Request not found');
+    }
+
+    const isSender = request.sender.id === userId;
+    const isAdmin = userRole === UserRole.ADMIN;
+
+    if (!isSender && !isAdmin) {
+      throw new ForbiddenException('User cannot delete this request');
+    }
+
+    await this.requestsRepository.remove(request);
+
+    return request;
   }
 }
