@@ -6,10 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { RequestsService } from './requests.service';
 import { CreateRequestDto } from './dto/create-request.dto';
 import { UpdateRequestDto } from './dto/update-request.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-access.guard';
+import { TAuthRequest } from '../auth/auth.types';
 
 @Controller('requests')
 export class RequestsController {
@@ -23,6 +27,12 @@ export class RequestsController {
   @Get()
   findAll() {
     return this.requestsService.findAll();
+  }
+
+  @Get('incoming')
+  @UseGuards(JwtAuthGuard)
+  findIncoming(@Req() req: TAuthRequest) {
+    return this.requestsService.findIncoming(req.user.sub);
   }
 
   @Get(':id')
