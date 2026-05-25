@@ -16,7 +16,7 @@ async function usersSeed() {
       return;
     }
 
-    const saltRounds = 10;
+    const saltRounds = parseInt(process.env.HASH_SALT || '10', 10);
 
     const usersToCreate: User[] = [];
 
@@ -26,21 +26,21 @@ async function usersSeed() {
         saltRounds,
       );
 
-      const user = new User();
-      user.name = userData.name as string;
-      user.email = userData.email as string;
-      user.password = hashedPassword;
-      user.about = userData.about || '';
-      user.birthdate = userData.birthdate as string;
-      user.city = userData.city as string;
-      user.gender = userData.gender as User['gender'];
-      user.wantToLearn = userData.wantToLearn || [];
-      user.role = UserRole.USER;
-      user.refreshToken = '';
-      user.avatar = '';
-      user.skills = [];
-      user.favoriteSkills = [];
-
+      const user = userRepo.create({
+        name: userData.name,
+        email: userData.email,
+        password: hashedPassword,
+        about: userData.about,
+        birthdate: userData.birthdate,
+        city: userData.city,
+        gender: userData.gender,
+        wantToLearn: [],
+        role: UserRole.USER,
+        refreshToken: '',
+        avatar: '',
+        skills: [],
+        favoriteSkills: [],
+      });
       usersToCreate.push(user);
     }
 

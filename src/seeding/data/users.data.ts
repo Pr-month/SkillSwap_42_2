@@ -10,7 +10,6 @@ export const usersData: Partial<CreateUserDto>[] = [
     birthdate: '1995-03-15',
     city: 'Сызрань',
     gender: Gender.MALE,
-    wantToLearn: ['React', 'Node.js', 'TypeScript'],
   },
   {
     name: 'Марта Кукетская',
@@ -20,6 +19,5 @@ export const usersData: Partial<CreateUserDto>[] = [
     birthdate: '1993-07-22',
     city: 'Магадан',
     gender: Gender.FEMALE,
-    wantToLearn: ['Vue.js', 'Angular', 'TailwindCSS'],
   },
 ];
