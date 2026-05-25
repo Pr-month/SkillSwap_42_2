@@ -1,8 +1,10 @@
+import { Category } from '../../categories/entities/category.entity';
 import { User } from '../../users/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -19,14 +21,14 @@ export class Skill {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  // TODO: Add a relation to skills categories
-  @Column({ type: 'varchar', nullable: true })
-  category: string;
+  @ManyToOne(() => Category, { nullable: true, onDelete: 'SET NULL' })
+  @JoinColumn({ name: 'category_id' })
+  category: Category | null;
 
   @Column({ type: 'simple-array', nullable: true })
   images: string[];
 
-  @ManyToOne(() => User, (user) => user.skills)
+  @ManyToOne(() => User, (user) => user.skills, { onDelete: 'CASCADE' })
   owner: User;
 
   @CreateDateColumn()

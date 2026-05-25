@@ -1,5 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import {
+  ConflictException,
   Inject,
   Injectable,
   NotFoundException,
@@ -15,6 +16,7 @@ import { appConfig, TAppConfig } from '../config/app.config';
 import { PaginationDto } from '../common/dto/pagination.dto';
 import { PaginatedResponseDto } from '../common/dto/paginated-response.dto';
 import { FindUserDto } from './dto/find-user.dto';
+import { Skill } from '../skills/entities/skill.entity';
 
 @Injectable()
 export class UsersService {
@@ -31,11 +33,13 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto) {
     const hash = await this.generateHash(createUserDto.password);
+    const wantToLearn = createUserDto.wantToLearn.map((id) => ({ id }));
     // TODO: Add avatar Url after files service completion
     const newUser = this.usersRepository.create({
       ...createUserDto,
       password: hash,
       skills: [],
+      wantToLearn,
       favoriteSkills: [],
       role: UserRole.USER,
     });
@@ -76,8 +80,9 @@ export class UsersService {
 
   async update(id: string, updateUserDto: UpdateUserDto) {
     const user = await this.usersRepository.findOneBy({ id });
+    const wantToLearn = updateUserDto.wantToLearn?.map((id) => ({ id }));
     if (!user) return null;
-    Object.assign(user, updateUserDto);
+    Object.assign(user, { ...updateUserDto, wantToLearn: wantToLearn });
     await this.usersRepository.save(user);
     return new FindUserDto(user);
   }
@@ -97,6 +102,20 @@ export class UsersService {
       refreshToken: null,
     });
     return updatedUser;
+  }
+
+  async updateFavoriteSkills(userId: string, skillId: string) {
+    const user = await this.usersRepository.findOne({
+      where: { id: userId },
+      relations: ['favoriteSkills'],
+    });
+    if (!user) throw new UnauthorizedException();
+    if (user.favoriteSkills.some((skill) => skill.id === skillId))
+      throw new ConflictException('Skill is already in favorites');
+
+    user.favoriteSkills.push({ id: skillId } as Skill);
+    const updatedUser = await this.usersRepository.save(user);
+    return new FindUserDto(updatedUser);
   }
 
   async setRefreshToken(id: string, refreshToken: string | null) {
