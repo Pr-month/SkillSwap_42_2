@@ -16,15 +16,12 @@ import { JwtAuthGuard } from '../auth/guards/jwt-access.guard';
 import { TAuthRequest } from '../auth/auth.types';
 import { UpdatePasswordDto } from './dto/update-password.dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
-import { Roles } from 'src/common/guards/roles.decorator';
-import { UserRole } from './users.enums';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  @Roles(UserRole.ADMIN)
   findAll(@Query() getUsersDto: PaginationDto) {
     return this.usersService.findAll(getUsersDto);
   }
