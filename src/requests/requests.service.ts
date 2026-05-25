@@ -82,7 +82,7 @@ export class RequestsService {
     const isSender = request.sender.id === userId;
     const isReceiver = request.receiver.id === userId;
 
-      if (!isSender && !isReceiver) {
+    if (!isSender && !isReceiver) {
       throw new ForbiddenException('User cannot update this request');
     }
 
@@ -91,7 +91,9 @@ export class RequestsService {
       updateRequestDto.status === RequestStatus.REJECTED;
 
     if (isAcceptOrReject && !isReceiver) {
-      throw new ForbiddenException('Only receiver can accept or reject request');
+      throw new ForbiddenException(
+        'Only receiver can accept or reject request',
+      );
     }
 
     request.status = updateRequestDto.status;

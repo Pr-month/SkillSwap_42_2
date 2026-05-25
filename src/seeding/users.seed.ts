@@ -7,22 +7,25 @@ import { UserRole } from '../users/users.enums';
 async function usersSeed() {
   try {
     await dataSource.initialize();
-    
+
     const userRepo = dataSource.getRepository(User);
-    
+
     const count = await userRepo.count();
     if (count !== 0) {
       console.log('Users already exist in database. Seeding skipped.');
       return;
     }
-    
+
     const saltRounds = 10;
-    
+
     const usersToCreate: User[] = [];
-    
+
     for (const userData of usersData) {
-      const hashedPassword = await bcrypt.hash(userData.password as string, saltRounds);
-      
+      const hashedPassword = await bcrypt.hash(
+        userData.password as string,
+        saltRounds,
+      );
+
       const user = new User();
       user.name = userData.name as string;
       user.email = userData.email as string;
@@ -37,10 +40,10 @@ async function usersSeed() {
       user.avatar = '';
       user.skills = [];
       user.favoriteSkills = [];
-      
+
       usersToCreate.push(user);
     }
-    
+
     await userRepo.save(usersToCreate);
     console.log(`Successfully seeded ${usersToCreate.length} users`);
   } catch (error) {

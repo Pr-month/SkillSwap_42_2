@@ -20,7 +20,7 @@ describe('CategoriesController', () => {
         {
           provide: CategoriesService,
           useValue: mockCategoriesService,
-        }
+        },
       ],
     }).compile();
 
