@@ -6,22 +6,24 @@ import {
   Patch,
   Param,
   Delete,
-  UseGuards,
   Req,
+  UseGuards,
 } from '@nestjs/common';
 import { RequestsService } from './requests.service';
 import { CreateRequestDto } from './dto/create-request.dto';
 import { UpdateRequestDto } from './dto/update-request.dto';
-import { JwtAuthGuard } from '../auth/guards/jwt-access.guard';
 import { TAuthRequest } from '../auth/auth.types';
+import { JwtAuthGuard } from '../auth/guards/jwt-access.guard';
 
 @Controller('requests')
 export class RequestsController {
   constructor(private readonly requestsService: RequestsService) {}
 
   @Post()
-  create(@Body() createRequestDto: CreateRequestDto) {
-    return this.requestsService.create(createRequestDto);
+  @UseGuards(JwtAuthGuard)
+  create(@Req() req: TAuthRequest, @Body() createRequestDto: CreateRequestDto) {
+    const userId = req.user.sub;
+    return this.requestsService.create(userId, createRequestDto);
   }
 
   @Get()

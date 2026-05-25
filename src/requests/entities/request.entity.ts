@@ -6,12 +6,18 @@ import {
   ManyToOne,
   JoinColumn,
   UpdateDateColumn,
+  Unique,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 import { Skill } from '../../skills/entities/skill.entity';
 import { RequestStatus } from '../requests.enums';
+import { DatabaseConstraints } from '../../common/database-constraints';
 
 @Entity('requests')
+@Unique(DatabaseConstraints.UQ_REQUEST_SKILLS, [
+  'offeredSkill',
+  'requestedSkill',
+])
 export class Request {
   @PrimaryGeneratedColumn('uuid')
   id!: string;

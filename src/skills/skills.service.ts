@@ -73,6 +73,14 @@ export class SkillsService {
     };
   }
 
+  async findSkillWithOwner(id: string) {
+    const skill = await this.skillsRepository.findOne({
+      where: { id: id },
+      relations: ['owner'],
+    });
+    return skill;
+  }
+
   async update(id: string, updateSkillDto: UpdateSkillDto, ownerId: string) {
     const skill = await this.findSkillOwnedByUser(id, ownerId);
 
