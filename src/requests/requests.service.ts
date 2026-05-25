@@ -47,6 +47,18 @@ export class RequestsService {
     });
   }
 
+  findOutgoing(userId: string) {
+    return this.requestsRepository.find({
+      where: {
+        sender: { id: userId },
+      },
+      relations: ['sender', 'receiver', 'offeredSkill', 'requestedSkill'],
+      order: {
+        createdAt: 'DESC',
+      },
+    });
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} request`;
   }
