@@ -8,6 +8,8 @@ describe('RequestsService', () => {
 
   const mockRequestsRepository = {
     find: jest.fn(),
+    findOne: jest.fn(),
+    save: jest.fn(),
   };
 
   beforeEach(async () => {
