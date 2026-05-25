@@ -1,12 +1,24 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { RequestsService } from './requests.service';
+import { Request } from './entities/request.entity';
 
 describe('RequestsService', () => {
   let service: RequestsService;
 
+  const mockRequestsRepository = {
+    find: jest.fn(),
+  };
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [RequestsService],
+      providers: [
+        RequestsService,
+        {
+          provide: getRepositoryToken(Request),
+          useValue: mockRequestsRepository,
+        },
+      ],
     }).compile();
 
     service = module.get<RequestsService>(RequestsService);

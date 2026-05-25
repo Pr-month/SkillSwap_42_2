@@ -35,6 +35,18 @@ export class RequestsService {
     return `This action returns all requests`;
   }
 
+  findIncoming(userId: string) {
+    return this.requestsRepository.find({
+      where: {
+        receiver: { id: userId },
+      },
+      relations: ['sender', 'receiver', 'offeredSkill', 'requestedSkill'],
+      order: {
+        createdAt: 'DESC',
+      },
+    });
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} request`;
   }
