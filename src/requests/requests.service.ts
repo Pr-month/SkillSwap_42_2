@@ -6,19 +6,34 @@ import {
 import { CreateRequestDto } from './dto/create-request.dto';
 import { UpdateRequestDto } from './dto/update-request.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { Request } from './entities/request.entity';
+import { Repository } from 'typeorm';
+import { SkillsService } from '../skills/skills.service';
+import { FindRequestDto } from './dto/find-request.dto';
 import { RequestStatus } from './requests.enums';
 
 @Injectable()
 export class RequestsService {
   constructor(
+    private readonly skillsService: SkillsService,
     @InjectRepository(Request)
     private readonly requestsRepository: Repository<Request>,
   ) {}
 
-  create(createRequestDto: CreateRequestDto) {
-    return `This action adds a new request with ${JSON.stringify(createRequestDto)}`;
+  async create(userId: string, createRequestDto: CreateRequestDto) {
+    const requestedSkill = await this.skillsService.findSkillWithOwner(
+      createRequestDto.requestedSkillId,
+    );
+    if (!requestedSkill)
+      throw new NotFoundException('Requested skill not found');
+    const request = this.requestsRepository.create({
+      sender: { id: userId },
+      receiver: requestedSkill?.owner,
+      offeredSkill: { id: createRequestDto.offeredSkillId },
+      requestedSkill: requestedSkill,
+    });
+    const savedRequest = await this.requestsRepository.save(request);
+    return new FindRequestDto(savedRequest);
   }
 
   findAll() {
