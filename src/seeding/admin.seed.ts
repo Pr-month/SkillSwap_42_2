@@ -1,0 +1,56 @@
+import * as bcrypt from 'bcrypt';
+import { DataSource } from 'typeorm';
+import { User } from '../users/entities/user.entity';
+import { UserRole } from '../users/users.enums';
+import { databaseConfig } from '../config/database.config';
+
+async function adminSeed() {
+  const dataSource = new DataSource(databaseConfig());
+
+  try {
+    await dataSource.initialize();
+
+    const userRepo = dataSource.getRepository(User);
+
+    const adminEmail = process.env.ADMIN_EMAIL ?? 'admin@skillswap.com';
+    const adminPassword = process.env.ADMIN_PASSWORD ?? 'Admin123456';
+
+    const existingAdmin = await userRepo.findOne({
+      where: { email: adminEmail },
+    });
+
+    if (existingAdmin) {
+      console.log('Admin user already exists. Seeding skipped.');
+      return;
+    }
+
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(adminPassword, saltRounds);
+
+    const admin = new User();
+    admin.name = 'Administrator';
+    admin.email = adminEmail;
+    admin.password = hashedPassword;
+    admin.about = 'System Administrator';
+    admin.birthdate = '1990-01-01';
+    admin.city = 'System';
+    admin.gender = null;
+    admin.wantToLearn = [];
+    admin.role = UserRole.ADMIN;
+    admin.refreshToken = '';
+    admin.avatar = '';
+    admin.skills = [];
+    admin.favoriteSkills = [];
+
+    await userRepo.save(admin);
+    console.log('Admin user successfully seeded');
+  } catch (error) {
+    console.error('Error seeding admin:', error);
+  } finally {
+    if (dataSource.isInitialized) {
+      await dataSource.destroy();
+    }
+  }
+}
+
+void adminSeed();
