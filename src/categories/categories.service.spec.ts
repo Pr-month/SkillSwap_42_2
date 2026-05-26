@@ -8,6 +8,8 @@ describe('CategoriesService', () => {
 
   const mockCategoryRepository = {
     find: jest.fn(),
+    findOne: jest.fn(),
+    save: jest.fn(),
   };
 
   beforeEach(async () => {
