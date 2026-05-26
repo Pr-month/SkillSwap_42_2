@@ -48,6 +48,12 @@ export class SkillsController {
     return this.skillsService.addToFavorite(skillId, req.user.sub);
   }
 
+  @Delete(':id/favorite')
+  @UseGuards(JwtAuthGuard)
+  removeFromFavorite(@Param('id') skillId: string, @Req() req: TAuthRequest) {
+    return this.skillsService.removeFromFavorite(skillId, req.user.sub);
+  }
+
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
   async remove(@Req() req: TAuthRequest, @Param('id') id: string) {

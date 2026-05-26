@@ -1,5 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import {
+  BadRequestException,
   ConflictException,
   Inject,
   Injectable,
@@ -104,7 +105,7 @@ export class UsersService {
     return updatedUser;
   }
 
-  async updateFavoriteSkills(userId: string, skillId: string) {
+  async addFavoriteSkill(userId: string, skillId: string) {
     const user = await this.usersRepository.findOne({
       where: { id: userId },
       relations: ['favoriteSkills'],
@@ -114,6 +115,22 @@ export class UsersService {
       throw new ConflictException('Skill is already in favorites');
 
     user.favoriteSkills.push({ id: skillId } as Skill);
+    const updatedUser = await this.usersRepository.save(user);
+    return new FindUserDto(updatedUser);
+  }
+
+  async removeFavoriteSkill(userId: string, skillId: string) {
+    const user = await this.usersRepository.findOne({
+      where: { id: userId },
+      relations: ['favoriteSkills'],
+    });
+    if (!user) throw new UnauthorizedException();
+    if (!user.favoriteSkills.some((skill) => skill.id === skillId))
+      throw new BadRequestException('Skill is not in favorites');
+
+    user.favoriteSkills = user.favoriteSkills.filter(
+      (skill) => skill.id !== skillId,
+    );
     const updatedUser = await this.usersRepository.save(user);
     return new FindUserDto(updatedUser);
   }
