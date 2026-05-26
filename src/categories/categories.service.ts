@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IsNull, Repository } from 'typeorm';
 import { Category } from './entities/category.entity';
@@ -39,8 +43,28 @@ export class CategoriesService {
     return `This action returns a #${id} category`;
   }
 
-  update(id: number, updateCategoryDto: UpdateCategoryDto) {
-    return `This action updates a #${id} category with ${JSON.stringify(updateCategoryDto)}`;
+  async update(id: string, updateCategoryDto: UpdateCategoryDto) {
+    const category = await this.categoryRepository.findOne({
+      where: { id },
+    });
+
+    if (!category) {
+      throw new NotFoundException('Category not found');
+    }
+
+    if (updateCategoryDto.parent === id) {
+      throw new BadRequestException('Category cannot be parent of itself');
+    }
+
+    if (updateCategoryDto.name !== undefined) {
+      category.name = updateCategoryDto.name;
+    }
+
+    if (updateCategoryDto.parent !== undefined) {
+      category.parent = { id: updateCategoryDto.parent } as Category;
+    }
+
+    return this.categoryRepository.save(category);
   }
 
   remove(id: number) {

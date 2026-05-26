@@ -10,6 +10,8 @@ describe('CategoriesService', () => {
     create: jest.fn(),
     save: jest.fn(),
     find: jest.fn(),
+    findOne: jest.fn(),
+    save: jest.fn(),
   };
 
   beforeEach(async () => {
