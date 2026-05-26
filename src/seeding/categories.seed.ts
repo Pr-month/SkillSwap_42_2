@@ -1,11 +1,8 @@
-import { DataSource } from 'typeorm';
 import { Category } from '../categories/entities/category.entity';
 import { flattenCategories } from './data/categories.data';
-import { databaseConfig } from '../config/database.config';
+import { dataSource } from '../config/database.config';
 
 async function categoriesSeed() {
-  const dataSource = new DataSource(databaseConfig());
-
   try {
     await dataSource.initialize();
 
