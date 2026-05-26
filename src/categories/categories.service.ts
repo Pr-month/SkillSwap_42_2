@@ -17,7 +17,14 @@ export class CategoriesService {
   ) {}
 
   create(createCategoryDto: CreateCategoryDto) {
-    return `This action adds a new category with ${JSON.stringify(createCategoryDto)}`;
+    const category = this.categoryRepository.create({
+      name: createCategoryDto.name,
+      parent: createCategoryDto.parent
+        ? ({ id: createCategoryDto.parent } as Category)
+        : null,
+    });
+
+    return this.categoryRepository.save(category);
   }
 
   findAll() {
