@@ -98,7 +98,11 @@ export class SkillsService {
   }
 
   addToFavorite(skillId: string, userId: string) {
-    return this.usersService.updateFavoriteSkills(userId, skillId);
+    return this.usersService.addFavoriteSkill(userId, skillId);
+  }
+
+  removeFromFavorite(skillId: string, userId: string) {
+    return this.usersService.removeFavoriteSkill(userId, skillId);
   }
 
   async remove(id: string, ownerId: string) {
