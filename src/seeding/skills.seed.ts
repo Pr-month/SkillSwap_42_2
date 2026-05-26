@@ -31,9 +31,8 @@ async function skillsSeed() {
       const owner = users[i % users.length];
 
       const skill = new Skill();
-      skill.title = skillData.title as string;
+      skill.title = skillData.title || '';
       skill.description = skillData.description || '';
-      skill.category = skillData.category as string;
       skill.images = skillData.images || [];
       skill.owner = owner;
 
