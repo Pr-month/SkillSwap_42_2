@@ -1,12 +1,9 @@
 import * as bcrypt from 'bcrypt';
-import { DataSource } from 'typeorm';
 import { User } from '../users/entities/user.entity';
-import { UserRole } from '../users/users.enums';
-import { databaseConfig } from '../config/database.config';
+import { Gender, UserRole } from '../users/users.enums';
+import { dataSource } from '../config/database.config';
 
 async function adminSeed() {
-  const dataSource = new DataSource(databaseConfig());
-
   try {
     await dataSource.initialize();
 
@@ -34,7 +31,7 @@ async function adminSeed() {
     admin.about = 'System Administrator';
     admin.birthdate = '1990-01-01';
     admin.city = 'System';
-    admin.gender = null;
+    admin.gender = Gender.OTHER;
     admin.wantToLearn = [];
     admin.role = UserRole.ADMIN;
     admin.refreshToken = '';
