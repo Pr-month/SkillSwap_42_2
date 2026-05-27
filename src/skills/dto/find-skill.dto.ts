@@ -12,7 +12,7 @@ export class FindSkillDto {
   createdAt: Date;
   updatedAt: Date;
 
-  constructor(partial: Partial<FindUserDto>) {
+  constructor(partial: Partial<FindSkillDto>) {
     Object.assign(this, partial);
   }
 }
