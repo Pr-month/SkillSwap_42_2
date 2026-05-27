@@ -55,6 +55,8 @@ export class UsersService {
 
     const [users, total] = await this.usersRepository
       .createQueryBuilder('user')
+      .leftJoinAndSelect('user.favoriteSkills', 'favoriteSkills')
+      .leftJoinAndSelect('user.skills', 'skills')
       .skip((page - 1) * limit)
       .take(limit)
       .orderBy('user.createdAt', 'DESC')
@@ -70,7 +72,10 @@ export class UsersService {
   }
 
   async findOneById(id: string) {
-    const user = await this.usersRepository.findOneBy({ id });
+    const user = await this.usersRepository.findOne({
+      where: { id: id },
+      relations: ['skills', 'favoriteSkills'],
+    });
     return user === null ? user : new FindUserDto(user);
   }
 
