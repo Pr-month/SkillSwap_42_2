@@ -1,7 +1,7 @@
 import { Gender, UserRole } from '../users.enums';
 import { Exclude } from 'class-transformer';
 import { Category } from '../../categories/entities/category.entity';
-import { FindSkillDto } from 'src/skills/dto/find-skill.dto';
+import { FindSkillDto } from '../../skills/dto/find-skill.dto';
 
 export class FindUserDto {
   id: string;
