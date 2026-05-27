@@ -1,6 +1,7 @@
-import { Skill } from 'src/skills/entities/skill.entity';
 import { Gender, UserRole } from '../users.enums';
 import { Exclude } from 'class-transformer';
+import { Category } from '../../categories/entities/category.entity';
+import { FindSkillDto } from '../../skills/dto/find-skill.dto';
 
 export class FindUserDto {
   id: string;
@@ -15,17 +16,29 @@ export class FindUserDto {
   city: string;
   gender: Gender;
   avatar: string;
-  // TODO: replace with GetSkillDto
-  skills!: Skill[];
-  // TODO: replace with GetSkillDto
-  favoriteSkills: Skill[];
+  skills!: FindSkillDto[];
+  favoriteSkills: FindSkillDto[];
   @Exclude()
   refreshToken: string | null;
-  wantToLearn: string[];
+  wantToLearn: Category[];
   createdAt: Date;
   updatedAt: Date;
 
   constructor(partial: Partial<FindUserDto>) {
-    Object.assign(this, partial);
+    let mappedSkills: FindSkillDto[] = [];
+    let mappedFavoriteSkills: FindSkillDto[] = [];
+    if (partial.skills && partial.skills.length > 0) {
+      mappedSkills = partial.skills.map((skill) => new FindSkillDto(skill));
+    }
+    if (partial.favoriteSkills && partial.favoriteSkills.length > 0) {
+      mappedFavoriteSkills = partial.favoriteSkills.map(
+        (skill) => new FindSkillDto(skill),
+      );
+    }
+    Object.assign(this, {
+      ...partial,
+      skills: mappedSkills,
+      favoriteSkills: mappedFavoriteSkills,
+    });
   }
 }

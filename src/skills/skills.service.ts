@@ -12,18 +12,21 @@ import { Skill } from './entities/skill.entity';
 import { GetSkillsResponseDto } from './dto/get-skills-response.dto';
 import { FilesService } from '../files/files.service';
 import { FindSkillDto } from './dto/find-skill.dto';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class SkillsService {
   constructor(
     @InjectRepository(Skill)
     private readonly skillsRepository: Repository<Skill>,
+    private readonly usersService: UsersService,
     private readonly filesService: FilesService,
   ) {}
 
   create(createSkillDto: CreateSkillDto, ownerId: string) {
     const newSkill = this.skillsRepository.create({
       ...createSkillDto,
+      category: { id: createSkillDto.category },
       owner: { id: ownerId },
     });
     return this.skillsRepository.save(newSkill);
@@ -32,18 +35,26 @@ export class SkillsService {
   async findAll(getSkillsDto: GetSkillsDto): Promise<GetSkillsResponseDto> {
     const { page = 1, limit = 20, search = '', category } = getSkillsDto;
 
-    // TODO: add fields to category search when category entity is ready
-    const qb = this.skillsRepository.createQueryBuilder('skill');
+    const qb = this.skillsRepository
+      .createQueryBuilder('skill')
+      .leftJoinAndSelect('skill.category', 'category')
+      .leftJoinAndSelect('category.parent', 'parent');
 
     if (category) {
-      qb.where('category = :category', { category });
+      qb.where('category.id = :category', { category });
     }
 
     qb.andWhere(
       new Brackets((qb) => {
         qb.where('skill.title ILIKE :title', {
           title: `%${search}%`,
-        }).orWhere('category ILIKE :category', { category: `%${search}%` });
+        })
+          .orWhere('category.name ILIKE :category', {
+            category: `%${search}%`,
+          })
+          .orWhere('parent.name ILIKE :parent', {
+            parent: `%${search}%`,
+          });
       }),
     );
 
@@ -62,6 +73,14 @@ export class SkillsService {
     };
   }
 
+  async findSkillWithOwner(id: string) {
+    const skill = await this.skillsRepository.findOne({
+      where: { id: id },
+      relations: ['owner'],
+    });
+    return skill;
+  }
+
   async update(id: string, updateSkillDto: UpdateSkillDto, ownerId: string) {
     const skill = await this.findSkillOwnedByUser(id, ownerId);
 
@@ -76,6 +95,14 @@ export class SkillsService {
     Object.assign(skill, updateSkillDto);
     await this.skillsRepository.save(skill);
     return new FindSkillDto(skill);
+  }
+
+  addToFavorite(skillId: string, userId: string) {
+    return this.usersService.addFavoriteSkill(userId, skillId);
+  }
+
+  removeFromFavorite(skillId: string, userId: string) {
+    return this.usersService.removeFavoriteSkill(userId, skillId);
   }
 
   async remove(id: string, ownerId: string) {

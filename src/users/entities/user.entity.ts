@@ -12,6 +12,7 @@ import {
 import { Gender, UserRole } from '../users.enums';
 import { Skill } from '../../skills/entities/skill.entity';
 import { DatabaseConstraints } from '../../common/database-constraints';
+import { Category } from '../../categories/entities/category.entity';
 
 @Entity('users')
 @Unique(DatabaseConstraints.UQ_USER_EMAIL, ['email'])
@@ -43,12 +44,16 @@ export class User {
   @Column({ type: 'varchar', length: 500, nullable: true })
   avatar!: string;
 
-  @OneToMany(() => Skill, (skill) => skill.owner)
+  @OneToMany(() => Skill, (skill) => skill.owner, { cascade: true })
   skills!: Skill[];
 
-  // TODO: Add a relation to skills categories
-  @Column({ type: 'simple-array', nullable: true })
-  wantToLearn!: string[];
+  @ManyToMany(() => Category)
+  @JoinTable({
+    name: 'user_want_to_learn',
+    joinColumn: { name: 'user_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'category_id', referencedColumnName: 'id' },
+  })
+  wantToLearn!: Category[];
 
   @ManyToMany(() => Skill)
   @JoinTable({
