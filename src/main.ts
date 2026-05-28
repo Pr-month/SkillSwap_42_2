@@ -11,6 +11,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     bufferLogs: true,
   });
+  app.setGlobalPrefix('api');
 
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
 
@@ -32,7 +33,7 @@ async function bootstrap() {
 
   const documentFactory = () =>
     SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('api', app, documentFactory);
+  SwaggerModule.setup('docs', app, documentFactory, { useGlobalPrefix: true });
 
   const { port } = app.get<TAppConfig>(appConfig.KEY);
   await app.listen(port);
