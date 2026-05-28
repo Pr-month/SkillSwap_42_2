@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { WinstonModule } from 'nest-winston';
 import * as winston from 'winston';
-import * as DailyRotateFile from 'winston-daily-rotate-file';
+import DailyRotateFile from 'winston-daily-rotate-file';
 import * as path from 'path';
 import { appConfig, TAppConfig } from '../config/app.config';
 
