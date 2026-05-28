@@ -9,7 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { Response } from 'express';
-import * as ms from 'ms';
+import ms from 'ms';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { TAuthRequest, TRefreshRequest } from './auth.types';
