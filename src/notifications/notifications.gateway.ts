@@ -1,3 +1,4 @@
+import { Injectable, UseGuards } from '@nestjs/common';
 import {
   SubscribeMessage,
   WebSocketGateway,
@@ -5,10 +6,11 @@ import {
 } from '@nestjs/websockets';
 import { Server } from 'socket.io';
 import { TAuthSocket, TNotificationPayload } from './notifications.types';
-import { Injectable } from '@nestjs/common';
+import { WsJwtGuard } from '../auth/guards/ws-jwt.guard';
 
 @Injectable()
 @WebSocketGateway()
+@UseGuards(WsJwtGuard)
 export class NotificationsGateway {
   @WebSocketServer()
   server: Server;
