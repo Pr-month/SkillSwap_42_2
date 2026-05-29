@@ -114,7 +114,7 @@ export class RequestsService {
         updateRequestDto.status === RequestStatus.ACCEPTED
           ? NotificationType.REQUEST_ACCEPTED
           : NotificationType.REQUEST_REJECTED;
-      const notificationMessage = `Пользователь ${request.receiver.name} ${RequestStatus.ACCEPTED ? 'принял' : 'отклонил'} ${request.receiver.gender === Gender.FEMALE ? 'а' : ''} Вашу заявку`;
+      const notificationMessage = `Пользователь ${request.receiver.name} ${RequestStatus.ACCEPTED ? 'принял' : 'отклонил'}${request.receiver.gender === Gender.FEMALE ? 'а' : ''} Вашу заявку`;
       this.notificationsGateway.notifyUser(request.sender.id, {
         notificationType,
         notificationMessage,
