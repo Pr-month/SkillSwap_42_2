@@ -25,6 +25,6 @@ export class NotificationsGateway {
   notifyUser(id: string, payload: TNotificationPayload) {
     this.server
       .to(id)
-      .emit(payload.notificationType, payload.notificationMessage);
+      .emit(payload.notificationType, { message: payload.notificationMessage });
   }
 }

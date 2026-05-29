@@ -11,12 +11,17 @@ import { Repository } from 'typeorm';
 import { SkillsService } from '../skills/skills.service';
 import { FindRequestDto } from './dto/find-request.dto';
 import { RequestStatus } from './requests.enums';
-import { UserRole } from '../users/users.enums';
+import { Gender, UserRole } from '../users/users.enums';
+import { NotificationsGateway } from '../notifications/notifications.gateway';
+import { UsersService } from '../users/users.service';
+import { NotificationType } from '../notifications/notifications.enums';
 
 @Injectable()
 export class RequestsService {
   constructor(
     private readonly skillsService: SkillsService,
+    private readonly usersService: UsersService,
+    private readonly notificationsGateway: NotificationsGateway,
     @InjectRepository(Request)
     private readonly requestsRepository: Repository<Request>,
   ) {}
@@ -27,13 +32,19 @@ export class RequestsService {
     );
     if (!requestedSkill)
       throw new NotFoundException('Requested skill not found');
+    const requestSender = await this.usersService.findOneById(userId);
+    const requestReceiver = requestedSkill?.owner;
     const request = this.requestsRepository.create({
       sender: { id: userId },
-      receiver: requestedSkill?.owner,
+      receiver: requestReceiver,
       offeredSkill: { id: createRequestDto.offeredSkillId },
       requestedSkill: requestedSkill,
     });
     const savedRequest = await this.requestsRepository.save(request);
+    this.notificationsGateway.notifyUser(requestReceiver.id, {
+      notificationType: NotificationType.NEW_REQUEST,
+      notificationMessage: `Поступила новая заявка от ${requestSender!.name}`,
+    });
     return new FindRequestDto(savedRequest);
   }
 
@@ -97,6 +108,18 @@ export class RequestsService {
     }
 
     request.status = updateRequestDto.status;
+
+    if (isAcceptOrReject) {
+      const notificationType =
+        updateRequestDto.status === RequestStatus.ACCEPTED
+          ? NotificationType.REQUEST_ACCEPTED
+          : NotificationType.REQUEST_REJECTED;
+      const notificationMessage = `Пользователь ${request.receiver.name} ${RequestStatus.ACCEPTED ? 'принял' : 'отклонил'} ${request.receiver.gender === Gender.FEMALE ? 'а' : ''} Вашу заявку`;
+      this.notificationsGateway.notifyUser(request.sender.id, {
+        notificationType,
+        notificationMessage,
+      });
+    }
 
     return this.requestsRepository.save(request);
   }

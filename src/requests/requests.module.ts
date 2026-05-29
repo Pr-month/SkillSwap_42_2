@@ -11,6 +11,8 @@ import { FilesService } from '../files/files.service';
 import { UsersModule } from '../users/users.module';
 import { UsersService } from '../users/users.service';
 import { User } from '../users/entities/user.entity';
+import { NotificationsModule } from '../notifications/notifications.module';
+import { NotificationsGateway } from '../notifications/notifications.gateway';
 
 @Module({
   imports: [
@@ -18,8 +20,15 @@ import { User } from '../users/entities/user.entity';
     SkillsModule,
     UsersModule,
     FilesModule,
+    NotificationsModule,
   ],
   controllers: [RequestsController],
-  providers: [RequestsService, SkillsService, UsersService, FilesService],
+  providers: [
+    RequestsService,
+    SkillsService,
+    UsersService,
+    FilesService,
+    NotificationsGateway,
+  ],
 })
 export class RequestsModule {}
