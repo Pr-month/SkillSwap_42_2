@@ -32,6 +32,11 @@ export class SkillsController {
     return this.skillsService.findAll(getSkillsDto);
   }
 
+  @Get(':id/similar')
+  findSimilar(@Param('id') id: string) {
+    return this.skillsService.findSimilar(id);
+  }
+
   @Patch(':id')
   @UseGuards(JwtAuthGuard)
   update(

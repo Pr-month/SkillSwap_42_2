@@ -73,6 +73,28 @@ export class SkillsService {
     };
   }
 
+  async findSimilar(id: string) {
+    const skill = await this.skillsRepository.findOne({
+      where: { id },
+      relations: ['category'],
+    });
+
+    if (!skill) throw new NotFoundException('Skill not found');
+
+    const similarSkills = await this.skillsRepository
+      .createQueryBuilder('skill')
+      .leftJoinAndSelect('skill.category', 'category')
+      .where('skill.id != :id', { id })
+      .andWhere('category.id = :category', {
+        category: skill.category ? skill.category.id : null,
+      })
+      .orderBy('skill.createdAt', 'DESC')
+      .take(10)
+      .getMany();
+
+    return similarSkills;
+  }
+
   async findSkillWithOwner(id: string) {
     const skill = await this.skillsRepository.findOne({
       where: { id: id },
