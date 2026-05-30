@@ -43,7 +43,7 @@ export class RequestsService {
     const savedRequest = await this.requestsRepository.save(request);
     this.notificationsGateway.notifyUser(requestReceiver.id, {
       notificationType: NotificationType.NEW_REQUEST,
-      notificationMessage: `Поступила новая заявка от ${requestSender!.name}`,
+      notificationMessage: `Поступила новая заявка от пользователя ${requestSender!.name}`,
     });
     return new FindRequestDto(savedRequest);
   }
@@ -110,11 +110,12 @@ export class RequestsService {
     request.status = updateRequestDto.status;
 
     if (isAcceptOrReject) {
-      const notificationType =
-        updateRequestDto.status === RequestStatus.ACCEPTED
-          ? NotificationType.REQUEST_ACCEPTED
-          : NotificationType.REQUEST_REJECTED;
-      const notificationMessage = `Пользователь ${request.receiver.name} ${RequestStatus.ACCEPTED ? 'принял' : 'отклонил'}${request.receiver.gender === Gender.FEMALE ? 'а' : ''} Вашу заявку`;
+      const isAccept = updateRequestDto.status === RequestStatus.ACCEPTED;
+      const isFemaleReceiver = request.receiver.gender === Gender.FEMALE;
+      const notificationType = isAccept
+        ? NotificationType.REQUEST_ACCEPTED
+        : NotificationType.REQUEST_REJECTED;
+      const notificationMessage = `Пользователь ${request.receiver.name} ${isAccept ? 'принял' : 'отклонил'}${isFemaleReceiver ? 'а' : ''} Вашу заявку`;
       this.notificationsGateway.notifyUser(request.sender.id, {
         notificationType,
         notificationMessage,
