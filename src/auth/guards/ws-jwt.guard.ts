@@ -1,10 +1,4 @@
-import {
-  CanActivate,
-  ExecutionContext,
-  Injectable,
-  UnauthorizedException,
-  Inject,
-} from '@nestjs/common';
+import { Injectable, UnauthorizedException, Inject } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { jwtConfig, TJwtConfig } from '../../config/jwt.config';
 import { TJwtPayload } from '../auth.types';
@@ -18,27 +12,28 @@ type WsClient = {
 };
 
 @Injectable()
-export class WsJwtGuard implements CanActivate {
+export class WsJwtGuard {
   constructor(
     private readonly jwtService: JwtService,
     @Inject(jwtConfig.KEY)
     private readonly jwtConf: TJwtConfig,
   ) {}
 
-  canActivate(context: ExecutionContext): boolean {
-    const client = context.switchToWs().getClient<WsClient>();
+  checkToken(client: WsClient): TJwtPayload {
     const token = this.extractToken(client);
 
     if (!token) {
       throw new UnauthorizedException('Token is required');
     }
 
+    let payload: TJwtPayload;
+
     try {
-      client.user = this.jwtService.verify<TJwtPayload>(token, {
+      payload = this.jwtService.verify<TJwtPayload>(token, {
         secret: this.jwtConf.accessSecret,
       });
 
-      return true;
+      return payload;
     } catch {
       throw new UnauthorizedException('Invalid token');
     }

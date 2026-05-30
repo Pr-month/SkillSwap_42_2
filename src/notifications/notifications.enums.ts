@@ -1,5 +1,5 @@
 export enum NotificationType {
-  NEW_REQUEST = 'New Request',
-  REQUEST_ACCEPTED = 'Request accepted',
-  REQUEST_REJECTED = 'Request rejected',
+  NEW_REQUEST = 'newRequest',
+  REQUEST_ACCEPTED = 'requestAccepted',
+  REQUEST_REJECTED = 'requestRejected',
 }

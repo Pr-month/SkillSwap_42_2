@@ -12,12 +12,14 @@ import { WsJwtGuard } from '../auth/guards/ws-jwt.guard';
 @WebSocketGateway()
 @UseGuards(WsJwtGuard)
 export class NotificationsGateway {
+  constructor(private readonly jwtGuard: WsJwtGuard) {}
   @WebSocketServer()
   server: Server;
 
   @SubscribeMessage('connection')
   async handleConnection(client: TAuthSocket) {
-    const userId = client.user.sub;
+    const userPayload = this.jwtGuard.checkToken(client);
+    const userId = userPayload.sub;
     if (!userId) {
       return client.disconnect();
     }
@@ -27,6 +29,6 @@ export class NotificationsGateway {
   notifyUser(id: string, payload: TNotificationPayload) {
     this.server
       .to(id)
-      .emit(payload.notificationType, { message: payload.notificationMessage });
+      .emit(payload.notificationType, payload.notificationMessage);
   }
 }
