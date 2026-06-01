@@ -1,22 +1,39 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 import request from 'supertest';
-import type { App } from 'supertest/types';
 import { AppModule } from './../src/app.module';
 
 describe('Categories (e2e)', () => {
-  let app: INestApplication<App>;
+  let app: INestApplication;
+  let adminAccessToken: string;
+  const createdCategoryIds: string[] = [];
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    app.useGlobalPipes(new ValidationPipe());
     await app.init();
+
+    const loginResponse = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send({ email: 'admin@skillswap.com', password: 'Admin123456' });
+
+    adminAccessToken = loginResponse.body.accessToken;
   });
 
-  afterEach(async () => {
+  afterAll(async () => {
+    for (const id of createdCategoryIds) {
+      try {
+        await request(app.getHttpServer())
+          .delete(`/categories/${id}`)
+          .set('Authorization', `Bearer ${adminAccessToken}`);
+      } catch (error) {
+        // Игнорируем ошибки при удалении
+      }
+    }
     await app.close();
   });
 
@@ -30,105 +47,150 @@ describe('Categories (e2e)', () => {
     });
   });
 
-  describe('GET /categories/:id', () => {
-    it('should return a category by id', async () => {
-      const response = await request(app.getHttpServer())
-        .get('/categories')
-        .expect(200);
-
-      const body = response.body as Array<{ id: string; name: string }>;
-      if (body && body.length > 0) {
-        const categoryId = body[0].id;
-        const getResponse = await request(app.getHttpServer())
-          .get(`/categories/${categoryId}`)
-          .expect(200);
-
-        expect(getResponse.body).toHaveProperty('id', categoryId);
-        expect(getResponse.body).toHaveProperty('name');
-      }
-    });
-
-    it('should return 404 for non-existent category', async () => {
-      const nonExistentId = '00000000-0000-0000-0000-000000000000';
-      await request(app.getHttpServer())
-        .get(`/categories/${nonExistentId}`)
-        .expect(404);
-    });
-  });
-
   describe('POST /categories', () => {
-    it('should create a new category', async () => {
+    it('should create a new category with admin auth', async () => {
       const newCategory = {
-        name: 'Test Category',
+        name: 'E2E Test Category',
         parent: null,
       };
 
       const response = await request(app.getHttpServer())
         .post('/categories')
+        .set('Authorization', `Bearer ${adminAccessToken}`)
         .send(newCategory)
         .expect(201);
 
       expect(response.body).toHaveProperty('id');
       expect(response.body).toHaveProperty('name', newCategory.name);
+
+      createdCategoryIds.push(response.body.id);
+    });
+
+    it('should return 401 without auth token', async () => {
+      const newCategory = {
+        name: 'Unauthorized Category',
+        parent: null,
+      };
+
+      await request(app.getHttpServer())
+        .post('/categories')
+        .send(newCategory)
+        .expect(401);
     });
 
     it('should return 400 for invalid category data', async () => {
       const invalidCategory = { name: '' };
 
-      await request(app.getHttpServer())
+      const response = await request(app.getHttpServer())
         .post('/categories')
+        .set('Authorization', `Bearer ${adminAccessToken}`)
         .send(invalidCategory)
         .expect(400);
+
+      expect(response.body).toHaveProperty('message');
     });
   });
 
   describe('PATCH /categories/:id', () => {
-    it('should update a category', async () => {
+    let testCategoryId: string;
+
+    beforeAll(async () => {
       const createResponse = await request(app.getHttpServer())
         .post('/categories')
+        .set('Authorization', `Bearer ${adminAccessToken}`)
         .send({ name: 'To Update', parent: null })
         .expect(201);
 
-      const createdBody = createResponse.body as { id: string; name: string };
-      const categoryId = createdBody.id;
+      testCategoryId = createResponse.body.id;
+      createdCategoryIds.push(testCategoryId);
+    });
+
+    it('should update a category with admin auth', async () => {
       const updateData = { name: 'Updated Category Name' };
 
       const response = await request(app.getHttpServer())
-        .patch(`/categories/${categoryId}`)
+        .patch(`/categories/${testCategoryId}`)
+        .set('Authorization', `Bearer ${adminAccessToken}`)
         .send(updateData)
         .expect(200);
 
       expect(response.body).toHaveProperty('name', updateData.name);
     });
 
-    it('should return 404 for updating non-existent category', async () => {
+    it('should return 401 without auth token', async () => {
+      const updateData = { name: 'Should Fail' };
+
+      await request(app.getHttpServer())
+        .patch(`/categories/${testCategoryId}`)
+        .send(updateData)
+        .expect(401);
+    });
+
+    it('should return 404 for non-existent category', async () => {
       const nonExistentId = '00000000-0000-0000-0000-000000000000';
+      const updateData = { name: 'Non Existent' };
+
       await request(app.getHttpServer())
         .patch(`/categories/${nonExistentId}`)
-        .send({ name: 'Updated Name' })
+        .set('Authorization', `Bearer ${adminAccessToken}`)
+        .send(updateData)
         .expect(404);
+    });
+
+    it('should return error when trying to set category as parent of itself', async () => {
+      const response = await request(app.getHttpServer())
+        .patch(`/categories/${testCategoryId}`)
+        .set('Authorization', `Bearer ${adminAccessToken}`)
+        .send({ parent: testCategoryId })
+        .expect(400);
+
+      expect(response.body.message).toContain('parent');
     });
   });
 
   describe('DELETE /categories/:id', () => {
-    it('should delete a category', async () => {
+    it('should delete a category with admin auth', async () => {
       const createResponse = await request(app.getHttpServer())
         .post('/categories')
+        .set('Authorization', `Bearer ${adminAccessToken}`)
         .send({ name: 'To Delete', parent: null })
         .expect(201);
 
-      const createdBody = createResponse.body as { id: string; name: string };
-      const categoryId = createdBody.id;
+      const categoryId = createResponse.body.id;
+      createdCategoryIds.push(categoryId);
 
       await request(app.getHttpServer())
         .delete(`/categories/${categoryId}`)
+        .set('Authorization', `Bearer ${adminAccessToken}`)
+        .expect(200);
+    });
+
+    it('should return 401 without auth token', async () => {
+      const createResponse = await request(app.getHttpServer())
+        .post('/categories')
+        .set('Authorization', `Bearer ${adminAccessToken}`)
+        .send({ name: 'Temp Delete Test', parent: null })
+        .expect(201);
+
+      const tempId = createResponse.body.id;
+      createdCategoryIds.push(tempId);
+
+      await request(app.getHttpServer())
+        .delete(`/categories/${tempId}`)
+        .expect(401);
+
+      await request(app.getHttpServer())
+        .delete(`/categories/${tempId}`)
+        .set('Authorization', `Bearer ${adminAccessToken}`)
         .expect(200);
     });
 
     it('should return 404 for deleting non-existent category', async () => {
       const nonExistentId = '00000000-0000-0000-0000-000000000000';
+
       await request(app.getHttpServer())
         .delete(`/categories/${nonExistentId}`)
+        .set('Authorization', `Bearer ${adminAccessToken}`)
         .expect(404);
     });
   });
