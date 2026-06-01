@@ -3,6 +3,21 @@ import { INestApplication, ValidationPipe } from '@nestjs/common';
 import request from 'supertest';
 import { AppModule } from './../src/app.module';
 
+interface CategoryResponse {
+  id: string;
+  name: string;
+  parent: string | null;
+}
+
+interface LoginResponse {
+  accessToken: string;
+}
+
+interface ErrorResponse {
+  message: string;
+  statusCode: number;
+}
+
 describe('Categories (e2e)', () => {
   let app: INestApplication;
   let adminAccessToken: string;
@@ -21,7 +36,8 @@ describe('Categories (e2e)', () => {
       .post('/auth/login')
       .send({ email: 'admin@skillswap.com', password: 'Admin123456' });
 
-    adminAccessToken = loginResponse.body.accessToken;
+    const loginBody = loginResponse.body as LoginResponse;
+    adminAccessToken = loginBody.accessToken;
   });
 
   afterAll(async () => {
@@ -30,7 +46,7 @@ describe('Categories (e2e)', () => {
         await request(app.getHttpServer())
           .delete(`/categories/${id}`)
           .set('Authorization', `Bearer ${adminAccessToken}`);
-      } catch (error) {
+      } catch {
         // Игнорируем ошибки при удалении
       }
     }
@@ -43,7 +59,8 @@ describe('Categories (e2e)', () => {
         .get('/categories')
         .expect(200);
 
-      expect(Array.isArray(response.body)).toBe(true);
+      const body = response.body as CategoryResponse[];
+      expect(Array.isArray(body)).toBe(true);
     });
   });
 
@@ -60,10 +77,11 @@ describe('Categories (e2e)', () => {
         .send(newCategory)
         .expect(201);
 
-      expect(response.body).toHaveProperty('id');
-      expect(response.body).toHaveProperty('name', newCategory.name);
+      const body = response.body as CategoryResponse;
+      expect(body).toHaveProperty('id');
+      expect(body).toHaveProperty('name', newCategory.name);
 
-      createdCategoryIds.push(response.body.id);
+      createdCategoryIds.push(body.id);
     });
 
     it('should return 401 without auth token', async () => {
@@ -87,7 +105,8 @@ describe('Categories (e2e)', () => {
         .send(invalidCategory)
         .expect(400);
 
-      expect(response.body).toHaveProperty('message');
+      const body = response.body as ErrorResponse;
+      expect(body).toHaveProperty('message');
     });
   });
 
@@ -101,7 +120,8 @@ describe('Categories (e2e)', () => {
         .send({ name: 'To Update', parent: null })
         .expect(201);
 
-      testCategoryId = createResponse.body.id;
+      const createBody = createResponse.body as CategoryResponse;
+      testCategoryId = createBody.id;
       createdCategoryIds.push(testCategoryId);
     });
 
@@ -114,7 +134,8 @@ describe('Categories (e2e)', () => {
         .send(updateData)
         .expect(200);
 
-      expect(response.body).toHaveProperty('name', updateData.name);
+      const body = response.body as CategoryResponse;
+      expect(body).toHaveProperty('name', updateData.name);
     });
 
     it('should return 401 without auth token', async () => {
@@ -144,7 +165,8 @@ describe('Categories (e2e)', () => {
         .send({ parent: testCategoryId })
         .expect(400);
 
-      expect(response.body.message).toContain('parent');
+      const body = response.body as ErrorResponse;
+      expect(body.message).toContain('parent');
     });
   });
 
@@ -156,7 +178,8 @@ describe('Categories (e2e)', () => {
         .send({ name: 'To Delete', parent: null })
         .expect(201);
 
-      const categoryId = createResponse.body.id;
+      const createBody = createResponse.body as CategoryResponse;
+      const categoryId = createBody.id;
       createdCategoryIds.push(categoryId);
 
       await request(app.getHttpServer())
@@ -172,7 +195,8 @@ describe('Categories (e2e)', () => {
         .send({ name: 'Temp Delete Test', parent: null })
         .expect(201);
 
-      const tempId = createResponse.body.id;
+      const createBody = createResponse.body as CategoryResponse;
+      const tempId = createBody.id;
       createdCategoryIds.push(tempId);
 
       await request(app.getHttpServer())
