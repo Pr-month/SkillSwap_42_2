@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCityDto } from './dto/create-city.dto';
 import { UpdateCityDto } from './dto/update-city.dto';
 import { Repository } from 'typeorm';
 import { City } from './entities/city.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Injectable()
 export class CitiesService {
@@ -17,8 +18,23 @@ export class CitiesService {
     return this.cityRepository.save(city);
   }
 
-  findAll() {
-    return `This action returns all cities`;
+  async findAll(getCitiesDto: PaginationDto) {
+    const { page = 1, limit = 20 } = getCitiesDto;
+
+    const [cities, total] = await this.cityRepository
+      .createQueryBuilder('city')
+      .skip((page - 1) * limit)
+      .take(limit)
+      .orderBy('city.name', 'ASC')
+      .getManyAndCount();
+    const totalPages = total ? Math.ceil(total / limit) : 1;
+    if (totalPages < page) throw new NotFoundException('Page is out of range');
+
+    return {
+      data: cities,
+      page,
+      totalPages,
+    };
   }
 
   findOne(id: number) {

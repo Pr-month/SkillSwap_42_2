@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { CitiesService } from './cities.service';
 import { CreateCityDto } from './dto/create-city.dto';
@@ -15,6 +16,7 @@ import { RolesGuard } from '../common/guards/roles.guard';
 import { JwtAuthGuard } from '../auth/guards/jwt-access.guard';
 import { Roles } from '../common/guards/roles.decorator';
 import { UserRole } from '../users/users.enums';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Controller('cities')
 export class CitiesController {
@@ -28,8 +30,8 @@ export class CitiesController {
   }
 
   @Get()
-  findAll() {
-    return this.citiesService.findAll();
+  findAll(@Query() getCitiesDto: PaginationDto) {
+    return this.citiesService.findAll(getCitiesDto);
   }
 
   @Get(':id')
