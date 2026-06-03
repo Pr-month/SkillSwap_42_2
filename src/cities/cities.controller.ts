@@ -16,7 +16,7 @@ import { RolesGuard } from '../common/guards/roles.guard';
 import { JwtAuthGuard } from '../auth/guards/jwt-access.guard';
 import { Roles } from '../common/guards/roles.decorator';
 import { UserRole } from '../users/users.enums';
-import { PaginationDto } from 'src/common/dto/pagination.dto';
+import { PaginationDto } from '../common/dto/pagination.dto';
 
 @Controller('cities')
 export class CitiesController {
