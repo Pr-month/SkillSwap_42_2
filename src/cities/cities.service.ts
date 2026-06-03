@@ -4,7 +4,7 @@ import { UpdateCityDto } from './dto/update-city.dto';
 import { Repository } from 'typeorm';
 import { City } from './entities/city.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PaginationDto } from 'src/common/dto/pagination.dto';
+import { PaginationDto } from '../common/dto/pagination.dto';
 
 @Injectable()
 export class CitiesService {
