@@ -7,7 +7,6 @@ import { usersData } from '../seeding/data/users.data';
 import { UserRole } from './users.enums';
 import { CreateUserDto } from './dto/create-user.dto';
 import { FindUserDto } from './dto/find-user.dto';
-import { instanceToPlain } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
 
 jest.mock('bcrypt');
@@ -24,6 +23,23 @@ describe('UsersService', () => {
   const mockConfig = {
     hashSalt: 10,
   };
+
+  const currentDate = new Date();
+
+  const users = [
+    {
+      ...usersData[0],
+      wantToLearn: [],
+      skills: [],
+      favoriteSkills: [],
+      role: UserRole.USER,
+      createdAt: currentDate,
+      updatedAt: currentDate,
+      password: 'hashed_password',
+      id: '1',
+      avatar: '',
+    },
+  ];
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -46,8 +62,6 @@ describe('UsersService', () => {
   });
 
   it('should correctly create user and return new FindUserDto from data', async () => {
-    jest.mocked(bcrypt.hash).mockResolvedValue('hashed_password' as never);
-    const currentDate = new Date();
     const createUserData = {
       ...usersData[0],
       wantToLearn: [],
@@ -56,15 +70,10 @@ describe('UsersService', () => {
       role: UserRole.USER,
       password: 'hashed_password',
     };
-    const createUserResult = {
-      ...createUserData,
-      createdAt: currentDate,
-      updatedAt: currentDate,
-      id: 'newuser-id',
-      password: 'hashed_password',
-      avatar: '',
-    };
-    const resultUser = new FindUserDto(createUserResult);
+
+    const createUserResult = users[0];
+
+    jest.mocked(bcrypt.hash).mockResolvedValue('hashed_password' as never);
     mockUsersRepository.create.mockReturnValue(createUserResult);
     mockUsersRepository.save.mockResolvedValue(createUserResult);
     const result = await service.create({
@@ -73,6 +82,12 @@ describe('UsersService', () => {
     } as CreateUserDto);
     expect(mockUsersRepository.create).toHaveBeenCalledWith(createUserData);
     expect(mockUsersRepository.save).toHaveBeenCalledWith(createUserResult);
-    expect(result).toStrictEqual(resultUser);
+    expect(result).toStrictEqual(new FindUserDto(createUserResult));
+  });
+
+  it('should correctly return user when use by Id', async () => {
+    mockUsersRepository.findOne.mockReturnValue(users[0]);
+    const result = await service.findOneById('1');
+    expect(result).toStrictEqual(new FindUserDto(users[0]));
   });
 });
