@@ -8,6 +8,8 @@ import { UserRole } from './users.enums';
 import { CreateUserDto } from './dto/create-user.dto';
 import { FindUserDto } from './dto/find-user.dto';
 import * as bcrypt from 'bcrypt';
+import { nodeModuleNameResolver } from 'typescript';
+import { FindSkillDto } from 'src/skills/dto/find-skill.dto';
 
 jest.mock('bcrypt');
 
@@ -37,6 +39,34 @@ describe('UsersService', () => {
       updatedAt: currentDate,
       password: 'hashed_password',
       id: '1',
+      avatar: '',
+    },
+    {
+      ...usersData[1],
+      wantToLearn: [],
+      skills: [
+        {
+          title: 'Python',
+          description: 'Универсальный язык программирования',
+          category: {
+            id: '1',
+            name: 'Программирование',
+            parent: null,
+            children: [],
+          },
+          images: [],
+          id: '1',
+          owner: null as unknown as FindUserDto,
+          createdAt: currentDate,
+          updatedAt: currentDate,
+        },
+      ],
+      favoriteSkills: [],
+      role: UserRole.USER,
+      createdAt: currentDate,
+      updatedAt: currentDate,
+      password: 'hashed_another_password',
+      id: '2',
       avatar: '',
     },
   ];
@@ -85,9 +115,38 @@ describe('UsersService', () => {
     expect(result).toStrictEqual(new FindUserDto(createUserResult));
   });
 
-  it('should correctly return user when use by Id', async () => {
-    mockUsersRepository.findOne.mockReturnValue(users[0]);
-    const result = await service.findOneById('1');
+  it('should correctly return user when search by id', async () => {
+    mockUsersRepository.findOne.mockImplementationOnce(
+      (param: Record<string, Record<string, any>>) =>
+        users.find((user) => user.id === param.where.id),
+    );
+    const result = await service.findOneById(users[0].id);
     expect(result).toStrictEqual(new FindUserDto(users[0]));
+  });
+
+  it('should correctly return user when search by email', async () => {
+    mockUsersRepository.findOneBy.mockImplementationOnce(
+      (param: Record<string, string>) =>
+        users.find((user) => user.email === param.email),
+    );
+    const result = await service.findOneByEmail(users[0].email as string);
+    expect(result).toStrictEqual(new FindUserDto(users[0]));
+  });
+
+  it('should correctly add skill to favorites and throw an error if skill added again', async () => {
+    const skill = users[1].skills[0];
+    mockUsersRepository.findOne.mockImplementation(
+      (param: Record<string, Record<string, any>>) =>
+        users.find((user) => user.id === param.where.id),
+    );
+    mockUsersRepository.save.mockReturnValueOnce({
+      ...users[0],
+      favoriteSkills: [new FindSkillDto(skill)],
+    });
+    const result = await service.addFavoriteSkill(users[0].id, skill.id);
+    expect(result.favoriteSkills).toStrictEqual([new FindSkillDto(skill)]);
+    await expect(
+      service.addFavoriteSkill(users[0].id, skill.id),
+    ).rejects.toThrow();
   });
 });
