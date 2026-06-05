@@ -8,20 +8,13 @@ import { UserRole } from './users.enums';
 import { CreateUserDto } from './dto/create-user.dto';
 import { FindUserDto } from './dto/find-user.dto';
 import * as bcrypt from 'bcrypt';
-import { nodeModuleNameResolver } from 'typescript';
 import { FindSkillDto } from 'src/skills/dto/find-skill.dto';
 
 jest.mock('bcrypt');
 
 describe('UsersService', () => {
   let service: UsersService;
-  const mockUsersRepository = {
-    create: jest.fn(),
-    save: jest.fn(),
-    find: jest.fn(),
-    findOne: jest.fn(),
-    findOneBy: jest.fn(),
-  };
+
   const mockConfig = {
     hashSalt: 10,
   };
@@ -71,6 +64,25 @@ describe('UsersService', () => {
     },
   ];
 
+  const mockQueryBuilder = {
+    createQueryBuilder: jest.fn().mockReturnThis(),
+    leftJoinAndSelect: jest.fn().mockReturnThis(),
+    skip: jest.fn().mockReturnThis(),
+    take: jest.fn().mockReturnThis(),
+    orderBy: jest.fn().mockReturnThis(),
+    getManyAndCount: jest.fn().mockReturnValue([users, users.length]),
+  };
+
+  const mockUsersRepository = {
+    create: jest.fn(),
+    save: jest.fn(),
+    find: jest.fn(),
+    findOne: jest.fn(),
+    findOneBy: jest.fn(),
+    update: jest.fn(),
+    createQueryBuilder: jest.fn(() => mockQueryBuilder),
+  };
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -115,6 +127,24 @@ describe('UsersService', () => {
     expect(result).toStrictEqual(new FindUserDto(createUserResult));
   });
 
+  it('should throw an error when findAll page is more than total pages', async () => {
+    const pagination = { page: 99, limit: 20 };
+    await expect(service.findAll(pagination)).rejects.toThrow(
+      'Page is out of range',
+    );
+  });
+
+  it('should correctly return all users', async () => {
+    const expectedResult = {
+      page: 1,
+      totalPages: 1,
+      data: users.map((user) => new FindUserDto(user)),
+    };
+
+    const result = await service.findAll({ page: 1, limit: 20 });
+    expect(result).toStrictEqual(expectedResult);
+  });
+
   it('should correctly return user when search by id', async () => {
     mockUsersRepository.findOne.mockImplementationOnce(
       (param: Record<string, Record<string, any>>) =>
@@ -133,6 +163,67 @@ describe('UsersService', () => {
     expect(result).toStrictEqual(new FindUserDto(users[0]));
   });
 
+  it('should correctly update user', async () => {
+    const updatedUser = { ...users[0], name: 'Иван Петров' };
+    mockUsersRepository.findOneBy.mockImplementationOnce(
+      (param: Record<string, string>) =>
+        users.find((user) => user.id === param.id),
+    );
+    mockUsersRepository.save.mockReturnValueOnce(updatedUser);
+    const result = await service.update(users[0].id, { name: 'Иван Петров' });
+    expect(result).toStrictEqual(new FindUserDto(updatedUser));
+  });
+
+  it('should throw an error when update password with incorrect old one', async () => {
+    mockUsersRepository.findOneBy.mockImplementationOnce(
+      (param: Record<string, string>) =>
+        users.find((user) => user.id === param.id),
+    );
+    jest.mocked(bcrypt.compare).mockResolvedValue(false as never);
+    await expect(
+      service.updatePassword(users[0].id, 'some_password', 'new_password'),
+    ).rejects.toThrow('Current password is incorrect');
+  });
+
+  it('should update password', async () => {
+    mockUsersRepository.findOneBy.mockImplementationOnce(
+      (param: Record<string, string>) =>
+        users.find((user) => user.id === param.id),
+    );
+    const updatedUser = {
+      ...users[0],
+      password: 'new_hashed_password',
+      refreshToken: null,
+    };
+    mockUsersRepository.update.mockReturnValueOnce(updatedUser);
+    jest.mocked(bcrypt.compare).mockResolvedValue(true as never);
+    jest.mocked(bcrypt.hash).mockResolvedValue('new_hashed_password' as never);
+    const result = await service.updatePassword(
+      users[0].id,
+      'some_password',
+      'new_password',
+    );
+    expect(result).toStrictEqual(updatedUser);
+  });
+
+  it('should correctly remove skill from favs and throw an error if skill is not there', async () => {
+    const skill = users[1].skills[0];
+    mockUsersRepository.findOne.mockImplementation(
+      (param: Record<string, Record<string, any>>) =>
+        users.find((user) => user.id === param.where.id),
+    );
+    await expect(
+      service.removeFavoriteSkill(users[0].id, skill.id),
+    ).rejects.toThrow('Skill is not in favorites');
+    mockUsersRepository.save.mockReturnValueOnce({
+      ...users[0],
+      favoriteSkills: [new FindSkillDto(skill)],
+    });
+    await service.addFavoriteSkill(users[0].id, skill.id);
+    const result = await service.removeFavoriteSkill(users[0].id, skill.id);
+    expect(result).toStrictEqual(new FindUserDto(users[0]));
+  });
+
   it('should correctly add skill to favorites and throw an error if skill added again', async () => {
     const skill = users[1].skills[0];
     mockUsersRepository.findOne.mockImplementation(
@@ -147,6 +238,6 @@ describe('UsersService', () => {
     expect(result.favoriteSkills).toStrictEqual([new FindSkillDto(skill)]);
     await expect(
       service.addFavoriteSkill(users[0].id, skill.id),
-    ).rejects.toThrow();
+    ).rejects.toThrow('Skill is already in favorites');
   });
 });
