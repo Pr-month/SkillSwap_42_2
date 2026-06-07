@@ -1,7 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import request from 'supertest';
-import { AppModule } from './../src/app.module';
+import { AppModule } from '../src/app.module';
+import { AllExceptionFilter } from '../src/common/all-exception.filter';
+import cookieParser from 'cookie-parser';
 
 interface LoginResponse {
   accessToken: string;
@@ -67,6 +69,8 @@ describe('Auth (e2e)', () => {
         forbidNonWhitelisted: true,
       }),
     );
+    app.use(cookieParser());
+    app.useGlobalFilters(new AllExceptionFilter());
     await app.init();
 
     const req = makeRequest(app);
@@ -110,20 +114,10 @@ describe('Auth (e2e)', () => {
   describe('POST /auth/register', () => {
     it('should register a new user', async () => {
       const req = makeRequest(app);
-      const newUser = {
-        name: 'Register Test User',
-        email: `register_${Date.now()}@example.com`,
-        password: 'Register123',
-        about: 'Test user registration',
-        birthdate: '1995-05-05',
-        city: 'Register City',
-        gender: 'OTHER',
-        wantToLearn: [testCategoryId],
-      };
 
       const response = await req
         .post('/auth/register')
-        .send(newUser)
+        .send(testUser)
         .expect(201);
 
       const body = response.body as LoginResponse;
@@ -131,12 +125,12 @@ describe('Auth (e2e)', () => {
       expect(typeof body.accessToken).toBe('string');
     });
 
-    it('should return 400 for duplicate email', async () => {
+    it('should return 409 for duplicate email', async () => {
       const req = makeRequest(app);
       const response = await req
         .post('/auth/register')
         .send(testUser)
-        .expect(400);
+        .expect(409);
 
       const body = response.body as ErrorResponse;
       expect(body.message).toBeDefined();
@@ -283,12 +277,13 @@ describe('Auth (e2e)', () => {
         .send({ email: testUser.email, password: testUser.password })
         .expect(200);
 
-      const setCookieHeader = loginResponse.headers[
-        'set-cookie'
-      ] as unknown as string[];
-      validRefreshCookie = setCookieHeader.find((cookie: string) =>
-        cookie.startsWith('refresh_token='),
-      ) as string;
+      const setCookieHeader = (
+        loginResponse.headers['set-cookie'] as unknown as string[]
+      ).find((cookie: string) => cookie.startsWith('refresh_token='));
+
+      if (!setCookieHeader) throw new Error('Refresh token cookie not found');
+
+      validRefreshCookie = setCookieHeader.split(';')[0];
     });
 
     it('should refresh access token with valid refresh token', async () => {
