@@ -29,6 +29,7 @@ async function bootstrap() {
     .setTitle('Skillswap')
     .setDescription('Skillswap API documentation')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
 
   const documentFactory = () =>
