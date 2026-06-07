@@ -2,6 +2,8 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Skill } from '../../skills/entities/skill.entity';
 import { User } from '../../users/entities/user.entity';
 import { RequestStatus } from '../requests.enums';
+import { FindUserDto } from 'src/users/dto/find-user.dto';
+import { FindSkillDto } from 'src/skills/dto/find-skill.dto';
 
 export class FindRequestDto {
   @ApiProperty({
@@ -10,57 +12,13 @@ export class FindRequestDto {
   })
   id: string;
   @ApiProperty({
-    example: {
-      id: '77ded24e-e965-4d51-89cd-2b4672ce3fe3',
-      name: 'Марта Кукетская',
-      email: 'martakuk@rambler.ru',
-      about: 'frontend developer',
-      birthdate: '1993-07-22',
-      city: 'Магадан',
-      gender: 'FEMALE',
-      avatar: '/uploads/image.png',
-      skills: [
-        {
-          id: '252798d9-2778-4003-8b88-cb544141207b',
-          title: 'JavaScript',
-          images: [],
-          createdAt: '2026-05-26T12:03:22.205Z',
-          updatedAt: '2026-05-26T12:03:22.205Z',
-          description: 'Современный язык программирования для веб-разработки',
-        },
-      ],
-      favoriteSkills: [],
-      createdAt: '2026-05-26T09:24:55.426Z',
-      updatedAt: '2026-06-06T17:15:59.602Z',
-    },
     description: 'User who sended request',
+    type: FindUserDto,
   })
   sender: User;
   @ApiProperty({
-    example: {
-      id: '77ded24e-e965-4d51-89cd-2b4672ce3fe3',
-      name: 'Марта Кукетская',
-      email: 'martakuk@rambler.ru',
-      about: 'frontend developer',
-      birthdate: '1993-07-22',
-      city: 'Магадан',
-      gender: 'FEMALE',
-      avatar: '/uploads/image.png',
-      skills: [
-        {
-          id: '252798d9-2778-4003-8b88-cb544141207b',
-          title: 'JavaScript',
-          images: [],
-          createdAt: '2026-05-26T12:03:22.205Z',
-          updatedAt: '2026-05-26T12:03:22.205Z',
-          description: 'Современный язык программирования для веб-разработки',
-        },
-      ],
-      favoriteSkills: [],
-      createdAt: '2026-05-26T09:24:55.426Z',
-      updatedAt: '2026-06-06T17:15:59.602Z',
-    },
     description: 'User who receives request',
+    type: FindUserDto,
   })
   receiver: User;
   @ApiProperty({
@@ -69,27 +27,13 @@ export class FindRequestDto {
   })
   status: RequestStatus;
   @ApiProperty({
-    example: {
-      id: '252798d9-2778-4003-8b88-cb544141207b',
-      title: 'JavaScript',
-      images: [],
-      createdAt: '2026-05-26T12:03:22.205Z',
-      updatedAt: '2026-05-26T12:03:22.205Z',
-      description: 'Современный язык программирования для веб-разработки',
-    },
     description: 'Skill that sender offers for swapping',
+    type: FindSkillDto,
   })
   offeredSkill: Skill;
   @ApiProperty({
-    example: {
-      id: '252798d9-2778-4003-8b88-cb544141207b',
-      title: 'JavaScript',
-      images: [],
-      createdAt: '2026-05-26T12:03:22.205Z',
-      updatedAt: '2026-05-26T12:03:22.205Z',
-      description: 'Современный язык программирования для веб-разработки',
-    },
     description: 'Skill that sender wants to learn',
+    type: FindSkillDto,
   })
   requestedSkill: Skill;
   @ApiProperty({
