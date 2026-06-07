@@ -21,7 +21,7 @@ export class FilesController {
     @UploadedFile()
     file: Express.Multer.File,
   ) {
-    if (!file) throw new BadRequestException('File is required');
+    if (!file) throw new BadRequestException('Only image files are allowed');
     return { url: this.filesService.getFileUrl(file.filename) };
   }
 }

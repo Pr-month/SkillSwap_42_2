@@ -4,6 +4,7 @@ import request from 'supertest';
 import { AppModule } from './../src/app.module';
 import { join } from 'path';
 import { existsSync, unlinkSync } from 'fs';
+import { AllExceptionFilter } from 'src/common/all-exception.filter';
 
 interface LoginResponse {
   accessToken: string;
@@ -58,6 +59,7 @@ describe('Files (e2e)', () => {
         forbidNonWhitelisted: true,
       }),
     );
+    app.useGlobalFilters(new AllExceptionFilter());
     await app.init();
 
     const req = makeRequest(app);
