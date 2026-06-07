@@ -41,7 +41,7 @@ export class SkillsService {
       .leftJoinAndSelect('category.parent', 'parent');
 
     if (category) {
-      qb.where('category.id = :category', { category });
+      qb.where('category.id = :categoryId', { categoryId: category });
     }
 
     qb.andWhere(
