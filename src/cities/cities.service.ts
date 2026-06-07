@@ -46,7 +46,14 @@ export class CitiesService {
     return `This action updates a #${id} city`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} city`;
+  async remove(id: string) {
+    const city = await this.cityRepository.findOneBy({ id });
+
+    if (!city) {
+      throw new NotFoundException('City not found');
+    }
+
+    await this.cityRepository.remove(city);
+    return city;
   }
 }

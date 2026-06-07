@@ -45,7 +45,9 @@ export class CitiesController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN)
   remove(@Param('id') id: string) {
-    return this.citiesService.remove(+id);
+    return this.citiesService.remove(id);
   }
 }
