@@ -8,6 +8,13 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
+import {
+  ApiBearerAuth,
+  ApiCookieAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { Response } from 'express';
 import ms from 'ms';
 import { AuthService } from './auth.service';
@@ -18,6 +25,7 @@ import { JwtAuthGuard } from './guards/jwt-access.guard';
 import { jwtConfig, TJwtConfig } from '../config/jwt.config';
 import { JwtRefreshGuard } from './guards/jwt-refresh.guard';
 
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -27,6 +35,17 @@ export class AuthController {
   ) {}
 
   @Post('register')
+  @ApiOperation({ summary: 'Register user' })
+  @ApiResponse({
+    status: 201,
+    description: 'User registered successfully',
+    schema: {
+      example: {
+        accessToken: 'jwt-access-token',
+      },
+    },
+  })
+  @ApiResponse({ status: 400, description: 'Invalid request body' })
   async register(
     @Body() dto: CreateUserDto,
     @Res({ passthrough: true }) res: Response,
@@ -37,6 +56,17 @@ export class AuthController {
   }
 
   @Post('login')
+  @ApiOperation({ summary: 'Login user' })
+  @ApiResponse({
+    status: 200,
+    description: 'User logged in successfully',
+    schema: {
+      example: {
+        accessToken: 'jwt-access-token',
+      },
+    },
+  })
+  @ApiResponse({ status: 401, description: 'Invalid credentials' })
   @HttpCode(200)
   async login(
     @Body() dto: LoginDto,
@@ -50,6 +80,18 @@ export class AuthController {
   @Post('refresh')
   @UseGuards(JwtRefreshGuard)
   @HttpCode(200)
+  @ApiCookieAuth('refresh_token')
+  @ApiOperation({ summary: 'Refresh access token' })
+  @ApiResponse({
+    status: 200,
+    description: 'Access token refreshed successfully',
+    schema: {
+      example: {
+        accessToken: 'jwt-access-token',
+      },
+    },
+  })
+  @ApiResponse({ status: 401, description: 'Invalid refresh token' })
   async refresh(
     @Req() req: TRefreshRequest,
     @Res({ passthrough: true }) res: Response,
@@ -64,6 +106,18 @@ export class AuthController {
   @Post('logout')
   @UseGuards(JwtAuthGuard)
   @HttpCode(200)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Logout user' })
+  @ApiResponse({
+    status: 200,
+    description: 'User logged out successfully',
+    schema: {
+      example: {
+        message: 'Logout successful',
+      },
+    },
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
   async logout(
     @Req() req: TAuthRequest,
     @Res({ passthrough: true }) res: Response,

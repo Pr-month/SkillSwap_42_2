@@ -8,27 +8,69 @@ import {
   IsString,
   MinLength,
 } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Gender } from '../users.enums';
 
 export class CreateUserDto {
+  @ApiProperty({
+    example: 'Barbara',
+    description: 'User name',
+  })
   @IsString()
-  name: string;
+  name!: string;
+
+  @ApiProperty({
+    example: 'user@example.com',
+    description: 'User email',
+  })
   @IsEmail()
-  email: string;
+  email!: string;
+
+  @ApiProperty({
+    example: 'password123',
+    description: 'User password',
+  })
   @IsString()
   @MinLength(6)
-  password: string;
+  password!: string;
+
+  @ApiPropertyOptional({
+    example: 'I like learning new skills',
+    description: 'Short information about user',
+  })
   @IsString()
   @IsOptional()
-  about: string;
+  about!: string;
+
+  @ApiProperty({
+    example: '1998-05-15',
+    description: 'User birth date',
+  })
   @IsDateString()
-  birthdate: string;
+  birthdate!: string;
+
+  @ApiProperty({
+    example: 'Moscow',
+    description: 'User city',
+  })
   @IsString()
-  city: string;
+  city!: string;
+
+  @ApiProperty({
+    enum: Gender,
+    example: Gender.FEMALE,
+    description: 'User gender',
+  })
   @IsEnum(Gender)
-  gender: Gender;
+  gender!: Gender;
+
+  @ApiProperty({
+    example: ['category-id-1', 'category-id-2'],
+    description: 'Categories user wants to learn',
+    type: [String],
+  })
   @IsArray()
   @ArrayNotEmpty()
   @IsString({ each: true })
-  wantToLearn: string[];
+  wantToLearn!: string[];
 }
