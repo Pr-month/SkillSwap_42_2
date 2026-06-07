@@ -6,6 +6,7 @@ import {
   IsEnum,
   IsOptional,
   IsString,
+  MinLength,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Gender } from '../users.enums';
@@ -30,6 +31,7 @@ export class CreateUserDto {
     description: 'User password',
   })
   @IsString()
+  @MinLength(6)
   password!: string;
 
   @ApiPropertyOptional({
