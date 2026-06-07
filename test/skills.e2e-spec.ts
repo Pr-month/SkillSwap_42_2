@@ -309,8 +309,6 @@ describe('Skills (e2e)', () => {
       expect(body.data[0].title).toContain('New Test Skill');
     });
 
-    // Тест активен и будет падать, пока не исправлена ошибка в skills.service.ts
-    // Ошибка: оператор ILIKE не работает с UUID полем category.id
     it('should filter skills by category', async () => {
       const req = makeRequest(app);
       const response = await req
