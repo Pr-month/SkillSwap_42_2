@@ -1,4 +1,4 @@
-import { BadRequestException, NestInterceptor, Type } from '@nestjs/common';
+import { NestInterceptor, Type } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 const ALLOWED_IMAGE_TYPES = /jpeg|jpg|png|gif|webp|svg/;
@@ -19,10 +19,7 @@ export function ImageInterceptor(
       const mime = file.mimetype.toLowerCase();
 
       if (!ALLOWED_IMAGE_TYPES.test(ext) || !mime.startsWith('image/')) {
-        return cb(
-          new BadRequestException('Only image files are allowed'),
-          false,
-        );
+        return cb(null, false);
       }
       cb(null, true);
     },
