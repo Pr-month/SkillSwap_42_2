@@ -41,9 +41,12 @@ export class CitiesService {
     return `This action returns a #${id} city`;
   }
 
-  update(id: number, updateCityDto: UpdateCityDto) {
-    void updateCityDto;
-    return `This action updates a #${id} city`;
+  async update(id: string, updateCityDto: UpdateCityDto) {
+    const city = await this.cityRepository.findOneBy({ id });
+
+    if (!city) throw new NotFoundException('City not found');
+    Object.assign(city, updateCityDto);
+    return this.cityRepository.save(city);
   }
 
   async remove(id: string) {
