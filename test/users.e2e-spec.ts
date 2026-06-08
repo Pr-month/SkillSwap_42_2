@@ -212,9 +212,7 @@ describe('Users (e2e)', () => {
       // Note: password field might be returned by the API, that's a backend issue
     });
 
-    // This test expects 404 but API returns 200, so we skip or modify
-    // TODO: Fix backend to return 404 for non-existent users
-    it.skip('should return 404 for non-existent user', async () => {
+    it('should return 404 for non-existent user', async () => {
       const nonExistentId = '00000000-0000-0000-0000-000000000000';
       await request(app.getHttpServer())
         .get(`/users/${nonExistentId}`)
