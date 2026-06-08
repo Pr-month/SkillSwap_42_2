@@ -43,6 +43,7 @@ async function adminSeed() {
     console.log('Admin user successfully seeded');
   } catch (error) {
     console.error('Error seeding admin:', error);
+    process.exitCode = 1;
   } finally {
     if (dataSource.isInitialized) {
       await dataSource.destroy();

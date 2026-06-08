@@ -43,6 +43,7 @@ async function skillsSeed() {
     console.log(`Успешно добавлено ${skillsToCreate.length} навыков`);
   } catch (error) {
     console.error('Ошибка при заполнении навыков:', error);
+    process.exitCode = 1;
   } finally {
     if (dataSource.isInitialized) {
       await dataSource.destroy();

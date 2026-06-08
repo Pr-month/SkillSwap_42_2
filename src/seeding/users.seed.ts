@@ -48,6 +48,7 @@ async function usersSeed() {
     console.log(`Successfully seeded ${usersToCreate.length} users`);
   } catch (error) {
     console.error('Error seeding users:', error);
+    process.exitCode = 1;
   } finally {
     if (dataSource.isInitialized) {
       await dataSource.destroy();
