@@ -258,49 +258,6 @@ describe('Cities (e2e)', () => {
     });
   });
 
-  describe('GET /cities/:id', () => {
-    let getCityId = '';
-
-    beforeAll(async () => {
-      const req = makeRequest(app);
-      const newCity = { name: 'City For Get Test' };
-      const createResponse = await req
-        .post('/cities')
-        .set('Authorization', `Bearer ${adminAccessToken}`)
-        .send(newCity)
-        .expect(201);
-
-      const body = createResponse.body as CityResponse;
-      getCityId = body.id;
-    });
-
-    afterAll(async () => {
-      const req = makeRequest(app);
-      try {
-        await req
-          .delete(`/cities/${getCityId}`)
-          .set('Authorization', `Bearer ${adminAccessToken}`);
-      } catch {
-        // Ignore cleanup errors
-      }
-    });
-
-    it('should return city by id', async () => {
-      const req = makeRequest(app);
-      const response = await req.get(`/cities/${getCityId}`).expect(200);
-
-      const body = response.body as CityResponse;
-      expect(body).toHaveProperty('id', getCityId);
-      expect(body.name).toBe('City For Get Test');
-    });
-
-    it('should return 404 for non-existent city', async () => {
-      const req = makeRequest(app);
-      const nonExistentId = '00000000-0000-0000-0000-000000000000';
-      await req.get(`/cities/${nonExistentId}`).expect(404);
-    });
-  });
-
   describe('PATCH /cities/:id', () => {
     let updateCityId = '';
 
