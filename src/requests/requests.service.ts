@@ -48,10 +48,6 @@ export class RequestsService {
     return new FindRequestDto(savedRequest);
   }
 
-  findAll() {
-    return `This action returns all requests`;
-  }
-
   findIncoming(userId: string) {
     return this.requestsRepository.find({
       where: {
@@ -74,10 +70,6 @@ export class RequestsService {
         createdAt: 'DESC',
       },
     });
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} request`;
   }
 
   async update(id: string, updateRequestDto: UpdateRequestDto, userId: string) {
