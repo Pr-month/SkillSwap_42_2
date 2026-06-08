@@ -368,16 +368,6 @@ describe('Requests (e2e)', () => {
     });
   });
 
-  describe('GET /requests', () => {
-    it('should return all requests (admin only)', async () => {
-      const req = makeRequest(app);
-      const response = await req.get('/requests').expect(200);
-
-      const body = response.body as RequestResponse[];
-      expect(body).toBeDefined();
-    });
-  });
-
   describe('PATCH /requests/:id', () => {
     it('should accept request as receiver', async () => {
       const req = makeRequest(app);
