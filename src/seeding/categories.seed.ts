@@ -42,6 +42,7 @@ async function categoriesSeed() {
     console.log(`Успешно добавлено ${categoriesToCreate.length} категорий`);
   } catch (error) {
     console.error('Ошибка при заполнении категорий:', error);
+    process.exitCode = 1;
   } finally {
     if (dataSource.isInitialized) {
       await dataSource.destroy();

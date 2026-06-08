@@ -24,6 +24,7 @@ async function citiesSeed() {
     console.log(`Успешно добавлено ${citiesToCreate.length} городов`);
   } catch (error) {
     console.error('Ошибка при заполнении городов:', error);
+    process.exitCode = 1;
   } finally {
     if (dataSource.isInitialized) {
       await dataSource.destroy();
