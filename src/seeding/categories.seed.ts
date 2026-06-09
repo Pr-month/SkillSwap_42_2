@@ -1,6 +1,6 @@
 import { Category } from '../categories/entities/category.entity';
 import { flattenCategories } from './data/categories.data';
-import { dataSource } from '../config/database.config';
+import dataSource from '../config/data-source';
 
 async function categoriesSeed() {
   try {
