@@ -3,8 +3,6 @@ import { DataSourceOptions } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import * as dotenv from 'dotenv';
 
-console.log(process.env.NODE_ENV);
-
 dotenv.config({
   path: process.env.NODE_ENV === 'test' ? '.env.test.local' : '.env',
 });
