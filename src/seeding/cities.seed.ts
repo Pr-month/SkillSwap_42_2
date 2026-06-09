@@ -1,4 +1,4 @@
-import { dataSource } from '../config/database.config';
+import dataSource from '../config/data-source';
 import { City } from '../cities/entities/city.entity';
 import { citiesData } from './data/cities.data';
 

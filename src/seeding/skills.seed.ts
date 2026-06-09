@@ -1,4 +1,4 @@
-import { dataSource } from '../config/database.config';
+import dataSource from '../config/data-source';
 import { Skill } from '../skills/entities/skill.entity';
 import { User } from '../users/entities/user.entity';
 import { skillsData } from './data/skills.data';

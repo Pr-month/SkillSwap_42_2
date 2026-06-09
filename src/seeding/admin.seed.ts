@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcrypt';
 import { User } from '../users/entities/user.entity';
 import { Gender, UserRole } from '../users/users.enums';
-import { dataSource } from '../config/database.config';
+import dataSource from '../config/data-source';
 
 async function adminSeed() {
   try {
