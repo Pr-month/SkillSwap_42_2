@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcrypt';
-import { dataSource } from '../config/database.config';
+import dataSource from '../config/data-source';
 import { User } from '../users/entities/user.entity';
 import { usersData } from './data/users.data';
 import { UserRole } from '../users/users.enums';
@@ -48,6 +48,7 @@ async function usersSeed() {
     console.log(`Successfully seeded ${usersToCreate.length} users`);
   } catch (error) {
     console.error('Error seeding users:', error);
+    process.exitCode = 1;
   } finally {
     if (dataSource.isInitialized) {
       await dataSource.destroy();

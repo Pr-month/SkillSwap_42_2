@@ -1,6 +1,6 @@
 import { Category } from '../categories/entities/category.entity';
 import { flattenCategories } from './data/categories.data';
-import { dataSource } from '../config/database.config';
+import dataSource from '../config/data-source';
 
 async function categoriesSeed() {
   try {
@@ -42,6 +42,7 @@ async function categoriesSeed() {
     console.log(`Успешно добавлено ${categoriesToCreate.length} категорий`);
   } catch (error) {
     console.error('Ошибка при заполнении категорий:', error);
+    process.exitCode = 1;
   } finally {
     if (dataSource.isInitialized) {
       await dataSource.destroy();

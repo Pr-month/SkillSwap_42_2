@@ -76,7 +76,8 @@ export class UsersService {
       where: { id: id },
       relations: ['skills', 'favoriteSkills'],
     });
-    return user === null ? user : new FindUserDto(user);
+    if (!user) throw new NotFoundException('User not found');
+    return new FindUserDto(user);
   }
 
   async findOneByEmail(email: string) {
@@ -86,7 +87,10 @@ export class UsersService {
 
   async update(id: string, updateUserDto: UpdateUserDto) {
     const user = await this.usersRepository.findOneBy({ id });
-    const wantToLearn = updateUserDto.wantToLearn?.map((id) => ({ id }));
+    const wantToLearn =
+      updateUserDto.wantToLearn?.map((id) => ({ id })) ||
+      user?.wantToLearn ||
+      [];
     if (!user) return null;
     Object.assign(user, { ...updateUserDto, wantToLearn: wantToLearn });
     await this.usersRepository.save(user);

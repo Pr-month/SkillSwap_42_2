@@ -1,4 +1,4 @@
-import { dataSource } from '../config/database.config';
+import dataSource from '../config/data-source';
 import { Skill } from '../skills/entities/skill.entity';
 import { User } from '../users/entities/user.entity';
 import { skillsData } from './data/skills.data';
@@ -43,6 +43,7 @@ async function skillsSeed() {
     console.log(`Успешно добавлено ${skillsToCreate.length} навыков`);
   } catch (error) {
     console.error('Ошибка при заполнении навыков:', error);
+    process.exitCode = 1;
   } finally {
     if (dataSource.isInitialized) {
       await dataSource.destroy();

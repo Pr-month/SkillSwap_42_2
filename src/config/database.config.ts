@@ -1,9 +1,11 @@
 import { ConfigType, registerAs } from '@nestjs/config';
-import { DataSource, DataSourceOptions } from 'typeorm';
+import { DataSourceOptions } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import * as dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({
+  path: process.env.NODE_ENV === 'test' ? '.env.test.local' : '.env',
+});
 
 export const databaseConfig = registerAs(
   'DATABASE_CONFIG',
@@ -15,11 +17,11 @@ export const databaseConfig = registerAs(
     password: process.env.DB_PASSWORD ?? 'postgres',
     database: process.env.DB_NAME ?? 'skill_swap_db',
     entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-    synchronize: process.env.NODE_ENV === 'development',
+    synchronize: ['development', 'test'].includes(
+      process.env.NODE_ENV as string,
+    ),
     namingStrategy: new SnakeNamingStrategy(),
   }),
 );
 
 export type TDatabaseConfig = ConfigType<typeof databaseConfig>;
-
-export const dataSource = new DataSource(databaseConfig());

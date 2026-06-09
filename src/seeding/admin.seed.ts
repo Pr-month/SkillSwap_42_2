@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcrypt';
 import { User } from '../users/entities/user.entity';
 import { Gender, UserRole } from '../users/users.enums';
-import { dataSource } from '../config/database.config';
+import dataSource from '../config/data-source';
 
 async function adminSeed() {
   try {
@@ -43,6 +43,7 @@ async function adminSeed() {
     console.log('Admin user successfully seeded');
   } catch (error) {
     console.error('Error seeding admin:', error);
+    process.exitCode = 1;
   } finally {
     if (dataSource.isInitialized) {
       await dataSource.destroy();
