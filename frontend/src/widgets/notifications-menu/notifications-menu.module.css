@@ -1,0 +1,124 @@
+.notificationsMenu {
+  min-width: 400px;
+  max-width: 500px;
+  padding: 40px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  margin: 0;
+  color: var(--text-color);
+  font-weight: var(--font-weight-accent);
+  font-size: var(--font-size-h2);
+  font-family: var(--font-accent);
+  line-height: var(--line-height-h2);
+}
+
+.link {
+  padding: 0;
+  color: var(--button-pressed-color);
+  font-weight: var(--font-weight-accent);
+  font-size: var(--font-size-h4);
+  font-family: var(--font-main);
+  line-height: var(--line-height-caption);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: none;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 20px 0;
+}
+
+.notification {
+  padding: 12px 0;
+}
+
+.notification.viewed {
+  opacity: 0.6;
+}
+
+.notificationContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.notificationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.notificationIcon {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+}
+
+.notificationText {
+  flex: 1;
+}
+
+.notificationTitle {
+  margin-bottom: 0;
+  color: var(--text-color);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size-main);
+  font-family: var(--font-main);
+  line-height: var(--line-height-main);
+}
+
+.notificationDescription {
+  color: var(--caption-color);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size-caption);
+  font-family: var(--font-main);
+  line-height: var(--line-height-caption);
+}
+
+.notificationDate {
+  flex-shrink: 0;
+  color: var(--caption-color);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size-main);
+  font-family: var(--font-main);
+  line-height: var(--line-height-main);
+  white-space: nowrap;
+}
+
+.notificationButton {
+  align-self: flex-start;
+  padding: 12px 24px;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+}
+
+.viewedSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}

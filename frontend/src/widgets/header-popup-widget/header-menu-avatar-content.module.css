@@ -1,0 +1,30 @@
+.menuList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  padding: 40px;
+}
+
+.menuItemButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.menuItem {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  font-weight: var(--font-weight-accent);
+  font-size: var(--font-size-main);
+  white-space: nowrap;
+  background-color: transparent;
+}
+
+.menuItem:hover {
+  color: var(--button-hover-color);
+}

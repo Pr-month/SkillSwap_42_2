@@ -1,0 +1,12 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 30;
+  box-sizing: border-box;
+  min-width: 556px;
+  padding: 60px 62px;
+  background-color: var(--card-input-color);
+  border-radius: var(--border-raduis-main);
+  transform: translate(-50%, -50%);
+}

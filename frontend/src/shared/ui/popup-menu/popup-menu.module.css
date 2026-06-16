@@ -1,0 +1,21 @@
+.popupMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  max-width: 80%;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  background-color: var(--card-input-color);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--caption-color);
+  border-radius: var(--border-raduis-main);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.popupMenu::-webkit-scrollbar {
+  display: none;
+}

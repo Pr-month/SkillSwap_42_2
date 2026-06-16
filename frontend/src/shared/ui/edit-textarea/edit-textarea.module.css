@@ -1,0 +1,45 @@
+.textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 20px;
+  overflow: scroll;
+  color: var(--text-color);
+  font-size: var(--font-size-main);
+  font-family: var(--font-main);
+  line-height: var(--line-height-main);
+  background-color: var(--card-input-color);
+  border: 1px solid var(--caption-color);
+  border-radius: var(--border-raduis-main);
+  resize: none;
+}
+
+.textarea::placeholder {
+  color: var(--caption-color);
+  font-family: inherit;
+}
+
+.input {
+  position: relative;
+}
+
+.input button {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  padding: 0;
+  background-color: var(--card-input-color);
+  border: none;
+  cursor: pointer;
+  translate: 0 -50%;
+}
+
+.input label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.input p {
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+}

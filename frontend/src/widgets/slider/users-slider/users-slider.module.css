@@ -1,0 +1,56 @@
+/* stylelint-disable selector-class-pattern */
+
+/* stylelint-disable selector-pseudo-class-no-unknown */
+
+/* stylelint-disable rule-empty-line-before */
+.noUsers {
+  padding: 60px 20px;
+  color: var(--caption-color);
+  font-size: 18px;
+  text-align: center;
+}
+
+.splide :global(.splide__arrow),
+.splide :global(.slider-arrow),
+.splide :global(.slider-arrow_prev),
+.splide :global(.slider-arrow_next) {
+  position: absolute;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  margin-top: 0;
+  padding: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 28px;
+  background: var(--button-disabled-color);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 8px 30px rgb(0 0 0 / 15%);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.splide :global(.splide__arrow--prev) {
+  left: -16px;
+  opacity: 1;
+}
+
+.splide :global(.splide__arrow--next) {
+  right: -16px;
+  opacity: 1;
+}
+
+.splide :global(.splide__arrow:hover) {
+  transform: translateY(-50%) scale(1.12);
+  opacity: 1;
+}
+
+.splide :global(.splide__arrow--disabled),
+:global(.splide__arrow[disabled]) {
+  display: none;
+}
+
+.splide :global(.splide__arrow:hover:not(:disabled)) {
+  opacity: 1;
+}

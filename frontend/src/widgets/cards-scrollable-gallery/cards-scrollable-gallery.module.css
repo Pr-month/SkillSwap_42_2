@@ -1,0 +1,31 @@
+.card_gallery_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 32px;
+  color: var(--text-color);
+  font-size: var(--font-size-h1);
+  font-family: var(--font-accent);
+}
+
+.card_gallery_main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(324px, 1fr));
+  gap: 24px;
+}
+
+.scroll_sentinel {
+  position: relative;
+  top: -100px;
+  width: 100%;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gallery_end_text {
+  color: var(--caption-color);
+  font-size: var(--font-size-main);
+  font-family: var(--font-main);
+}

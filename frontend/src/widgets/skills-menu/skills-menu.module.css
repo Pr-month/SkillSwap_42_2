@@ -1,0 +1,79 @@
+.skillsMenu {
+  padding: 60px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  min-width: 0;
+}
+
+.category {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.categoryIconContainer {
+  display: flex;
+  flex-shrink: 0;
+  align-items: flex-start;
+  padding-top: 4px;
+}
+
+.categoryContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.categoryIcon {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+}
+
+.categoryTitle {
+  margin: 0;
+  color: var(--text-color);
+  font-weight: var(--font-weight-accent);
+  font-size: var(--font-size-h2);
+  font-family: var(--font-accent);
+  line-height: var(--line-height-h2);
+}
+
+.subcategories {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.subcategory {
+  padding: 4px 0;
+  color: var(--text-color);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size-main);
+  font-family: var(--font-main);
+  line-height: var(--line-height-main);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.subcategory:hover {
+  color: var(--caption-color);
+}

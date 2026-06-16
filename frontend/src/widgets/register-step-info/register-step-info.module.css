@@ -1,0 +1,34 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 556px;
+  padding: 132px 0;
+  text-align: center;
+  background-color: var(--card-input-color);
+  border-radius: var(--border-raduis-main);
+}
+
+.image {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 40px;
+}
+
+.title {
+  margin-bottom: 12px;
+  color: var(--text-color);
+  font-size: var(--font-size-h2);
+  font-family: var(--font-accent);
+  line-height: var(--line-height-h2);
+  letter-spacing: -0.26px;
+}
+
+.subtitle {
+  max-width: 436px;
+  color: var(--text-color);
+  font-size: var(--font-size-main);
+  font-family: var(--font-main);
+  line-height: var(--line-height-main);
+  letter-spacing: 0.32px;
+}

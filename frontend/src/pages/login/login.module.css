@@ -1,0 +1,31 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: var(--bg-color);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+  max-width: 1136px;
+  margin-top: 32px;
+}
+
+.left,
+.right {
+  background: var(--card-input-color);
+  border-radius: var(--border-raduis-main);
+}
+
+.header {
+  margin-top: 4px;
+  color: var(--text-color);
+  font-weight: var(--font-weight-accent);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  letter-spacing: -0.31px;
+}

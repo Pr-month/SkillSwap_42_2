@@ -1,0 +1,146 @@
+/* Блок секции карточки (заголовок + содержимое) */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Общий контейнер карточки пользователя */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 324px;
+  padding: 20px;
+  background: var(--card-input-color);
+  border-radius: var(--border-raduis-main);
+}
+
+/* Контейнер аватара и информации о пользователе */
+
+.userBox {
+  display: flex;
+  gap: 16px;
+}
+
+.userInfo {
+  flex: 1;
+}
+
+/* Верхняя часть блока с лайками и текстовой информацией */
+
+.userHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.userText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Обертка для лайков */
+
+.likeWrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  block-size: 24px;
+  margin-left: auto;
+}
+
+.likeCount {
+  padding-top: 4px;
+  color: var(--caption-color);
+  font-size: var(--font-size-caption);
+}
+
+.likeButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.likeIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* Аватар пользователя */
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.name {
+  color: var(--text-color);
+  font-weight: var(--font-weight-accent);
+  font-size: var(--font-size-h3);
+  font-family: var(--font-accent);
+}
+
+.meta {
+  color: var(--text-color);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size-caption);
+}
+
+/* Плашки блоков "Может научить" и "Хочет научиться" */
+
+.sectionLabel {
+  margin-bottom: 4px;
+  font-weight: var(--font-weight-accent);
+  font-size: var(--font-size-main);
+  font-family: var(--font-accent);
+}
+
+.chips {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, min-content)) min-content;
+  gap: 8px;
+  max-width: max-content;
+  overflow: hidden;
+}
+
+.chip,
+.chipMore {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: var(--font-size-caption);
+  line-height: 1.1;
+  white-space: nowrap;
+  border-radius: 16px;
+}
+
+/* Обрезка текста внутри плашки до троеточия */
+
+.chipText {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.chipMore {
+  background: var(--tag-add-color);
+}

@@ -1,0 +1,14 @@
+.profileAvatarButton {
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profileAvatarIcon {
+  display: block;
+  width: 56px;
+  height: 56px;
+}

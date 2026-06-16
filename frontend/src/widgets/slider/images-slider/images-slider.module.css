@@ -1,0 +1,120 @@
+/* stylelint-disable selector-class-pattern */
+
+/* stylelint-disable selector-pseudo-class-no-unknown */
+
+/* stylelint-disable rule-empty-line-before */
+
+.sliderWrapper {
+  display: flex;
+  gap: 24px;
+}
+
+.mainSlider {
+  overflow: hidden;
+  border-radius: var(--border-raduis-main);
+  box-shadow: 0 20px 40px rgb(0 0 0 / 15%);
+}
+
+.mainSlider :global(.splide__arrow),
+.mainSlider :global(.slider-arrow),
+.mainSlider :global(.slider-arrow_prev),
+.mainSlider :global(.slider-arrow_next) {
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+  background: var(--button-disabled-color);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 8px 30px rgb(0 0 0 / 15%);
+  transition: all 0.3s ease;
+}
+
+.mainSlider :global(.splide__arrow--prev) {
+  left: 16px;
+  opacity: 1;
+}
+
+.mainSlider :global(.splide__arrow--next) {
+  right: 16px;
+  opacity: 1;
+}
+
+.mainSlider :global(.splide__arrow:hover) {
+  transform: translateY(-50%) scale(1.12);
+  opacity: 1;
+}
+
+.mainImage {
+  width: 324px;
+  height: 324px;
+  object-fit: cover;
+}
+
+.thumbsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 92px;
+}
+
+.thumb {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  overflow: hidden;
+  border-radius: var(--border-raduis-main);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.thumb:hover {
+  box-shadow: 0 6px 16px rgb(0 0 0 / 15%);
+  transform: scale(1.08);
+}
+
+.thumb.firstThumb:hover {
+  box-shadow: 0 8px 20px rgb(0 0 0 / 18%);
+  transform: translateY(4px) scale(1.08);
+}
+
+.thumb.lastThumb:hover {
+  box-shadow: 0 8px 20px rgb(0 0 0 / 20%);
+  transform: translateY(-4px) scale(1.08);
+}
+
+.thumb.firstThumb.lastThumb:hover {
+  box-shadow: 0 8px 20px rgb(0 0 0 / 18%);
+  transform: translateY(4px) scale(1.08);
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.plusOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size-main);
+  line-height: var(--line-height-main);
+  letter-spacing: -0.01em;
+  background: var(--bg-color);
+  border-radius: var(--border-raduis-main);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.noImages {
+  padding: 60px 20px;
+  color: var(--caption-color);
+  text-align: center;
+}
