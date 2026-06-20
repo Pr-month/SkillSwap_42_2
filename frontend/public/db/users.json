@@ -1,0 +1,1448 @@
+[
+  {
+    "id": 1,
+    "name": "Александр",
+    "location": "Москва",
+    "likes": 12,
+    "isLiked": false,
+    "age": "28 лет",
+    "createdAt": "2025-09-22T14:30:00.000Z",
+    "description": "Йога для меня - это диалог с собственным телом. Люблю момент, когда напряжение уходит, а приходит покой.",
+    "avatarUrl": "https://img.freepik.com/free-photo/closeup-shot-fashionable-handsome-male-blue-classic-shirt_181624-29628.jpg?t=st=1764349495~exp=1764353095~hmac=134058621e3c1446f340b5d65521749a48420f013db0837d188f2d472c75d1c1&w=1480",
+    "skillCanTeach": {
+      "id": 1,
+      "name": "Медитация",
+      "fullDescription": "Провожу занятия по хатха йоге и медитации для всех уровней подготовки. Индивидуальный подход к построению практики с учетом особенностей здоровья и целей. Изучаем асаны, пранаямы, техники релаксации и mindfulness. Помогу развить гибкость, силу и найти внутренний баланс. Занятия онлайн и офлайн для начинающих и продвинутых.",
+      "categoryId": 6,
+      "subCategoryId": 36
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 17, "name": "Английский" },
+      { "id": 21, "name": "Китайский" },
+      { "id": 2, "name": "Маркетинг и реклама" },
+      { "id": 29, "name": "Коучинг" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://i.pinimg.com/originals/c0/60/21/c060215015e6d46a234cb4127af3237f.jpg",
+      "https://cdn-image.zvuk.com/pic?hash=ab2801f2-5d2b-426e-81a2-015945decd50&id=39822077&size=large&type=release",
+      "https://static.wixstatic.com/media/11062b_e28eaf0e4f184db399fcf6f0eb6e437c~mv2.jpg/v1/fill/w_602,h_602,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Couple%20Meditating%20.jpg",
+      "https://digital-basket-01.wbbasket.ru/vol1/382/a6daf446c5ea49a2df10caf185ffcac4/1920.jpg",
+      "https://img.freepik.com/premium-vector/diet-plan-slim-woman-doing-exercise-planning-diet-with-fruit-vegetable-girl-doing-yoga-dietary-eating-meal-planning-nutrition-consultation-healthy-food-sport-health-lifestyle-fitness_458444-702.jpg?semt=ais_hybrid&w=740"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Екатерина",
+    "location": "Санкт-Петербург",
+    "likes": 8,
+    "isLiked": false,
+    "age": "24 года",
+    "createdAt": "2025-10-05T09:15:00.000Z",
+    "description": "Живу в ритме английской речи. Для меня язык - это музыка, а грамматика - её гармония.",
+    "avatarUrl": "https://img.freepik.com/free-photo/playful-woman-holding-yellow-balloon_23-2148490462.jpg?t=st=1764351743~exp=1764355343~hmac=ca9acce9f20bbb69f7893691f1f197068d09a24784b3b630db5af8836207c337&w=1060",
+    "skillCanTeach": {
+      "id": 2,
+      "name": "Английский язык",
+      "fullDescription": "Преподаю английский с акцентом на живое общение и практическое применение. Разрабатываю индивидуальные программы с учетом ваших целей: бизнес-английский, подготовка к экзаменам или повседневное общение. Использую интерактивные методики, фильмы, музыку и реальные жизненные ситуации для погружения в язык.",
+      "categoryId": 3,
+      "subCategoryId": 17
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 9, "name": "Рисование и иллюстрация" },
+      { "id": 36, "name": "Йога и медитация" },
+      { "id": 16, "name": "Декор и DIY" },
+      { "id": 37, "name": "Питание и ЗОЖ" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://is4-ssl.mzstatic.com/image/thumb/Podcasts126/v4/90/85/4f/90854f21-d484-1041-eda7-6c24810338bf/mza_16670632695750822409.jpg/1200x1200bb.jpg",
+      "https://static.tildacdn.one/tild3032-3461-4165-b661-656464323064/yabanci.jpeg",
+      "https://avatars.mds.yandex.net/get-yapic/59871/OKB4im81mzd4FniayNZfqTAc3Y-1/orig",
+      "https://static3.tgstat.ru/channels/_0/04/0469b0037c6dc9bb4f1fc86a51b77df0.jpg",
+      "https://www.formatformazione.com/wp/wp-content/uploads/2022/10/Laurea-in-lingue-sbocchi-professionali-e-lavoro-Format.jpg"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Дмитрий",
+    "location": "Новосибирск",
+    "likes": 15,
+    "isLiked": false,
+    "age": "31 год",
+    "createdAt": "2025-10-18T16:45:00.000Z",
+    "description": "Растения для меня - это тихие друзья, которые делают дом уютнее. Люблю наблюдать, как они растут!",
+    "avatarUrl": "https://img.freepik.com/free-photo/vertical-shot-young-handsome-guy-autumn-park_181624-51688.jpg?t=st=1764349565~exp=1764353165~hmac=8111be9f7876b1f2a791fca1c61138c1098660f813acf717eeb287b2fda20882&w=1060",
+    "skillCanTeach": {
+      "id": 3,
+      "name": "Домашние растения",
+      "fullDescription": "Научу уходу за комнатными растениями и созданию зеленых уголков в городской квартире. Разберем подбор растений для разных условий, правильный полив, освещение, пересадку и борьбу с вредителями. Практические советы по созданию фито-дизайна и уходу за редкими видами. Помогу превратить ваш дом в цветущий сад.",
+      "categoryId": 5,
+      "subCategoryId": 33
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 20, "name": "Немецкий" },
+      { "id": 10, "name": "Фотография" },
+      { "id": 27, "name": "Скорочтение" },
+      { "id": 40, "name": "Физические тренировки" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://i.pinimg.com/originals/08/54/4f/08544fae757659a2808827d362ee694a.webp",
+      "https://orton.ru/upload/iblock/8df/yr5c0q2203w1h5v0m9x21hc23ynkog7y.jpg",
+      "https://64.media.tumblr.com/b3ccb570338a868e649d3e1820e91483/4ba63a61ae633ba5-6d/s1280x1920/a85a374dd7a35945570ef44acc3629e5810a09cd.jpg",
+      "https://s3.eu-central-1.amazonaws.com/pressland-cms/cache/metatags_image/sk/19694808-zimowe-nawozy-podajemy-w-formie-wodnych-roztworow.jpeg",
+      "https://i.pinimg.com/474x/4d/ba/b1/4dbab1094ef818af0fcba0c0e0108d20.jpg"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Ольга",
+    "location": "Екатеринбург",
+    "likes": 20,
+    "isLiked": false,
+    "age": "26 лет",
+    "createdAt": "2025-11-02T11:20:00.000Z",
+    "description": "Коучинг для меня - это искусство задавать правильные вопросы. Люблю, когда люди находят свои ответы!",
+    "avatarUrl": "https://img.freepik.com/free-photo/side-view-woman-holding-notebook-pencil_23-2148372248.jpg?t=st=1764351703~exp=1764355303~hmac=706e79372e880b0366e27bf70b90fd426a34041babd9af3a0f626ec31ae62f51&w=1060",
+    "skillCanTeach": {
+      "id": 4,
+      "name": "Коучинг",
+      "fullDescription": "Научу основам коучинга и техникам помощи в достижении личных и профессиональных целей. Работа с постановкой SMART-целей, преодолением ограничивающих убеждений, планированием действий и accountability. Практические инструменты для проведения коучинговых сессий и развития навыков активного слушания и задавания мощных вопросов.",
+      "categoryId": 4,
+      "subCategoryId": 29
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 18, "name": "Французский" },
+      { "id": 13, "name": "Актёрское мастерство" },
+      { "id": 38, "name": "Ментальное здоровье" },
+      { "id": 24, "name": "Личностное развитие" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://www.cgd13.fr/media/miniatures/formation_.png",
+      "https://static.tildacdn.com/tild6461-6435-4630-b362-306439383266/1HhnXn9XR6EFDwE04Tom.jpg",
+      "https://opositocorreos.com/wp-content/uploads/2020/05/equipo-docente.jpg",
+      "https://imageio.forbes.com/blogs-images/forbescoachescouncil/files/2020/02/a-25.jpg?format=jpg&amp;width=1200",
+      "https://avatars.mds.yandex.net/i?id=cc0165a94000877e3884f6d5997af2df_l-5877629-images-thumbs&n=13"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Михаил",
+    "location": "Казань",
+    "likes": 5,
+    "isLiked": false,
+    "age": "22 года",
+    "createdAt": "2025-09-25T08:30:00.000Z",
+    "description": "Живопись для меня - это медитация. Люблю, когда краски на холсте оживают и рассказывают истории.",
+    "avatarUrl": "https://img.freepik.com/free-photo/front-view-smiley-man-outdoors-city_23-2148955558.jpg?t=st=1764349724~exp=1764353324~hmac=b7fdf7b5f4ab4a524cc8f52a7e47671fde8eb707284255c14364408e4f3d6e1f&w=1060",
+    "skillCanTeach": {
+      "id": 5,
+      "name": "Живопись",
+      "fullDescription": "Научу основам академического рисунка, живописи и цифровой иллюстрации. Индивидуальный подход для начинающих и продолжающих. Работа с различными материалами: акварель, масло, акрил, цифровые инструменты. Развиваем чувство композиции, цвета и перспективы. Помогу найти ваш уникальный стиль в искусстве.",
+      "categoryId": 2,
+      "subCategoryId": 9
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 22, "name": "Японский" },
+      { "id": 11, "name": "Видеомонтаж" },
+      { "id": 25, "name": "Навыки обучения" },
+      { "id": 39, "name": "Осознанность" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://i.pinimg.com/736x/9d/17/c4/9d17c4ade3f5245dfd109b87c2c134df.jpg",
+      "https://avatars.mds.yandex.net/i?id=66c959494ead1c4da8595d31913bdf85_l-12937750-images-thumbs&n=13",
+      "https://static.tildacdn.com/stor6233-3337-4335-b836-353764326535/78969050.jpg",
+      "https://avatars.mds.yandex.net/i?id=2f3f405091a808b2138ae11335c7658c_l-4979110-images-thumbs&n=13",
+      "https://i2.wp.com/static.cornelsen.de/_Resources/Persistent/2/5/4/f/254f67a74ced9fb71eba75d1fa980553b33f5ea9/first-steps-kunst-im%20unterricht-magazin-neu-1200x1200.jpg",
+      "https://i.pinimg.com/originals/86/f5/37/86f5372132c62f90eb0172f4bc8c735e.jpg"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Анна",
+    "location": "Нижний Новгород",
+    "likes": 18,
+    "isLiked": false,
+    "age": "29 лет",
+    "createdAt": "2025-10-12T13:10:00.000Z",
+    "description": "Обожаю видеть, как у людей загораются глаза, когда они находят работу мечты. Это лучшая награда!",
+    "avatarUrl": "https://img.freepik.com/free-photo/thinking-long-haired-girl_1398-438.jpg?t=st=1764351671~exp=1764355271~hmac=300fc0756b7facea36a12df4330a68c0ff6b6098d5a5ddaefb9f9c7bb529c0e3&w=1060",
+    "skillCanTeach": {
+      "id": 6,
+      "name": "Составление резюме",
+      "fullDescription": "Научу создавать резюме, которое заметят рекрутеры, и готовиться к собеседованиям так, чтобы получать офферы. Разберем составление сопроводительных писений, профилей в LinkedIn, самопрезентацию и ответы на каверзные вопросы. Практикуем стресс-интервью и технику переговоров о зарплате. Помогу найти ваши сильные стороны и правильно их подать.",
+      "categoryId": 1,
+      "subCategoryId": 5
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 19, "name": "Испанский" },
+      { "id": 33, "name": "Домашние растения" },
+      { "id": 14, "name": "Креативное письмо" },
+      { "id": 41, "name": "Сон и восстановление" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://solia-paref.com/wp-content/uploads/2024/05/AdobeStock_552746789-1-scaled-1.jpg",
+      "https://www.jobasv.net/wp-content/uploads/2021/06/Menanggapi-Pertanyaan-HRD-Ketika-Interview-Kerja-666x666.jpg",
+      "https://blagoevgrad-news.com/wp-content/uploads/2019/02/zx640c_2905622.jpg",
+      "https://image.lexica.art/full_webp/c7b5752c-2d0a-4134-9a4a-18f437eba432",
+      "https://a.storyblok.com/f/255383/2005x1494/d4961e10fb/new-opportunity-support-coordination-and-employment.jpg/m/280x280/filters:quality(90):format(jpg)"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Сергей",
+    "location": "Челябинск",
+    "likes": 9,
+    "isLiked": false,
+    "age": "33 года",
+    "createdAt": "2025-11-15T17:25:00.000Z",
+    "description": "Вдохновляюсь историями успешных стартапов. Для меня предпринимательство - это искусство возможного.",
+    "avatarUrl": "https://img.freepik.com/free-photo/medium-shot-young-man-holding-flower_23-2149438497.jpg?t=st=1764349633~exp=1764353233~hmac=976dfe50cfca32afbdcc459e82c9dfff4dade63f8cc5beaa63efea2e17411996&w=1060",
+    "skillCanTeach": {
+      "id": 7,
+      "name": "Предпринимательство",
+      "fullDescription": "Помогу с запуском и развитием бизнеса с нуля. Разберем создание бизнес-модели, финансовое планирование, маркетинговую стратегию и управление командой. Практические инструменты для стартаперов: бережливый стартап, работа с инвесторами, масштабирование. На основе реальных кейсов из разных отраслей. Поддержка на каждом этапе становления бизнеса.",
+      "categoryId": 1,
+      "subCategoryId": 8
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 17, "name": "Английский" },
+      { "id": 32, "name": "Приготовление еды" },
+      { "id": 12, "name": "Музыка и звук" },
+      { "id": 42, "name": "Баланс жизни и работы" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://vhs-stuttgart.de/fileadmin/_processed_/c/8/csm_Beruf_copy_NDABCREATIVITY__AdobeStock_67b03f67c0.jpeg",
+      "https://sun6-23.userapi.com/s/v1/if1/PWH2hrudcjYil3kIR6BSXuXiGtOB-fvgFl1uyftcBYrmaUZkCny703C1ki8QCiA9FKk84RD2.jpg?size=691x691&quality=96&crop=154,0,691,691&ava=1",
+      "https://sun6-20.userapi.com/s/v1/ig2/xDz_ZMkcr8iPWTjglREpbMUBCFSi2lopLDx3dsmoRICsH2S-7ayjPOtMjmD1Y2qhyAx-Q6HTYulbAp2GiMhjmSF-.jpg?size=1129x1131&quality=95&crop=159,198,1129,1131&ava=1",
+      "https://i.pinimg.com/originals/6a/e4/70/6ae47003679a20512bc46fb88e4ee288.jpg",
+      "https://mittalblowers.com/wp-content/uploads/2025/03/career-1.webp"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Наталья",
+    "location": "Самара",
+    "likes": 22,
+    "isLiked": false,
+    "age": "27 лет",
+    "createdAt": "2025-10-28T10:45:00.000Z",
+    "description": "Йога для меня - это диалог с собственным телом. Люблю момент, когда напряжение уходит, а приходит покой.",
+    "avatarUrl": "https://img.freepik.com/free-photo/side-view-full-length-attractive-brunette-lady-with-tail-wearing-blue-coat-light-blue-trousers-white-heels-she-is-moving-smiling-camera-urban-street_132075-9407.jpg?t=st=1764351610~exp=1764355210~hmac=a61d36402515afcebbba0df991cc023c410900316191ae0b2a23741cf63e9d73&w=1060",
+    "skillCanTeach": {
+      "id": 1,
+      "name": "Медитация",
+      "fullDescription": "Провожу занятия по хатха йоге и медитации для всех уровней подготовки. Индивидуальный подход к построению практики с учетом особенностей здоровья и целей. Изучаем асаны, пранаямы, техники релаксации и mindfulness. Помогу развить гибкость, силу и найти внутренний баланс. Занятия онлайн и офлайн для начинающих и продвинутых.",
+      "categoryId": 6,
+      "subCategoryId": 36
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 18, "name": "Французский" },
+      { "id": 30, "name": "Уборка и организация" },
+      { "id": 29, "name": "Коучинг" },
+      { "id": 37, "name": "Питание и ЗОЖ" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://i.pinimg.com/originals/c0/60/21/c060215015e6d46a234cb4127af3237f.jpg",
+      "https://cdn-image.zvuk.com/pic?hash=ab2801f2-5d2b-426e-81a2-015945decd50&id=39822077&size=large&type=release",
+      "https://static.wixstatic.com/media/11062b_e28eaf0e4f184db399fcf6f0eb6e437c~mv2.jpg/v1/fill/w_602,h_602,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Couple%20Meditating%20.jpg",
+      "https://digital-basket-01.wbbasket.ru/vol1/382/a6daf446c5ea49a2df10caf185ffcac4/1920.jpg",
+      "https://img.freepik.com/premium-vector/diet-plan-slim-woman-doing-exercise-planning-diet-with-fruit-vegetable-girl-doing-yoga-dietary-eating-meal-planning-nutrition-consultation-healthy-food-sport-health-lifestyle-fitness_458444-702.jpg?semt=ais_hybrid&w=740"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Андрей",
+    "location": "Омск",
+    "likes": 14,
+    "isLiked": false,
+    "age": "25 лет",
+    "createdAt": "2025-09-30T15:20:00.000Z",
+    "description": "Живу в ритме английской речи. Для меня язык - это музыка, а грамматика - её гармония.",
+    "avatarUrl": "https://img.freepik.com/free-photo/portrait-man-posing-beach-grey-coat_613910-9568.jpg?t=st=1764349802~exp=1764353402~hmac=07093728944046012766a2096ff27de96d0a89f24e77a0f884decafc2eced04b&w=1060",
+    "skillCanTeach": {
+      "id": 2,
+      "name": "Английский язык",
+      "fullDescription": "Преподаю английский с акцентом на живое общение и практическое применение. Разрабатываю индивидуальные программы с учетом ваших целей: бизнес-английский, подготовка к экзаменам или повседневное общение. Использую интерактивные методики, фильмы, музыку и реальные жизненные ситуации для погружения в язык.",
+      "categoryId": 3,
+      "subCategoryId": 17
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 21, "name": "Китайский" },
+      { "id": 10, "name": "Фотография" },
+      { "id": 31, "name": "Домашние финансы" },
+      { "id": 38, "name": "Ментальное здоровье" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://is4-ssl.mzstatic.com/image/thumb/Podcasts126/v4/90/85/4f/90854f21-d484-1041-eda7-6c24810338bf/mza_16670632695750822409.jpg/1200x1200bb.jpg",
+      "https://static.tildacdn.one/tild3032-3461-4165-b661-656464323064/yabanci.jpeg",
+      "https://avatars.mds.yandex.net/get-yapic/59871/OKB4im81mzd4FniayNZfqTAc3Y-1/orig",
+      "https://static3.tgstat.ru/channels/_0/04/0469b0037c6dc9bb4f1fc86a51b77df0.jpg",
+      "https://www.formatformazione.com/wp/wp-content/uploads/2022/10/Laurea-in-lingue-sbocchi-professionali-e-lavoro-Format.jpg"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Ирина",
+    "location": "Ростов-на-Дону",
+    "likes": 11,
+    "isLiked": false,
+    "age": "30 лет",
+    "createdAt": "2025-11-08T12:30:00.000Z",
+    "description": "Растения для меня - это тихие друзья, которые делают дом уютнее. Люблю наблюдать, как они растут!",
+    "avatarUrl": "https://img.freepik.com/free-photo/woman-wrapping-christmas-gift-while-sitting-carped-living-room_158595-7285.jpg?t=st=1764351547~exp=1764355147~hmac=9d45c0011168d1449687c347eedd2b16d06887303ecbcdcc25e58126a202a067&w=1060",
+    "skillCanTeach": {
+      "id": 3,
+      "name": "Домашние растения",
+      "fullDescription": "Научу уходу за комнатными растениями и созданию зеленых уголков в городской квартире. Разберем подбор растений для разных условий, правильный полив, освещение, пересадку и борьбу с вредителями. Практические советы по созданию фито-дизайна и уходу за редкими видами. Помогу превратить ваш дом в цветущий сад.",
+      "categoryId": 5,
+      "subCategoryId": 33
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 17, "name": "Английский" },
+      { "id": 9, "name": "Рисование и иллюстрация" },
+      { "id": 36, "name": "Йога и медитация" },
+      { "id": 24, "name": "Личностное развитие" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://i.pinimg.com/originals/08/54/4f/08544fae757659a2808827d362ee694a.webp",
+      "https://orton.ru/upload/iblock/8df/yr5c0q2203w1h5v0m9x21hc23ynkog7y.jpg",
+      "https://64.media.tumblr.com/b3ccb570338a868e649d3e1820e91483/4ba63a61ae633ba5-6d/s1280x1920/a85a374dd7a35945570ef44acc3629e5810a09cd.jpg",
+      "https://s3.eu-central-1.amazonaws.com/pressland-cms/cache/metatags_image/sk/19694808-zimowe-nawozy-podajemy-w-formie-wodnych-roztworow.jpeg",
+      "https://i.pinimg.com/474x/4d/ba/b1/4dbab1094ef818af0fcba0c0e0108d20.jpg"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Алексей",
+    "location": "Уфа",
+    "likes": 7,
+    "isLiked": false,
+    "age": "21 год",
+    "createdAt": "2025-10-03T18:15:00.000Z",
+    "description": "Коучинг для меня - это искусство задавать правильные вопросы. Люблю, когда люди находят свои ответы!",
+    "avatarUrl": "https://img.freepik.com/free-photo/vertical-shot-caucasian-male-with-red-t-shirt_181624-52255.jpg?t=st=1764349884~exp=1764353484~hmac=a99a6bb87686fbd0270a20cae16fe38d1a49af0940c71ba1f34c5dbb28a1daae&w=1060",
+    "skillCanTeach": {
+      "id": 4,
+      "name": "Коучинг",
+      "fullDescription": "Научу основам коучинга и техникам помощи в достижении личных и профессиональных целей. Работа с постановкой SMART-целей, преодолением ограничивающих убеждений, планированием действий и accountability. Практические инструменты для проведения коучинговых сессий и развития навыков активного слушания и задавания мощных вопросов.",
+      "categoryId": 4,
+      "subCategoryId": 29
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 2, "name": "Маркетинг и реклама" },
+      { "id": 11, "name": "Видеомонтаж" },
+      { "id": 39, "name": "Осознанность" },
+      { "id": 34, "name": "Ремонт" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://www.cgd13.fr/media/miniatures/formation_.png",
+      "https://static.tildacdn.com/tild6461-6435-4630-b362-306439383266/1HhnXn9XR6EFDwE04Tom.jpg",
+      "https://opositocorreos.com/wp-content/uploads/2020/05/equipo-docente.jpg",
+      "https://imageio.forbes.com/blogs-images/forbescoachescouncil/files/2020/02/a-25.jpg?format=jpg&amp;width=1200",
+      "https://avatars.mds.yandex.net/i?id=cc0165a94000877e3884f6d5997af2df_l-5877629-images-thumbs&n=13"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Мария",
+    "location": "Красноярск",
+    "likes": 19,
+    "isLiked": false,
+    "age": "26 лет",
+    "createdAt": "2025-11-22T09:40:00.000Z",
+    "description": "Живопись для меня - это медитация. Люблю, когда краски на холсте оживают и рассказывают истории.",
+    "avatarUrl": "https://img.freepik.com/free-photo/young-business-woman-using-phone-vacation_1303-23960.jpg?t=st=1764351507~exp=1764355107~hmac=5b1fcf2dfb49c05ff1a15e2d0f2730d6c2f3873fad9aee38e6839de74505ef18&w=1060",
+    "skillCanTeach": {
+      "id": 5,
+      "name": "Живопись",
+      "fullDescription": "Научу основам академического рисунка, живописи и цифровой иллюстрации. Индивидуальный подход для начинающих и продолжающих. Работа с различными материалами: акварель, масло, акрил, цифровые инструменты. Развиваем чувство композиции, цвета и перспективы. Помогу найти ваш уникальный стиль в искусстве.",
+      "categoryId": 2,
+      "subCategoryId": 9
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 19, "name": "Испанский" },
+      { "id": 16, "name": "Декор и DIY" },
+      { "id": 28, "name": "Навыки преподавания" },
+      { "id": 33, "name": "Домашние растения" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://i.pinimg.com/736x/9d/17/c4/9d17c4ade3f5245dfd109b87c2c134df.jpg",
+      "https://avatars.mds.yandex.net/i?id=66c959494ead1c4da8595d31913bdf85_l-12937750-images-thumbs&n=13",
+      "https://static.tildacdn.com/stor6233-3337-4335-b836-353764326535/78969050.jpg",
+      "https://avatars.mds.yandex.net/i?id=2f3f405091a808b2138ae11335c7658c_l-4979110-images-thumbs&n=13",
+      "https://i2.wp.com/static.cornelsen.de/_Resources/Persistent/2/5/4/f/254f67a74ced9fb71eba75d1fa980553b33f5ea9/first-steps-kunst-im%20unterricht-magazin-neu-1200x1200.jpg",
+      "https://i.pinimg.com/originals/86/f5/37/86f5372132c62f90eb0172f4bc8c735e.jpg"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Владимир",
+    "location": "Пермь",
+    "likes": 13,
+    "isLiked": false,
+    "age": "34 года",
+    "createdAt": "2025-09-28T14:50:00.000Z",
+    "description": "Обожаю видеть, как у людей загораются глаза, когда они находят работу мечты. Это лучшая награда!",
+    "avatarUrl": "https://img.freepik.com/free-photo/portrait-young-handsome-caucasian-man-park_181624-52207.jpg?t=st=1764349921~exp=1764353521~hmac=d1b63ce207d217d0efdc1bd650e8f45ba6de2b749ae17bf35d6602e7e195c29d&w=1060",
+    "skillCanTeach": {
+      "id": 6,
+      "name": "Составление резюме",
+      "fullDescription": "Научу создавать резюме, которое заметят рекрутеры, и готовиться к собеседованиям так, чтобы получать офферы. Разберем составление сопроводительных писений, профилей в LinkedIn, самопрезентацию и ответы на каверзные вопросы. Практикуем стресс-интервью и технику переговоров о зарплате. Помогу найти ваши сильные стороны и правильно их подать.",
+      "categoryId": 1,
+      "subCategoryId": 5
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 17, "name": "Английский" },
+      { "id": 3, "name": "Продажи и переговоры" },
+      { "id": 26, "name": "Когнитивные техники" },
+      { "id": 40, "name": "Физические тренировки" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://solia-paref.com/wp-content/uploads/2024/05/AdobeStock_552746789-1-scaled-1.jpg",
+      "https://www.jobasv.net/wp-content/uploads/2021/06/Menanggapi-Pertanyaan-HRD-Ketika-Interview-Kerja-666x666.jpg",
+      "https://blagoevgrad-news.com/wp-content/uploads/2019/02/zx640c_2905622.jpg",
+      "https://image.lexica.art/full_webp/c7b5752c-2d0a-4134-9a4a-18f437eba432",
+      "https://a.storyblok.com/f/255383/2005x1494/d4961e10fb/new-opportunity-support-coordination-and-employment.jpg/m/280x280/filters:quality(90):format(jpg)"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Светлана",
+    "location": "Воронеж",
+    "likes": 16,
+    "isLiked": false,
+    "age": "28 лет",
+    "createdAt": "2025-10-25T16:05:00.000Z",
+    "description": "Вдохновляюсь историями успешных стартапов. Для меня предпринимательство - это искусство возможного.",
+    "avatarUrl": "https://img.freepik.com/free-photo/teenage-girl-lifestyle-concept_23-2148093980.jpg?t=st=1764351473~exp=1764355073~hmac=eaac03d0c6f646104e3731b0cd0e51f6a61f710ed62cc583d84ff76422ea275b&w=1060",
+    "skillCanTeach": {
+      "id": 7,
+      "name": "Предпринимательство",
+      "fullDescription": "Помогу с запуском и развитием бизнеса с нуля. Разберем создание бизнес-модели, финансовое планирование, маркетинговую стратегию и управление командой. Практические инструменты для стартаперов: бережливый стартап, работа с инвесторами, масштабирование. На основе реальных кейсов из разных отраслей. Поддержка на каждом этапе становления бизнеса.",
+      "categoryId": 1,
+      "subCategoryId": 8
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 18, "name": "Французский" },
+      { "id": 13, "name": "Актёрское мастерство" },
+      { "id": 30, "name": "Уборка и организация" },
+      { "id": 29, "name": "Коучинг" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://vhs-stuttgart.de/fileadmin/_processed_/c/8/csm_Beruf_copy_NDABCREATIVITY__AdobeStock_67b03f67c0.jpeg",
+      "https://sun6-23.userapi.com/s/v1/if1/PWH2hrudcjYil3kIR6BSXuXiGtOB-fvgFl1uyftcBYrmaUZkCny703C1ki8QCiA9FKk84RD2.jpg?size=691x691&quality=96&crop=154,0,691,691&ava=1",
+      "https://sun6-20.userapi.com/s/v1/ig2/xDz_ZMkcr8iPWTjglREpbMUBCFSi2lopLDx3dsmoRICsH2S-7ayjPOtMjmD1Y2qhyAx-Q6HTYulbAp2GiMhjmSF-.jpg?size=1129x1131&quality=95&crop=159,198,1129,1131&ava=1",
+      "https://i.pinimg.com/originals/6a/e4/70/6ae47003679a20512bc46fb88e4ee288.jpg",
+      "https://mittalblowers.com/wp-content/uploads/2025/03/career-1.webp"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Павел",
+    "location": "Волгоград",
+    "likes": 10,
+    "isLiked": false,
+    "age": "23 года",
+    "createdAt": "2025-11-18T11:55:00.000Z",
+    "description": "Йога для меня - это диалог с собственным телом. Люблю момент, когда напряжение уходит, а приходит покой.",
+    "avatarUrl": "https://img.freepik.com/free-photo/portrait-young-handsome-man-with-curly-hair_1303-27415.jpg?t=st=1764349990~exp=1764353590~hmac=82510b1916196dd702938fd08a30313f9e03094e4e2739f9228d53f9ff1d3b58&w=1060",
+    "skillCanTeach": {
+      "id": 1,
+      "name": "Медитация",
+      "fullDescription": "Провожу занятия по хатха йоге и медитации для всех уровней подготовки. Индивидуальный подход к построению практики с учетом особенностей здоровья и целей. Изучаем асаны, пранаямы, техники релаксации и mindfulness. Помогу развить гибкость, силу и найти внутренний баланс. Занятия онлайн и офлайн для начинающих и продвинутых.",
+      "categoryId": 6,
+      "subCategoryId": 36
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 21, "name": "Китайский" },
+      { "id": 10, "name": "Фотография" },
+      { "id": 4, "name": "Личный бренд" },
+      { "id": 41, "name": "Сон и восстановление" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://i.pinimg.com/originals/c0/60/21/c060215015e6d46a234cb4127af3237f.jpg",
+      "https://cdn-image.zvuk.com/pic?hash=ab2801f2-5d2b-426e-81a2-015945decd50&id=39822077&size=large&type=release",
+      "https://static.wixstatic.com/media/11062b_e28eaf0e4f184db399fcf6f0eb6e437c~mv2.jpg/v1/fill/w_602,h_602,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Couple%20Meditating%20.jpg",
+      "https://digital-basket-01.wbbasket.ru/vol1/382/a6daf446c5ea49a2df10caf185ffcac4/1920.jpg",
+      "https://img.freepik.com/premium-vector/diet-plan-slim-woman-doing-exercise-planning-diet-with-fruit-vegetable-girl-doing-yoga-dietary-eating-meal-planning-nutrition-consultation-healthy-food-sport-health-lifestyle-fitness_458444-702.jpg?semt=ais_hybrid&w=740"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Юлия",
+    "location": "Краснодар",
+    "likes": 24,
+    "isLiked": false,
+    "age": "31 год",
+    "createdAt": "2025-10-08T13:25:00.000Z",
+    "description": "Живу в ритме английской речи. Для меня язык - это музыка, а грамматика - её гармония.",
+    "avatarUrl": "https://img.freepik.com/free-photo/smiling-blonde-young-woman-holding-disposable-coffee-cup-standing-street-winter_23-2147928529.jpg?t=st=1764351409~exp=1764355009~hmac=8aed590921a2749be399222e35f5f2f1c35264b1aff50c62771f9a4862f0d2c8&w=1060",
+    "skillCanTeach": {
+      "id": 2,
+      "name": "Английский язык",
+      "fullDescription": "Преподаю английский с акцентом на живое общение и практическое применение. Разрабатываю индивидуальные программы с учетом ваших целей: бизнес-английский, подготовка к экзаменам или повседневное общение. Использую интерактивные методики, фильмы, музыку и реальные жизненные ситуации для погружения в язык.",
+      "categoryId": 3,
+      "subCategoryId": 17
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 9, "name": "Рисование и иллюстрация" },
+      { "id": 7, "name": "Проектное управление" },
+      { "id": 38, "name": "Ментальное здоровье" },
+      { "id": 16, "name": "Декор и DIY" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://is4-ssl.mzstatic.com/image/thumb/Podcasts126/v4/90/85/4f/90854f21-d484-1041-eda7-6c24810338bf/mza_16670632695750822409.jpg/1200x1200bb.jpg",
+      "https://static.tildacdn.one/tild3032-3461-4165-b661-656464323064/yabanci.jpeg",
+      "https://avatars.mds.yandex.net/get-yapic/59871/OKB4im81mzd4FniayNZfqTAc3Y-1/orig",
+      "https://static3.tgstat.ru/channels/_0/04/0469b0037c6dc9bb4f1fc86a51b77df0.jpg",
+      "https://www.formatformazione.com/wp/wp-content/uploads/2022/10/Laurea-in-lingue-sbocchi-professionali-e-lavoro-Format.jpg"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Иван",
+    "location": "Саратов",
+    "likes": 6,
+    "isLiked": false,
+    "age": "20 лет",
+    "createdAt": "2025-11-25T15:10:00.000Z",
+    "description": "Растения для меня - это тихие друзья, которые делают дом уютнее. Люблю наблюдать, как они растут!",
+    "avatarUrl": "https://img.freepik.com/free-photo/low-angle-portrait-man-looking-away_23-2148194054.jpg?t=st=1764350022~exp=1764353622~hmac=47d52cfa62c84c007b62aa976e6a621c0dd926cb626c6485c20c4aa165a3fcb0&w=1060",
+    "skillCanTeach": {
+      "id": 3,
+      "name": "Домашние растения",
+      "fullDescription": "Научу уходу за комнатными растениями и созданию зеленых уголков в городской квартире. Разберем подбор растений для разных условий, правильный полив, освещение, пересадку и борьбу с вредителями. Практические советы по созданию фито-дизайна и уходу за редкими видами. Помогу превратить ваш дом в цветущий сад.",
+      "categoryId": 5,
+      "subCategoryId": 33
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 17, "name": "Английский" },
+      { "id": 8, "name": "Предпринимательство" },
+      { "id": 27, "name": "Скорочтение" },
+      { "id": 42, "name": "Баланс жизни и работы" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://i.pinimg.com/originals/08/54/4f/08544fae757659a2808827d362ee694a.webp",
+      "https://orton.ru/upload/iblock/8df/yr5c0q2203w1h5v0m9x21hc23ynkog7y.jpg",
+      "https://64.media.tumblr.com/b3ccb570338a868e649d3e1820e91483/4ba63a61ae633ba5-6d/s1280x1920/a85a374dd7a35945570ef44acc3629e5810a09cd.jpg",
+      "https://s3.eu-central-1.amazonaws.com/pressland-cms/cache/metatags_image/sk/19694808-zimowe-nawozy-podajemy-w-formie-wodnych-roztworow.jpeg",
+      "https://i.pinimg.com/474x/4d/ba/b1/4dbab1094ef818af0fcba0c0e0108d20.jpg"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Татьяна",
+    "location": "Тюмень",
+    "likes": 17,
+    "isLiked": false,
+    "age": "29 лет",
+    "createdAt": "2025-10-15T10:30:00.000Z",
+    "description": "Коучинг для меня - это искусство задавать правильные вопросы. Люблю, когда люди находят свои ответы!",
+    "avatarUrl": "https://img.freepik.com/free-photo/smiling-lady-smart-trendy-wear-is-sitting-armchair-with-cup-tea_158595-7467.jpg?t=st=1764351374~exp=1764354974~hmac=ede4d9062cfc440f045ef26d1a50b02712e72c6019c93d048faf9f47b4a57e5f&w=1060",
+    "skillCanTeach": {
+      "id": 4,
+      "name": "Коучинг",
+      "fullDescription": "Научу основам коучинга и техникам помощи в достижении личных и профессиональных целей. Работа с постановкой SMART-целей, преодолением ограничивающих убеждений, планированием действий и accountability. Практические инструменты для проведения коучинговых сессий и развития навыков активного слушания и задавания мощных вопросов.",
+      "categoryId": 4,
+      "subCategoryId": 29
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 20, "name": "Немецкий" },
+      { "id": 14, "name": "Креативное письмо" },
+      { "id": 6, "name": "Тайм-менеджмент" },
+      { "id": 37, "name": "Питание и ЗОЖ" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://www.cgd13.fr/media/miniatures/formation_.png",
+      "https://static.tildacdn.com/tild6461-6435-4630-b362-306439383266/1HhnXn9XR6EFDwE04Tom.jpg",
+      "https://opositocorreos.com/wp-content/uploads/2020/05/equipo-docente.jpg",
+      "https://imageio.forbes.com/blogs-images/forbescoachescouncil/files/2020/02/a-25.jpg?format=jpg&amp;width=1200",
+      "https://avatars.mds.yandex.net/i?id=cc0165a94000877e3884f6d5997af2df_l-5877629-images-thumbs&n=13"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Николай",
+    "location": "Тольятти",
+    "likes": 8,
+    "isLiked": false,
+    "age": "35 лет",
+    "createdAt": "2025-09-23T17:40:00.000Z",
+    "description": "Живопись для меня - это медитация. Люблю, когда краски на холсте оживают и рассказывают истории.",
+    "avatarUrl": "https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg?t=st=1764350059~exp=1764353659~hmac=ae1852693f53e74971baa253ce928dcde68466bef8b50f94747318fa1431af6d&w=1060",
+    "skillCanTeach": {
+      "id": 5,
+      "name": "Живопись",
+      "fullDescription": "Научу основам академического рисунка, живописи и цифровой иллюстрации. Индивидуальный подход для начинающих и продолжающих. Работа с различными материалами: акварель, масло, акрил, цифровые инструменты. Развиваем чувство композиции, цвета и перспективы. Помогу найти ваш уникальный стиль в искусстве.",
+      "categoryId": 2,
+      "subCategoryId": 9
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 22, "name": "Японский" },
+      { "id": 2, "name": "Маркетинг и реклама" },
+      { "id": 15, "name": "Арт-терапия" },
+      { "id": 39, "name": "Осознанность" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://i.pinimg.com/736x/9d/17/c4/9d17c4ade3f5245dfd109b87c2c134df.jpg",
+      "https://avatars.mds.yandex.net/i?id=66c959494ead1c4da8595d31913bdf85_l-12937750-images-thumbs&n=13",
+      "https://static.tildacdn.com/stor6233-3337-4335-b836-353764326535/78969050.jpg",
+      "https://avatars.mds.yandex.net/i?id=2f3f405091a808b2138ae11335c7658c_l-4979110-images-thumbs&n=13",
+      "https://i2.wp.com/static.cornelsen.de/_Resources/Persistent/2/5/4/f/254f67a74ced9fb71eba75d1fa980553b33f5ea9/first-steps-kunst-im%20unterricht-magazin-neu-1200x1200.jpg",
+      "https://i.pinimg.com/originals/86/f5/37/86f5372132c62f90eb0172f4bc8c735e.jpg"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Елена",
+    "location": "Ижевск",
+    "likes": 21,
+    "isLiked": false,
+    "age": "26 лет",
+    "createdAt": "2025-11-05T14:15:00.000Z",
+    "description": "Обожаю видеть, как у людей загораются глаза, когда они находят работу мечты. Это лучшая награда!",
+    "avatarUrl": "https://img.freepik.com/free-photo/redhead-young-female-winking-looking-camera_23-2148183402.jpg?t=st=1764351316~exp=1764354916~hmac=28a2fe37ee0646f8114f7fbce8b0c351a036b113c58ccc1bcba3278cd94f3fee&w=1060",
+    "skillCanTeach": {
+      "id": 6,
+      "name": "Составление резюме",
+      "fullDescription": "Научу создавать резюме, которое заметят рекрутеры, и готовиться к собеседованиям так, чтобы получать офферы. Разберем составление сопроводительных писений, профилей в LinkedIn, самопрезентацию и ответы на каверзные вопросы. Практикуем стресс-интервью и технику переговоров о зарплате. Помогу найти ваши сильные стороны и правильно их подать.",
+      "categoryId": 1,
+      "subCategoryId": 5
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 19, "name": "Испанский" },
+      { "id": 31, "name": "Домашние финансы" },
+      { "id": 24, "name": "Личностное развитие" },
+      { "id": 36, "name": "Йога и медитация" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://solia-paref.com/wp-content/uploads/2024/05/AdobeStock_552746789-1-scaled-1.jpg",
+      "https://www.jobasv.net/wp-content/uploads/2021/06/Menanggapi-Pertanyaan-HRD-Ketika-Interview-Kerja-666x666.jpg",
+      "https://blagoevgrad-news.com/wp-content/uploads/2019/02/zx640c_2905622.jpg",
+      "https://image.lexica.art/full_webp/c7b5752c-2d0a-4134-9a4a-18f437eba432",
+      "https://a.storyblok.com/f/255383/2005x1494/d4961e10fb/new-opportunity-support-coordination-and-employment.jpg/m/280x280/filters:quality(90):format(jpg)"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Артем",
+    "location": "Барнаул",
+    "likes": 12,
+    "isLiked": false,
+    "age": "24 года",
+    "createdAt": "2025-10-20T12:50:00.000Z",
+    "description": "Вдохновляюсь историями успешных стартапов. Для меня предпринимательство - это искусство возможного.",
+    "avatarUrl": "https://img.freepik.com/free-photo/selfie-portrait-videocall_23-2149186127.jpg?t=st=1764350098~exp=1764353698~hmac=a1521de8baab1514f8c08456554d171ed87bf759caa311248a4e0c32befaa58f&w=1060",
+    "skillCanTeach": {
+      "id": 7,
+      "name": "Предпринимательство",
+      "fullDescription": "Помогу с запуском и развитием бизнеса с нуля. Разберем создание бизнес-модели, финансовое планирование, маркетинговую стратегию и управление командой. Практические инструменты для стартаперов: бережливый стартап, работа с инвесторами, масштабирование. На основе реальных кейсов из разных отраслей. Поддержка на каждом этапе становления бизнеса.",
+      "categoryId": 1,
+      "subCategoryId": 8
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 17, "name": "Английский" },
+      { "id": 10, "name": "Фотография" },
+      { "id": 8, "name": "Предпринимательство" },
+      { "id": 40, "name": "Физические тренировки" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://vhs-stuttgart.de/fileadmin/_processed_/c/8/csm_Beruf_copy_NDABCREATIVITY__AdobeStock_67b03f67c0.jpeg",
+      "https://sun6-23.userapi.com/s/v1/if1/PWH2hrudcjYil3kIR6BSXuXiGtOB-fvgFl1uyftcBYrmaUZkCny703C1ki8QCiA9FKk84RD2.jpg?size=691x691&quality=96&crop=154,0,691,691&ava=1",
+      "https://sun6-20.userapi.com/s/v1/ig2/xDz_ZMkcr8iPWTjglREpbMUBCFSi2lopLDx3dsmoRICsH2S-7ayjPOtMjmD1Y2qhyAx-Q6HTYulbAp2GiMhjmSF-.jpg?size=1129x1131&quality=95&crop=159,198,1129,1131&ava=1",
+      "https://i.pinimg.com/originals/6a/e4/70/6ae47003679a20512bc46fb88e4ee288.jpg",
+      "https://mittalblowers.com/wp-content/uploads/2025/03/career-1.webp"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Оксана",
+    "location": "Ульяновск",
+    "likes": 9,
+    "isLiked": false,
+    "age": "27 лет",
+    "createdAt": "2025-11-28T08:20:00.000Z",
+    "description": "Йога для меня - это диалог с собственным телом. Люблю момент, когда напряжение уходит, а приходит покой.",
+    "avatarUrl": "https://img.freepik.com/free-photo/portrait-young-woman-stretching-home-mat_23-2148896448.jpg?t=st=1764351230~exp=1764354830~hmac=c75979c3d619266d6808fe43def7ff09e09f6a43fa8428a89b9e4d5c0d26cda1&w=1060",
+    "skillCanTeach": {
+      "id": 1,
+      "name": "Медитация",
+      "fullDescription": "Провожу занятия по хатха йоге и медитации для всех уровней подготовки. Индивидуальный подход к построению практики с учетом особенностей здоровья и целей. Изучаем асаны, пранаямы, техники релаксации и mindfulness. Помогу развить гибкость, силу и найти внутренний баланс. Занятия онлайн и офлайн для начинающих и продвинутых.",
+      "categoryId": 6,
+      "subCategoryId": 36
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 18, "name": "Французский" },
+      { "id": 30, "name": "Уборка и организация" },
+      { "id": 29, "name": "Коучинг" },
+      { "id": 38, "name": "Ментальное здоровье" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://i.pinimg.com/originals/c0/60/21/c060215015e6d46a234cb4127af3237f.jpg",
+      "https://cdn-image.zvuk.com/pic?hash=ab2801f2-5d2b-426e-81a2-015945decd50&id=39822077&size=large&type=release",
+      "https://static.wixstatic.com/media/11062b_e28eaf0e4f184db399fcf6f0eb6e437c~mv2.jpg/v1/fill/w_602,h_602,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Couple%20Meditating%20.jpg",
+      "https://digital-basket-01.wbbasket.ru/vol1/382/a6daf446c5ea49a2df10caf185ffcac4/1920.jpg",
+      "https://img.freepik.com/premium-vector/diet-plan-slim-woman-doing-exercise-planning-diet-with-fruit-vegetable-girl-doing-yoga-dietary-eating-meal-planning-nutrition-consultation-healthy-food-sport-health-lifestyle-fitness_458444-702.jpg?semt=ais_hybrid&w=740"
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Роман",
+    "location": "Иркутск",
+    "likes": 15,
+    "isLiked": false,
+    "age": "32 года",
+    "createdAt": "2025-10-10T16:35:00.000Z",
+    "description": "Живу в ритме английской речи. Для меня язык - это музыка, а грамматика - её гармония.",
+    "avatarUrl": "https://img.freepik.com/free-photo/close-up-sad-man_23-2150896109.jpg?t=st=1764350141~exp=1764353741~hmac=8e7d8211590baa193e555c6ebab3a31878e1fa4306655066707db26cfd3e2bbb&w=1060",
+    "skillCanTeach": {
+      "id": 2,
+      "name": "Английский язык",
+      "fullDescription": "Преподаю английский с акцентом на живое общение и практическое применение. Разрабатываю индивидуальные программы с учетом ваших целей: бизнес-английский, подготовка к экзаменам или повседневное общение. Использую интерактивные методики, фильмы, музыку и реальные жизненные ситуации для погружения в язык.",
+      "categoryId": 3,
+      "subCategoryId": 17
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 21, "name": "Китайский" },
+      { "id": 11, "name": "Видеомонтаж" },
+      { "id": 3, "name": "Продажи и переговоры" },
+      { "id": 33, "name": "Домашние растения" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://is4-ssl.mzstatic.com/image/thumb/Podcasts126/v4/90/85/4f/90854f21-d484-1041-eda7-6c24810338bf/mza_16670632695750822409.jpg/1200x1200bb.jpg",
+      "https://static.tildacdn.one/tild3032-3461-4165-b661-656464323064/yabanci.jpeg",
+      "https://avatars.mds.yandex.net/get-yapic/59871/OKB4im81mzd4FniayNZfqTAc3Y-1/orig",
+      "https://static3.tgstat.ru/channels/_0/04/0469b0037c6dc9bb4f1fc86a51b77df0.jpg",
+      "https://www.formatformazione.com/wp/wp-content/uploads/2022/10/Laurea-in-lingue-sbocchi-professionali-e-lavoro-Format.jpg"
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Людмила",
+    "location": "Хабаровск",
+    "likes": 18,
+    "isLiked": false,
+    "age": "28 лет",
+    "createdAt": "2025-11-12T10:10:00.000Z",
+    "description": "Растения для меня - это тихие друзья, которые делают дом уютнее. Люблю наблюдать, как они растут!",
+    "avatarUrl": "https://img.freepik.com/free-photo/sideways-woman-posing-green-house_23-2148261255.jpg?t=st=1764351192~exp=1764354792~hmac=8271b9aa8ff279947e09d95a33b847dadd333967cf11dc997c986c9875f16cf8&w=1060",
+    "skillCanTeach": {
+      "id": 3,
+      "name": "Домашние растения",
+      "fullDescription": "Научу уходу за комнатными растениями и созданию зеленых уголков в городской квартире. Разберем подбор растений для разных условий, правильный полив, освещение, пересадку и борьбу с вредителями. Практические советы по созданию фито-дизайна и уходу за редкими видами. Помогу превратить ваш дом в цветущий сад.",
+      "categoryId": 5,
+      "subCategoryId": 33
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 9, "name": "Рисование и иллюстрация" },
+      { "id": 5, "name": "Резюме и собеседование" },
+      { "id": 37, "name": "Питание и ЗОЖ" },
+      { "id": 15, "name": "Арт-терапия" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://i.pinimg.com/originals/08/54/4f/08544fae757659a2808827d362ee694a.webp",
+      "https://orton.ru/upload/iblock/8df/yr5c0q2203w1h5v0m9x21hc23ynkog7y.jpg",
+      "https://64.media.tumblr.com/b3ccb570338a868e649d3e1820e91483/4ba63a61ae633ba5-6d/s1280x1920/a85a374dd7a35945570ef44acc3629e5810a09cd.jpg",
+      "https://s3.eu-central-1.amazonaws.com/pressland-cms/cache/metatags_image/sk/19694808-zimowe-nawozy-podajemy-w-formie-wodnych-roztworow.jpeg",
+      "https://i.pinimg.com/474x/4d/ba/b1/4dbab1094ef818af0fcba0c0e0108d20.jpg"
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Виктор",
+    "location": "Ярославль",
+    "likes": 11,
+    "isLiked": false,
+    "age": "22 года",
+    "createdAt": "2025-09-26T19:05:00.000Z",
+    "description": "Коучинг для меня - это искусство задавать правильные вопросы. Люблю, когда люди находят свои ответы!",
+    "avatarUrl": "https://img.freepik.com/free-photo/young-successful-businessman-thinking-posing-beige-wall_176420-145.jpg?t=st=1764350182~exp=1764353782~hmac=fb1dac1cfdb23741a2daf188d3af94aeaf846f21ad568535438dcd2de5bf2991&w=1060",
+    "skillCanTeach": {
+      "id": 4,
+      "name": "Коучинг",
+      "fullDescription": "Научу основам коучинга и техникам помощи в достижении личных и профессиональных целей. Работа с постановкой SMART-целей, преодолением ограничивающих убеждений, планированием действий и accountability. Практические инструменты для проведения коучинговых сессий и развития навыков активного слушания и задавания мощных вопросов.",
+      "categoryId": 4,
+      "subCategoryId": 29
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 17, "name": "Английский" },
+      { "id": 1, "name": "Управление командой" },
+      { "id": 14, "name": "Креативное письмо" },
+      { "id": 34, "name": "Ремонт" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://www.cgd13.fr/media/miniatures/formation_.png",
+      "https://static.tildacdn.com/tild6461-6435-4630-b362-306439383266/1HhnXn9XR6EFDwE04Tom.jpg",
+      "https://opositocorreos.com/wp-content/uploads/2020/05/equipo-docente.jpg",
+      "https://imageio.forbes.com/blogs-images/forbescoachescouncil/files/2020/02/a-25.jpg?format=jpg&amp;width=1200",
+      "https://avatars.mds.yandex.net/i?id=cc0165a94000877e3884f6d5997af2df_l-5877629-images-thumbs&n=13"
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Алиса",
+    "location": "Владивосток",
+    "likes": 23,
+    "isLiked": false,
+    "age": "25 лет",
+    "createdAt": "2025-10-30T13:45:00.000Z",
+    "description": "Живопись для меня - это медитация. Люблю, когда краски на холсте оживают и рассказывают истории.",
+    "avatarUrl": "https://img.freepik.com/free-photo/beautiful-young-woman-portrait-black-background_158595-1652.jpg?t=st=1764351137~exp=1764354737~hmac=114d0e70c4af6da63c3eb2e233b3d760d488fe3875f910c545905344388d6c82&w=1060",
+    "skillCanTeach": {
+      "id": 5,
+      "name": "Живопись",
+      "fullDescription": "Научу основам академического рисунка, живописи и цифровой иллюстрации. Индивидуальный подход для начинающих и продолжающих. Работа с различными материалами: акварель, масло, акрил, цифровые инструменты. Развиваем чувство композиции, цвета и перспективы. Помогу найти ваш уникальный стиль в искусстве.",
+      "categoryId": 2,
+      "subCategoryId": 9
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 20, "name": "Немецкий" },
+      { "id": 12, "name": "Музыка и звук" },
+      { "id": 16, "name": "Декор и DIY" },
+      { "id": 39, "name": "Осознанность" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://i.pinimg.com/736x/9d/17/c4/9d17c4ade3f5245dfd109b87c2c134df.jpg",
+      "https://avatars.mds.yandex.net/i?id=66c959494ead1c4da8595d31913bdf85_l-12937750-images-thumbs&n=13",
+      "https://static.tildacdn.com/stor6233-3337-4335-b836-353764326535/78969050.jpg",
+      "https://avatars.mds.yandex.net/i?id=2f3f405091a808b2138ae11335c7658c_l-4979110-images-thumbs&n=13",
+      "https://i2.wp.com/static.cornelsen.de/_Resources/Persistent/2/5/4/f/254f67a74ced9fb71eba75d1fa980553b33f5ea9/first-steps-kunst-im%20unterricht-magazin-neu-1200x1200.jpg",
+      "https://i.pinimg.com/originals/86/f5/37/86f5372132c62f90eb0172f4bc8c735e.jpg"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Георгий",
+    "location": "Махачкала",
+    "likes": 7,
+    "isLiked": false,
+    "age": "33 года",
+    "createdAt": "2025-11-20T17:30:00.000Z",
+    "description": "Обожаю видеть, как у людей загораются глаза, когда они находят работу мечты. Это лучшая награда!",
+    "avatarUrl": "https://img.freepik.com/free-photo/man-therapy-holding-coffee-cup_23-2148913050.jpg?t=st=1764350219~exp=1764353819~hmac=11e2a649048304dcf02c03e8185416ab5d1eb9337a12ca00eb47073f78bf4353&w=1060",
+    "skillCanTeach": {
+      "id": 6,
+      "name": "Составление резюме",
+      "fullDescription": "Научу создавать резюме, которое заметят рекрутеры, и готовиться к собеседованиям так, чтобы получать офферы. Разберем составление сопроводительных писений, профилей в LinkedIn, самопрезентацию и ответы на каверзные вопросы. Практикуем стресс-интервью и технику переговоров о зарплате. Помогу найти ваши сильные стороны и правильно их подать.",
+      "categoryId": 1,
+      "subCategoryId": 5
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 22, "name": "Японский" },
+      { "id": 10, "name": "Фотография" },
+      { "id": 31, "name": "Домашние финансы" },
+      { "id": 36, "name": "Йога и медитация" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://solia-paref.com/wp-content/uploads/2024/05/AdobeStock_552746789-1-scaled-1.jpg",
+      "https://www.jobasv.net/wp-content/uploads/2021/06/Menanggapi-Pertanyaan-HRD-Ketika-Interview-Kerja-666x666.jpg",
+      "https://blagoevgrad-news.com/wp-content/uploads/2019/02/zx640c_2905622.jpg",
+      "https://image.lexica.art/full_webp/c7b5752c-2d0a-4134-9a4a-18f437eba432",
+      "https://a.storyblok.com/f/255383/2005x1494/d4961e10fb/new-opportunity-support-coordination-and-employment.jpg/m/280x280/filters:quality(90):format(jpg)"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Валерия",
+    "location": "Томск",
+    "likes": 14,
+    "isLiked": false,
+    "age": "26 лет",
+    "createdAt": "2025-10-07T11:15:00.000Z",
+    "description": "Вдохновляюсь историями успешных стартапов. Для меня предпринимательство - это искусство возможного.",
+    "avatarUrl": "https://img.freepik.com/free-photo/beautiful-smiling-tourist-woman-having-fun-amusement-park-hot-summer-day-trip_346278-454.jpg?t=st=1764351106~exp=1764354706~hmac=3132d0153ba669c7577a84a40809b6ce3fe8739e7ccc2ac5539c39f0c0b257eb&w=1060",
+    "skillCanTeach": {
+      "id": 7,
+      "name": "Предпринимательство",
+      "fullDescription": "Помогу с запуском и развитием бизнеса с нуля. Разберем создание бизнес-модели, финансовое планирование, маркетинговую стратегию и управление командой. Практические инструменты для стартаперов: бережливый стартап, работа с инвесторами, масштабирование. На основе реальных кейсов из разных отраслей. Поддержка на каждом этапе становления бизнеса.",
+      "categoryId": 1,
+      "subCategoryId": 8
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 18, "name": "Французский" },
+      { "id": 13, "name": "Актёрское мастерство" },
+      { "id": 8, "name": "Предпринимательство" },
+      { "id": 37, "name": "Питание и ЗОЖ" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://vhs-stuttgart.de/fileadmin/_processed_/c/8/csm_Beruf_copy_NDABCREATIVITY__AdobeStock_67b03f67c0.jpeg",
+      "https://sun6-23.userapi.com/s/v1/if1/PWH2hrudcjYil3kIR6BSXuXiGtOB-fvgFl1uyftcBYrmaUZkCny703C1ki8QCiA9FKk84RD2.jpg?size=691x691&quality=96&crop=154,0,691,691&ava=1",
+      "https://sun6-20.userapi.com/s/v1/ig2/xDz_ZMkcr8iPWTjglREpbMUBCFSi2lopLDx3dsmoRICsH2S-7ayjPOtMjmD1Y2qhyAx-Q6HTYulbAp2GiMhjmSF-.jpg?size=1129x1131&quality=95&crop=159,198,1129,1131&ava=1",
+      "https://i.pinimg.com/originals/6a/e4/70/6ae47003679a20512bc46fb88e4ee288.jpg",
+      "https://mittalblowers.com/wp-content/uploads/2025/03/career-1.webp"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Константин",
+    "location": "Оренбург",
+    "likes": 16,
+    "isLiked": false,
+    "age": "30 лет",
+    "createdAt": "2025-11-24T09:50:00.000Z",
+    "description": "Йога для меня - это диалог с собственным телом. Люблю момент, когда напряжение уходит, а приходит покой.",
+    "avatarUrl": "https://img.freepik.com/free-photo/medium-shot-man-with-delicious-pina-colada_23-2150184025.jpg?t=st=1764350274~exp=1764353874~hmac=e5fda90e2aad095a5a45dc40e231dd0365d8471b120b0b4748fc3747227155ea&w=1060",
+    "skillCanTeach": {
+      "id": 1,
+      "name": "Медитация",
+      "fullDescription": "Провожу занятия по хатха йоге и медитации для всех уровней подготовки. Индивидуальный подход к построению практики с учетом особенностей здоровья и целей. Изучаем асаны, пранаямы, техники релаксации и mindfulness. Помогу развить гибкость, силу и найти внутренний баланс. Занятия онлайн и офлайн для начинающих и продвинутых.",
+      "categoryId": 6,
+      "subCategoryId": 36
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 2, "name": "Маркетинг и реклама" },
+      { "id": 11, "name": "Видеомонтаж" },
+      { "id": 4, "name": "Личный бренд" },
+      { "id": 42, "name": "Баланс жизни и работы" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://i.pinimg.com/originals/c0/60/21/c060215015e6d46a234cb4127af3237f.jpg",
+      "https://cdn-image.zvuk.com/pic?hash=ab2801f2-5d2b-426e-81a2-015945decd50&id=39822077&size=large&type=release",
+      "https://static.wixstatic.com/media/11062b_e28eaf0e4f184db399fcf6f0eb6e437c~mv2.jpg/v1/fill/w_602,h_602,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Couple%20Meditating%20.jpg",
+      "https://digital-basket-01.wbbasket.ru/vol1/382/a6daf446c5ea49a2df10caf185ffcac4/1920.jpg",
+      "https://img.freepik.com/premium-vector/diet-plan-slim-woman-doing-exercise-planning-diet-with-fruit-vegetable-girl-doing-yoga-dietary-eating-meal-planning-nutrition-consultation-healthy-food-sport-health-lifestyle-fitness_458444-702.jpg?semt=ais_hybrid&w=740"
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Вероника",
+    "location": "Кемерово",
+    "likes": 10,
+    "isLiked": false,
+    "age": "24 года",
+    "createdAt": "2025-10-22T15:40:00.000Z",
+    "description": "Живу в ритме английской речи. Для меня язык - это музыка, а грамматика - её гармония.",
+    "avatarUrl": "https://img.freepik.com/free-photo/elegant-young-woman-hat-eyeglasses_23-2148068353.jpg?t=st=1764351072~exp=1764354672~hmac=0475e2f9d8af310d667389594ccaace64d34cd543c73f94db991365e9d91842b&w=1060",
+    "skillCanTeach": {
+      "id": 2,
+      "name": "Английский язык",
+      "fullDescription": "Преподаю английский с акцентом на живое общение и практическое применение. Разрабатываю индивидуальные программы с учетом ваших целей: бизнес-английский, подготовка к экзаменам или повседневное общение. Использую интерактивные методики, фильмы, музыку и реальные жизненные ситуации для погружения в язык.",
+      "categoryId": 3,
+      "subCategoryId": 17
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 19, "name": "Испанский" },
+      { "id": 9, "name": "Рисование и иллюстрация" },
+      { "id": 6, "name": "Тайм-менеджмент" },
+      { "id": 38, "name": "Ментальное здоровье" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://is4-ssl.mzstatic.com/image/thumb/Podcasts126/v4/90/85/4f/90854f21-d484-1041-eda7-6c24810338bf/mza_16670632695750822409.jpg/1200x1200bb.jpg",
+      "https://static.tildacdn.one/tild3032-3461-4165-b661-656464323064/yabanci.jpeg",
+      "https://avatars.mds.yandex.net/get-yapic/59871/OKB4im81mzd4FniayNZfqTAc3Y-1/orig",
+      "https://static3.tgstat.ru/channels/_0/04/0469b0037c6dc9bb4f1fc86a51b77df0.jpg",
+      "https://www.formatformazione.com/wp/wp-content/uploads/2022/10/Laurea-in-lingue-sbocchi-professionali-e-lavoro-Format.jpg"
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Станислав",
+    "location": "Уфа",
+    "likes": 13,
+    "isLiked": false,
+    "age": "29 лет",
+    "createdAt": "2025-11-10T12:25:00.000Z",
+    "description": "Растения для меня - это тихие друзья, которые делают дом уютнее. Люблю наблюдать, как они растут!",
+    "avatarUrl": "https://img.freepik.com/free-photo/front-view-man-with-dog-jetty_23-2150558036.jpg?t=st=1764350301~exp=1764353901~hmac=d102c6e489931b925df6cf5c67c2cfc28a3f29a3e9fee58e9ec84b5f3759e5a5&w=1060",
+    "skillCanTeach": {
+      "id": 3,
+      "name": "Домашние растения",
+      "fullDescription": "Научу уходу за комнатными растениями и созданию зеленых уголков в городской квартире. Разберем подбор растений для разных условий, правильный полив, освещение, пересадку и борьбу с вредителями. Практические советы по созданию фито-дизайна и уходу за редкими видами. Помогу превратить ваш дом в цветущий сад.",
+      "categoryId": 5,
+      "subCategoryId": 33
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 17, "name": "Английский" },
+      { "id": 3, "name": "Продажи и переговоры" },
+      { "id": 33, "name": "Домашние растения" },
+      { "id": 40, "name": "Физические тренировки" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://i.pinimg.com/originals/08/54/4f/08544fae757659a2808827d362ee694a.webp",
+      "https://orton.ru/upload/iblock/8df/yr5c0q2203w1h5v0m9x21hc23ynkog7y.jpg",
+      "https://64.media.tumblr.com/b3ccb570338a868e649d3e1820e91483/4ba63a61ae633ba5-6d/s1280x1920/a85a374dd7a35945570ef44acc3629e5810a09cd.jpg",
+      "https://s3.eu-central-1.amazonaws.com/pressland-cms/cache/metatags_image/sk/19694808-zimowe-nawozy-podajemy-w-formie-wodnych-roztworow.jpeg",
+      "https://i.pinimg.com/474x/4d/ba/b1/4dbab1094ef818af0fcba0c0e0108d20.jpg"
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Анастасия",
+    "location": "Красноярск",
+    "likes": 19,
+    "isLiked": false,
+    "age": "27 лет",
+    "createdAt": "2025-09-24T16:55:00.000Z",
+    "description": "Коучинг для меня - это искусство задавать правильные вопросы. Люблю, когда люди находят свои ответы!",
+    "avatarUrl": "https://img.freepik.com/free-photo/woman-takes-off-headphones-speak-with-friend-walks-outdoors-has-fitness-training-burned-calories-after-eating-high-calories-food-looks-satisfied-after-exercising-wellbeing-sport_273609-54124.jpg?t=st=1764351028~exp=1764354628~hmac=579124493d051eca83ad5af35cc969b48d920f764e7631d0de3628c9af4610bf&w=1060",
+    "skillCanTeach": {
+      "id": 4,
+      "name": "Коучинг",
+      "fullDescription": "Научу основам коучинга и техникам помощи в достижении личных и профессиональных целей. Работа с постановкой SMART-целей, преодолением ограничивающих убеждений, планированием действий и accountability. Практические инструменты для проведения коучинговых сессий и развития навыков активного слушания и задавания мощных вопросов.",
+      "categoryId": 4,
+      "subCategoryId": 29
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 21, "name": "Китайский" },
+      { "id": 14, "name": "Креативное письмо" },
+      { "id": 29, "name": "Коучинг" },
+      { "id": 41, "name": "Сон и восстановление" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://www.cgd13.fr/media/miniatures/formation_.png",
+      "https://static.tildacdn.com/tild6461-6435-4630-b362-306439383266/1HhnXn9XR6EFDwE04Tom.jpg",
+      "https://opositocorreos.com/wp-content/uploads/2020/05/equipo-docente.jpg",
+      "https://imageio.forbes.com/blogs-images/forbescoachescouncil/files/2020/02/a-25.jpg?format=jpg&amp;width=1200",
+      "https://avatars.mds.yandex.net/i?id=cc0165a94000877e3884f6d5997af2df_l-5877629-images-thumbs&n=13"
+    ]
+  },
+  {
+    "id": 33,
+    "name": "Вадим",
+    "location": "Пермь",
+    "likes": 8,
+    "isLiked": false,
+    "age": "26 лет",
+    "createdAt": "2025-11-14T14:05:00.000Z",
+    "description": "Живопись для меня - это медитация. Люблю, когда краски на холсте оживают и рассказывают истории.",
+    "avatarUrl": "https://img.freepik.com/free-photo/portrait-young-stylish-man-model-sitting-leg-leg-thoughtful_158595-2949.jpg?t=st=1764350375~exp=1764353975~hmac=fa917813986ac5e360afd8dd65db1a9f9240b42e1fd8a5b1e3fcb4f78e441be2&w=1060",
+    "skillCanTeach": {
+      "id": 5,
+      "name": "Живопись",
+      "fullDescription": "Научу основам академического рисунка, живописи и цифровой иллюстрации. Индивидуальный подход для начинающих и продолжающих. Работа с различными материалами: акварель, масло, акрил, цифровые инструменты. Развиваем чувство композиции, цвета и перспективы. Помогу найти ваш уникальный стиль в искусстве.",
+      "categoryId": 2,
+      "subCategoryId": 9
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 1, "name": "Управление командой" },
+      { "id": 10, "name": "Фотография" },
+      { "id": 39, "name": "Осознанность" },
+      { "id": 34, "name": "Ремонт" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://i.pinimg.com/736x/9d/17/c4/9d17c4ade3f5245dfd109b87c2c134df.jpg",
+      "https://avatars.mds.yandex.net/i?id=66c959494ead1c4da8595d31913bdf85_l-12937750-images-thumbs&n=13",
+      "https://static.tildacdn.com/stor6233-3337-4335-b836-353764326535/78969050.jpg",
+      "https://avatars.mds.yandex.net/i?id=2f3f405091a808b2138ae11335c7658c_l-4979110-images-thumbs&n=13",
+      "https://i2.wp.com/static.cornelsen.de/_Resources/Persistent/2/5/4/f/254f67a74ced9fb71eba75d1fa980553b33f5ea9/first-steps-kunst-im%20unterricht-magazin-neu-1200x1200.jpg",
+      "https://i.pinimg.com/originals/86/f5/37/86f5372132c62f90eb0172f4bc8c735e.jpg"
+    ]
+  },
+  {
+    "id": 34,
+    "name": "Ксения",
+    "location": "Воронеж",
+    "likes": 22,
+    "isLiked": false,
+    "age": "25 лет",
+    "createdAt": "2025-10-17T10:50:00.000Z",
+    "description": "Обожаю видеть, как у людей загораются глаза, когда они находят работу мечты. Это лучшая награда!",
+    "avatarUrl": "https://img.freepik.com/free-photo/waiting-beauty-background-lonely-lady_1303-566.jpg?t=st=1764350997~exp=1764354597~hmac=ace1f322e5246db5a553d821306e828e944f3df0aa31e96e00465d80f8d5140b&w=1060",
+    "skillCanTeach": {
+      "id": 6,
+      "name": "Составление резюме",
+      "fullDescription": "Научу создавать резюме, которое заметят рекрутеры, и готовиться к собеседованиям так, чтобы получать офферы. Разберем составление сопроводительных писений, профилей в LinkedIn, самопрезентацию и ответы на каверзные вопросы. Практикуем стресс-интервью и технику переговоров о зарплате. Помогу найти ваши сильные стороны и правильно их подать.",
+      "categoryId": 1,
+      "subCategoryId": 5
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 18, "name": "Французский" },
+      { "id": 16, "name": "Декор и DIY" },
+      { "id": 24, "name": "Личностное развитие" },
+      { "id": 36, "name": "Йога и медитация" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://solia-paref.com/wp-content/uploads/2024/05/AdobeStock_552746789-1-scaled-1.jpg",
+      "https://www.jobasv.net/wp-content/uploads/2021/06/Menanggapi-Pertanyaan-HRD-Ketika-Interview-Kerja-666x666.jpg",
+      "https://blagoevgrad-news.com/wp-content/uploads/2019/02/zx640c_2905622.jpg",
+      "https://image.lexica.art/full_webp/c7b5752c-2d0a-4134-9a4a-18f437eba432",
+      "https://a.storyblok.com/f/255383/2005x1494/d4961e10fb/new-opportunity-support-coordination-and-employment.jpg/m/280x280/filters:quality(90):format(jpg)"
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Григорий",
+    "location": "Волгоград",
+    "likes": 11,
+    "isLiked": false,
+    "age": "32 года",
+    "createdAt": "2025-11-27T13:20:00.000Z",
+    "description": "Вдохновляюсь историями успешных стартапов. Для меня предпринимательство - это искусство возможного.",
+    "avatarUrl": "https://img.freepik.com/free-photo/portrait-male-model-wearing-reading-glasses_23-2148760664.jpg?t=st=1764350421~exp=1764354021~hmac=deb497b9f559f882e65b70f731091f5c0424f6782866be7cddc706c457fb76f3&w=1060",
+    "skillCanTeach": {
+      "id": 7,
+      "name": "Предпринимательство",
+      "fullDescription": "Помогу с запуском и развитием бизнеса с нуля. Разберем создание бизнес-модели, финансовое планирование, маркетинговую стратегию и управление командой. Практические инструменты для стартаперов: бережливый стартап, работа с инвесторами, масштабирование. На основе реальных кейсов из разных отраслей. Поддержка на каждом этапе становления бизнеса.",
+      "categoryId": 1,
+      "subCategoryId": 8
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 22, "name": "Японский" },
+      { "id": 12, "name": "Музыка и звук" },
+      { "id": 31, "name": "Домашние финансы" },
+      { "id": 37, "name": "Питание и ЗОЖ" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://vhs-stuttgart.de/fileadmin/_processed_/c/8/csm_Beruf_copy_NDABCREATIVITY__AdobeStock_67b03f67c0.jpeg",
+      "https://sun6-23.userapi.com/s/v1/if1/PWH2hrudcjYil3kIR6BSXuXiGtOB-fvgFl1uyftcBYrmaUZkCny703C1ki8QCiA9FKk84RD2.jpg?size=691x691&quality=96&crop=154,0,691,691&ava=1",
+      "https://sun6-20.userapi.com/s/v1/ig2/xDz_ZMkcr8iPWTjglREpbMUBCFSi2lopLDx3dsmoRICsH2S-7ayjPOtMjmD1Y2qhyAx-Q6HTYulbAp2GiMhjmSF-.jpg?size=1129x1131&quality=95&crop=159,198,1129,1131&ava=1",
+      "https://i.pinimg.com/originals/6a/e4/70/6ae47003679a20512bc46fb88e4ee288.jpg",
+      "https://mittalblowers.com/wp-content/uploads/2025/03/career-1.webp"
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Маргарита",
+    "location": "Краснодар",
+    "likes": 17,
+    "isLiked": false,
+    "age": "28 лет",
+    "createdAt": "2025-10-04T18:40:00.000Z",
+    "description": "Йога для меня - это диалог с собственным телом. Люблю момент, когда напряжение уходит, а приходит покой.",
+    "avatarUrl": "https://img.freepik.com/free-photo/young-beautiful-girl-uses-smartphone-street-surfing-internet-listening-music_1296-910.jpg?t=st=1764350961~exp=1764354561~hmac=878cedce169e8d4da54a452d5be968e2304cb37ecfcbdf44e5d868f6234b5d08&w=1060",
+    "skillCanTeach": {
+      "id": 1,
+      "name": "Медитация",
+      "fullDescription": "Провожу занятия по хатха йоге и медитации для всех уровней подготовки. Индивидуальный подход к построению практики с учетом особенностей здоровья и целей. Изучаем асаны, пранаямы, техники релаксации и mindfulness. Помогу развить гибкость, силу и найти внутренний баланс. Занятия онлайн и офлайн для начинающих и продвинутых.",
+      "categoryId": 6,
+      "subCategoryId": 36
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 17, "name": "Английский" },
+      { "id": 13, "name": "Актёрское мастерство" },
+      { "id": 8, "name": "Предпринимательство" },
+      { "id": 38, "name": "Ментальное здоровье" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://i.pinimg.com/originals/c0/60/21/c060215015e6d46a234cb4127af3237f.jpg",
+      "https://cdn-image.zvuk.com/pic?hash=ab2801f2-5d2b-426e-81a2-015945decd50&id=39822077&size=large&type=release",
+      "https://static.wixstatic.com/media/11062b_e28eaf0e4f184db399fcf6f0eb6e437c~mv2.jpg/v1/fill/w_602,h_602,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Couple%20Meditating%20.jpg",
+      "https://digital-basket-01.wbbasket.ru/vol1/382/a6daf446c5ea49a2df10caf185ffcac4/1920.jpg",
+      "https://img.freepik.com/premium-vector/diet-plan-slim-woman-doing-exercise-planning-diet-with-fruit-vegetable-girl-doing-yoga-dietary-eating-meal-planning-nutrition-consultation-healthy-food-sport-health-lifestyle-fitness_458444-702.jpg?semt=ais_hybrid&w=740"
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Федор",
+    "location": "Саратов",
+    "likes": 9,
+    "isLiked": false,
+    "age": "30 лет",
+    "createdAt": "2025-11-19T15:35:00.000Z",
+    "description": "Живу в ритме английской речи. Для меня язык - это музыка, а грамматика - её гармония.",
+    "avatarUrl": "https://img.freepik.com/free-photo/portrait-handsome-man-sitting-sofa_329181-2737.jpg?t=st=1764350466~exp=1764354066~hmac=16dd05b9f9612abeb30d6f47de690a763958fa1b738d07faa5d9aefa621f6ec9&w=1060",
+    "skillCanTeach": {
+      "id": 2,
+      "name": "Английский язык",
+      "fullDescription": "Преподаю английский с акцентом на живое общение и практическое применение. Разрабатываю индивидуальные программы с учетом ваших целей: бизнес-английский, подготовка к экзаменам или повседневное общение. Использую интерактивные методики, фильмы, музыку и реальные жизненные ситуации для погружения в язык.",
+      "categoryId": 3,
+      "subCategoryId": 17
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 20, "name": "Немецкий" },
+      { "id": 11, "name": "Видеомонтаж" },
+      { "id": 29, "name": "Коучинг" },
+      { "id": 42, "name": "Баланс жизни и работы" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://is4-ssl.mzstatic.com/image/thumb/Podcasts126/v4/90/85/4f/90854f21-d484-1041-eda7-6c24810338bf/mza_16670632695750822409.jpg/1200x1200bb.jpg",
+      "https://static.tildacdn.one/tild3032-3461-4165-b661-656464323064/yabanci.jpeg",
+      "https://avatars.mds.yandex.net/get-yapic/59871/OKB4im81mzd4FniayNZfqTAc3Y-1/orig",
+      "https://static3.tgstat.ru/channels/_0/04/0469b0037c6dc9bb4f1fc86a51b77df0.jpg",
+      "https://www.formatformazione.com/wp/wp-content/uploads/2022/10/Laurea-in-lingue-sbocchi-professionali-e-lavoro-Format.jpg"
+    ]
+  },
+  {
+    "id": 38,
+    "name": "Диана",
+    "location": "Тюмень",
+    "likes": 20,
+    "isLiked": false,
+    "age": "24 года",
+    "createdAt": "2025-10-13T12:10:00.000Z",
+    "description": "Растения для меня - это тихие друзья, которые делают дом уютнее. Люблю наблюдать, как они растут!",
+    "avatarUrl": "https://img.freepik.com/free-photo/side-view-woman-posing-chair_23-2149915943.jpg?t=st=1764350909~exp=1764354509~hmac=74e240ee053916adad3543b9b195c3774b24bbf094318a0f5b42093a642a4a9d&w=1060",
+    "skillCanTeach": {
+      "id": 3,
+      "name": "Домашние растения",
+      "fullDescription": "Научу уходу за комнатными растениями и созданию зеленых уголков в городской квартире. Разберем подбор растений для разных условий, правильный полив, освещение, пересадку и борьбу с вредителями. Практические советы по созданию фито-дизайна и уходу за редкими видами. Помогу превратить ваш дом в цветущий сад.",
+      "categoryId": 5,
+      "subCategoryId": 33
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 19, "name": "Испанский" },
+      { "id": 9, "name": "Рисование и иллюстрация" },
+      { "id": 6, "name": "Тайм-менеджмент" },
+      { "id": 33, "name": "Домашние растения" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://i.pinimg.com/originals/08/54/4f/08544fae757659a2808827d362ee694a.webp",
+      "https://orton.ru/upload/iblock/8df/yr5c0q2203w1h5v0m9x21hc23ynkog7y.jpg",
+      "https://64.media.tumblr.com/b3ccb570338a868e649d3e1820e91483/4ba63a61ae633ba5-6d/s1280x1920/a85a374dd7a35945570ef44acc3629e5810a09cd.jpg",
+      "https://s3.eu-central-1.amazonaws.com/pressland-cms/cache/metatags_image/sk/19694808-zimowe-nawozy-podajemy-w-formie-wodnych-roztworow.jpeg",
+      "https://i.pinimg.com/474x/4d/ba/b1/4dbab1094ef818af0fcba0c0e0108d20.jpg"
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Борис",
+    "location": "Тольятти",
+    "likes": 12,
+    "isLiked": false,
+    "age": "27 лет",
+    "createdAt": "2025-11-29T16:45:00.000Z",
+    "description": "Коучинг для меня - это искусство задавать правильные вопросы. Люблю, когда люди находят свои ответы!",
+    "avatarUrl": "https://img.freepik.com/free-photo/stylish-young-handsome-man-classy-outfit_1303-22501.jpg?t=st=1764350527~exp=1764354127~hmac=64dd08c665ebe34cdc56146461420b69fd0578f89a37a886dfd5ce9cfa93ccf5&w=1060",
+    "skillCanTeach": {
+      "id": 4,
+      "name": "Коучинг",
+      "fullDescription": "Научу основам коучинга и техникам помощи в достижении личных и профессиональных целей. Работа с постановкой SMART-целей, преодолением ограничивающих убеждений, планированием действий и accountability. Практические инструменты для проведения коучинговых сессий и развития навыков активного слушания и задавания мощных вопросов.",
+      "categoryId": 4,
+      "subCategoryId": 29
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 21, "name": "Китайский" },
+      { "id": 10, "name": "Фотография" },
+      { "id": 24, "name": "Личностное развитие" },
+      { "id": 40, "name": "Физические тренировки" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://www.cgd13.fr/media/miniatures/formation_.png",
+      "https://static.tildacdn.com/tild6461-6435-4630-b362-306439383266/1HhnXn9XR6EFDwE04Tom.jpg",
+      "https://opositocorreos.com/wp-content/uploads/2020/05/equipo-docente.jpg",
+      "https://imageio.forbes.com/blogs-images/forbescoachescouncil/files/2020/02/a-25.jpg?format=jpg&amp;width=1200",
+      "https://avatars.mds.yandex.net/i?id=cc0165a94000877e3884f6d5997af2df_l-5877629-images-thumbs&n=13"
+    ]
+  },
+  {
+    "id": 40,
+    "name": "Зоя",
+    "location": "Ижевск",
+    "likes": 15,
+    "isLiked": false,
+    "age": "23 года",
+    "createdAt": "2025-10-26T11:30:00.000Z",
+    "description": "Живопись для меня - это медитация. Люблю, когда краски на холсте оживают и рассказывают истории.",
+    "avatarUrl": "https://img.freepik.com/free-photo/elegant-businesswoman-standing-office_1157-33427.jpg?t=st=1764350845~exp=1764354445~hmac=af5f6b7e006dfdb09652ec6b1d46ac8511bfe91f6474cf76f979132e7ebd6841&w=1060",
+    "skillCanTeach": {
+      "id": 5,
+      "name": "Живопись",
+      "fullDescription": "Научу основам академического рисунка, живописи и цифровой иллюстрации. Индивидуальный подход для начинающих и продолжающих. Работа с различными материалами: акварель, масло, акрил, цифровые инструменты. Развиваем чувство композиции, цвета и перспективы. Помогу найти ваш уникальный стиль в искусстве.",
+      "categoryId": 2,
+      "subCategoryId": 9
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 18, "name": "Французский" },
+      { "id": 14, "name": "Креативное письмо" },
+      { "id": 1, "name": "Управление командой" },
+      { "id": 39, "name": "Осознанность" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://i.pinimg.com/736x/9d/17/c4/9d17c4ade3f5245dfd109b87c2c134df.jpg",
+      "https://avatars.mds.yandex.net/i?id=66c959494ead1c4da8595d31913bdf85_l-12937750-images-thumbs&n=13",
+      "https://static.tildacdn.com/stor6233-3337-4335-b836-353764326535/78969050.jpg",
+      "https://avatars.mds.yandex.net/i?id=2f3f405091a808b2138ae11335c7658c_l-4979110-images-thumbs&n=13",
+      "https://i2.wp.com/static.cornelsen.de/_Resources/Persistent/2/5/4/f/254f67a74ced9fb71eba75d1fa980553b33f5ea9/first-steps-kunst-im%20unterricht-magazin-neu-1200x1200.jpg",
+      "https://i.pinimg.com/originals/86/f5/37/86f5372132c62f90eb0172f4bc8c735e.jpg"
+    ]
+  },
+  {
+    "id": 41,
+    "name": "Семен",
+    "location": "Барнаул",
+    "likes": 10,
+    "isLiked": false,
+    "age": "31 год",
+    "createdAt": "2025-11-06T14:55:00.000Z",
+    "description": "Обожаю видеть, как у людей загораются глаза, когда они находят работу мечты. Это лучшая награда!",
+    "avatarUrl": "https://img.freepik.com/free-photo/close-up-male-carpenter-looking-digital-tablet-measuring-wooden-block_23-2147945073.jpg?t=st=1764350577~exp=1764354177~hmac=4f032f41355338af3c3d922b9dec9ce816b70678f3a0a2512868a2013ffe0f36&w=1060",
+    "skillCanTeach": {
+      "id": 6,
+      "name": "Составление резюме",
+      "fullDescription": "Научу создавать резюме, которое заметят рекрутеры, и готовиться к собеседованиям так, чтобы получать офферы. Разберем составление сопроводительных писений, профилей в LinkedIn, самопрезентацию и ответы на каверзные вопросы. Практикуем стресс-интервью и технику переговоров о зарплате. Помогу найти ваши сильные стороны и правильно их подать.",
+      "categoryId": 1,
+      "subCategoryId": 5
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 17, "name": "Английский" },
+      { "id": 2, "name": "Маркетинг и реклама" },
+      { "id": 15, "name": "Арт-терапия" },
+      { "id": 41, "name": "Сон и восстановление" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://solia-paref.com/wp-content/uploads/2024/05/AdobeStock_552746789-1-scaled-1.jpg",
+      "https://www.jobasv.net/wp-content/uploads/2021/06/Menanggapi-Pertanyaan-HRD-Ketika-Interview-Kerja-666x666.jpg",
+      "https://blagoevgrad-news.com/wp-content/uploads/2019/02/zx640c_2905622.jpg",
+      "https://image.lexica.art/full_webp/c7b5752c-2d0a-4134-9a4a-18f437eba432",
+      "https://a.storyblok.com/f/255383/2005x1494/d4961e10fb/new-opportunity-support-coordination-and-employment.jpg/m/280x280/filters:quality(90):format(jpg)"
+    ]
+  },
+  {
+    "id": 42,
+    "name": "Эльвира",
+    "location": "Ульяновск",
+    "likes": 18,
+    "isLiked": false,
+    "age": "26 лет",
+    "createdAt": "2025-10-01T09:25:00.000Z",
+    "description": "Вдохновляюсь историями успешных стартапов. Для меня предпринимательство - это искусство возможного.",
+    "avatarUrl": "https://img.freepik.com/free-photo/cute-young-woman-casual-wear-outdoor_624325-1123.jpg?t=st=1764350800~exp=1764354400~hmac=4b1e158a167a9d1172d2c4aa10945a32f82ccd804b92be8513a6bfae4de1fc83&w=1060",
+    "skillCanTeach": {
+      "id": 7,
+      "name": "Предпринимательство",
+      "fullDescription": "Помогу с запуском и развитием бизнеса с нуля. Разберем создание бизнес-модели, финансовое планирование, маркетинговую стратегию и управление командой. Практические инструменты для стартаперов: бережливый стартап, работа с инвесторами, масштабирование. На основе реальных кейсов из разных отраслей. Поддержка на каждом этапе становления бизнеса.",
+      "categoryId": 1,
+      "subCategoryId": 8
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 20, "name": "Немецкий" },
+      { "id": 16, "name": "Декор и DIY" },
+      { "id": 29, "name": "Коучинг" },
+      { "id": 37, "name": "Питание и ЗОЖ" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://vhs-stuttgart.de/fileadmin/_processed_/c/8/csm_Beruf_copy_NDABCREATIVITY__AdobeStock_67b03f67c0.jpeg",
+      "https://sun6-23.userapi.com/s/v1/if1/PWH2hrudcjYil3kIR6BSXuXiGtOB-fvgFl1uyftcBYrmaUZkCny703C1ki8QCiA9FKk84RD2.jpg?size=691x691&quality=96&crop=154,0,691,691&ava=1",
+      "https://sun6-20.userapi.com/s/v1/ig2/xDz_ZMkcr8iPWTjglREpbMUBCFSi2lopLDx3dsmoRICsH2S-7ayjPOtMjmD1Y2qhyAx-Q6HTYulbAp2GiMhjmSF-.jpg?size=1129x1131&quality=95&crop=159,198,1129,1131&ava=1",
+      "https://i.pinimg.com/originals/6a/e4/70/6ae47003679a20512bc46fb88e4ee288.jpg",
+      "https://mittalblowers.com/wp-content/uploads/2025/03/career-1.webp"
+    ]
+  },
+  {
+    "id": 43,
+    "name": "Тимофей",
+    "location": "Иркутск",
+    "likes": 7,
+    "isLiked": false,
+    "age": "29 лет",
+    "createdAt": "2025-11-23T17:15:00.000Z",
+    "description": "Йога для меня - это диалог с собственным телом. Люблю момент, когда напряжение уходит, а приходит покой.",
+    "avatarUrl": "https://img.freepik.com/free-photo/smiling-young-african-man-wearing-hat_171337-15958.jpg?t=st=1764350639~exp=1764354239~hmac=dcf3fe402f63eba7b27887ae98920d02e830dfc7b6c1b9f44ab8dcb4fff11601&w=1060",
+    "skillCanTeach": {
+      "id": 1,
+      "name": "Медитация",
+      "fullDescription": "Провожу занятия по хатха йоге и медитации для всех уровней подготовки. Индивидуальный подход к построению практики с учетом особенностей здоровья и целей. Изучаем асаны, пранаямы, техники релаксации и mindfulness. Помогу развить гибкость, силу и найти внутренний баланс. Занятия онлайн и офлайн для начинающих и продвинутых.",
+      "categoryId": 6,
+      "subCategoryId": 36
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 22, "name": "Японский" },
+      { "id": 11, "name": "Видеомонтаж" },
+      { "id": 8, "name": "Предпринимательство" },
+      { "id": 36, "name": "Йога и медитация" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://i.pinimg.com/originals/c0/60/21/c060215015e6d46a234cb4127af3237f.jpg",
+      "https://cdn-image.zvuk.com/pic?hash=ab2801f2-5d2b-426e-81a2-015945decd50&id=39822077&size=large&type=release",
+      "https://static.wixstatic.com/media/11062b_e28eaf0e4f184db399fcf6f0eb6e437c~mv2.jpg/v1/fill/w_602,h_602,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Couple%20Meditating%20.jpg",
+      "https://digital-basket-01.wbbasket.ru/vol1/382/a6daf446c5ea49a2df10caf185ffcac4/1920.jpg",
+      "https://img.freepik.com/premium-vector/diet-plan-slim-woman-doing-exercise-planning-diet-with-fruit-vegetable-girl-doing-yoga-dietary-eating-meal-planning-nutrition-consultation-healthy-food-sport-health-lifestyle-fitness_458444-702.jpg?semt=ais_hybrid&w=740"
+    ]
+  },
+  {
+    "id": 44,
+    "name": "Лилия",
+    "location": "Хабаровск",
+    "likes": 21,
+    "isLiked": false,
+    "age": "25 лет",
+    "createdAt": "2025-10-19T13:40:00.000Z",
+    "description": "Живу в ритме английской речи. Для меня язык - это музыка, а грамматика - её гармония.",
+    "avatarUrl": "https://img.freepik.com/free-photo/attractive-girl-window-shows-different-emotions-mood_78826-2793.jpg?t=st=1764350763~exp=1764354363~hmac=bbeafee19cff395c4ffe80da0b01282a43f1397143c675bcd026414a0b7bad71&w=1060",
+    "skillCanTeach": {
+      "id": 2,
+      "name": "Английский язык",
+      "fullDescription": "Преподаю английский с акцентом на живое общение и практическое применение. Разрабатываю индивидуальные программы с учетом ваших целей: бизнес-английский, подготовка к экзаменам или повседневное общение. Использую интерактивные методики, фильмы, музыку и реальные жизненные ситуации для погружения в язык.",
+      "categoryId": 3,
+      "subCategoryId": 17
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 19, "name": "Испанский" },
+      { "id": 13, "name": "Актёрское мастерство" },
+      { "id": 4, "name": "Личный бренд" },
+      { "id": 38, "name": "Ментальное здоровье" }
+    ],
+    "gender": "female",
+    "images": [
+      "https://is4-ssl.mzstatic.com/image/thumb/Podcasts126/v4/90/85/4f/90854f21-d484-1041-eda7-6c24810338bf/mza_16670632695750822409.jpg/1200x1200bb.jpg",
+      "https://static.tildacdn.one/tild3032-3461-4165-b661-656464323064/yabanci.jpeg",
+      "https://avatars.mds.yandex.net/get-yapic/59871/OKB4im81mzd4FniayNZfqTAc3Y-1/orig",
+      "https://static3.tgstat.ru/channels/_0/04/0469b0037c6dc9bb4f1fc86a51b77df0.jpg",
+      "https://www.formatformazione.com/wp/wp-content/uploads/2022/10/Laurea-in-lingue-sbocchi-professionali-e-lavoro-Format.jpg"
+    ]
+  },
+  {
+    "id": 45,
+    "name": "Ярослав",
+    "location": "Ярославль",
+    "likes": 14,
+    "isLiked": false,
+    "age": "33 года",
+    "createdAt": "2025-11-16T10:05:00.000Z",
+    "description": "Растения для меня - это тихие друзья, которые делают дом уютнее. Люблю наблюдать, как они растут!",
+    "avatarUrl": "https://img.freepik.com/free-photo/asian-business-man-calling-phone-outside_1262-3452.jpg?t=st=1764350676~exp=1764354276~hmac=f3366f994993aa3fad416fb0bdbbfe27d5642cb3aa1e61b408b510ea10696371&w=1060",
+    "skillCanTeach": {
+      "id": 3,
+      "name": "Домашние растения",
+      "fullDescription": "Научу уходу за комнатными растениями и созданию зеленых уголков в городской квартире. Разберем подбор растений для разных условий, правильный полив, освещение, пересадку и борьбу с вредителями. Практические советы по созданию фито-дизайна и уходу за редкими видами. Помогу превратить ваш дом в цветущий сад.",
+      "categoryId": 5,
+      "subCategoryId": 33
+    },
+    "subcategoriesWantToLearn": [
+      { "id": 17, "name": "Английский" },
+      { "id": 10, "name": "Фотография" },
+      { "id": 7, "name": "Проектное управление" },
+      { "id": 42, "name": "Баланс жизни и работы" }
+    ],
+    "gender": "male",
+    "images": [
+      "https://i.pinimg.com/originals/08/54/4f/08544fae757659a2808827d362ee694a.webp",
+      "https://orton.ru/upload/iblock/8df/yr5c0q2203w1h5v0m9x21hc23ynkog7y.jpg",
+      "https://64.media.tumblr.com/b3ccb570338a868e649d3e1820e91483/4ba63a61ae633ba5-6d/s1280x1920/a85a374dd7a35945570ef44acc3629e5810a09cd.jpg",
+      "https://s3.eu-central-1.amazonaws.com/pressland-cms/cache/metatags_image/sk/19694808-zimowe-nawozy-podajemy-w-formie-wodnych-roztworow.jpeg",
+      "https://i.pinimg.com/474x/4d/ba/b1/4dbab1094ef818af0fcba0c0e0108d20.jpg"
+    ]
+  }
+]

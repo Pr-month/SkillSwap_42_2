@@ -1,0 +1,105 @@
+/* общие стили  */
+
+.input__element {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 20px;
+  color: var(--text-color);
+  font-size: var(--font-size-main);
+  font-family: var(--font-main);
+  line-height: var(--line-height-main);
+  background-color: var(--card-input-color);
+  border: 1px solid var(--caption-color);
+  border-radius: var(--border-raduis-main);
+}
+
+.input__element::placeholder {
+  color: var(--caption-color);
+  font-family: inherit;
+}
+
+/* лейблы */
+
+.input label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Подсказки */
+
+.input p {
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+}
+
+/* ошибка */
+
+.input_error input {
+  border-color: var(--error-color);
+}
+
+.input_error p {
+  margin-top: 3px;
+  color: var(--error-color);
+}
+
+/* Инпуты с кнопками */
+
+.input button {
+  position: absolute;
+  top: 50%;
+  padding: 0;
+  background-color: var(--card-input-color);
+  border: none;
+  cursor: pointer;
+  translate: 0 -50%;
+}
+
+/* -Парольный инпут */
+
+.input_password div {
+  position: relative;
+}
+
+.input_password button {
+  right: 20px;
+  width: 50px;
+  text-align: end;
+  cursor: default;
+}
+
+.input_password button img {
+  cursor: pointer;
+}
+
+/* -Инпут поиска */
+
+.input_search {
+  position: relative;
+}
+
+.input_search .input__element {
+  padding-left: 44px;
+  border: none;
+}
+
+.input_search button {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  padding: 0;
+  background-color: var(--card-input-color);
+  border: none;
+  cursor: pointer;
+  translate: 0 -50%;
+}
+
+/* -Инпут с изменением */
+
+.input_edit div {
+  position: relative;
+}
+
+.input_edit button {
+  right: 20px;
+}

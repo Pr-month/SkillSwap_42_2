@@ -1,0 +1,39 @@
+.footer {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 189px;
+  box-sizing: border-box;
+  inline-size: 100%;
+  block-size: 232px;
+  padding: 32px 36px;
+  background-color: var(--card-input-color);
+}
+
+.footer_logo_section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer_nav_section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-self: center;
+  gap: 24px;
+  max-inline-size: 1020px;
+  max-block-size: 60px;
+  margin-block: auto;
+}
+
+.footer_nav_subsection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.caption {
+  color: var(--caption-color);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+}

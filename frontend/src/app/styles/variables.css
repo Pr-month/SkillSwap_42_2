@@ -1,0 +1,41 @@
+:root {
+  /* font variables */
+  --font-main: "Roboto", sans-serif;
+  --font-accent: "Jost", sans-serif;
+  --font-size-main: 16px;
+  --font-size-caption: 12px;
+  --font-size-h1: 32px;
+  --font-size-h2: 24px;
+  --font-size-h3: 20px;
+  --font-weight: 400;
+  --font-weight-accent: 500;
+  --line-height-main: 24px;
+  --line-height-caption: 16px;
+  --line-height-h1: 40px;
+  --line-height-h2: 28px;
+
+  /* color variables */
+  --bg-color: #f9faf7;
+  --text-color: #253017;
+  --text-disabled-color: #9ca197;
+  --caption-color: #69735d;
+  --toggler-color: #b2b9a9;
+  --button-disabled-color: #e4e8df;
+  --button-pressed-color: #508826;
+  --button-hover-color: #deebc5;
+  --card-input-color: #ffffff;
+  --accent-color: #abd27a;
+  --alarm-color: #e0796e;
+  --error-color: #bf3920;
+  --tag-business-color: #eee7f7;
+  --tag-art-color: #f7e7f2;
+  --tag-languages-color: #ebe5c5;
+  --tag-education-color: #e7f2f6;
+  --tag-home-color: #f7ebe5;
+  --tag-health-color: #e9f7e7;
+  --tag-add-color: #e8ecf7;
+  --border-color: #000000;
+
+  /* size variables */
+  --border-raduis-main: 12px;
+}

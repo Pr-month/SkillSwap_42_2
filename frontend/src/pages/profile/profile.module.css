@@ -1,0 +1,10 @@
+.page {
+  display: flex;
+  gap: 0 24px;
+  min-block-size: 752px;
+  padding: 32px 36px 60px;
+}
+
+.side_menu {
+  min-inline-size: 324px;
+}

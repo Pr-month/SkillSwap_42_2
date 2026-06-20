@@ -1,0 +1,59 @@
+.registration {
+  padding: 116px 60px;
+  background-color: var(--card-input-color);
+  border-radius: var(--border-raduis-main);
+}
+
+.registration__link {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  background-color: transparent;
+  border: 1px solid var(--caption-color);
+}
+
+.registration__link:first-of-type {
+  margin-bottom: 16px;
+}
+
+.registration__link:last-of-type {
+  margin-bottom: 24px;
+}
+
+.registration__separator {
+  position: relative;
+  margin-bottom: 24px;
+  font-family: var(--font-accent);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.registration__separator::after,
+.registration__separator::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: calc(50% - 20px);
+  height: 1px;
+  background-color: var(--button-disabled-color);
+  content: "";
+}
+
+.registration__separator::before {
+  left: calc(50% + 20px);
+}
+
+.registration__input {
+  margin-bottom: 16px;
+}
+
+.registration .registration__optional {
+  justify-self: center;
+  margin-top: 12px;
+  color: var(--button-pressed-color);
+}
+
+.registration__error {
+  color: var(--error-color);
+}

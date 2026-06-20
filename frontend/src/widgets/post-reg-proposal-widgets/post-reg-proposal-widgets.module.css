@@ -1,0 +1,75 @@
+.proposal {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 40px;
+}
+
+.proposal_header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size-h2);
+  font-family: var(--font-accent);
+}
+
+.proposal_header_comment {
+  font-size: var(--font-size-caption);
+  font-family: var(--font-main);
+}
+
+.proposal_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 44px;
+}
+
+.proposal_content_skill {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 420px;
+}
+
+.proposal_content_details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  letter-spacing: 0.02em;
+}
+
+.proposal_content_title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.proposal_name {
+  font-size: var(--font-size-h1);
+  font-family: var(--font-accent);
+}
+
+.proposal_category {
+  color: var(--caption-color);
+  font-size: var(--font-size-caption);
+  font-family: var(--font-main);
+}
+
+.proposal_content_full {
+  font-size: var(--font-size-main);
+  font-family: var(--font-main);
+}
+
+.proposal_buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.proposal_buttons_edit {
+  display: flex;
+  gap: 8px;
+}

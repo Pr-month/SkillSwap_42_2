@@ -1,0 +1,67 @@
+/* Стили из внешней библиотеки конфликтуют с настройками линтера */
+
+/* stylelint-disable selector-class-pattern */
+
+@import url("react-datepicker/dist/react-datepicker.css");
+
+.react-datepicker__tab-loop > .react-datepicker-popper {
+  z-index: 1000;
+  box-sizing: border-box;
+  width: 280px;
+  padding: 16px;
+  background-color: var(--card-input-color);
+  border: 1px solid var(--caption-color);
+  border-radius: var(--border-raduis-main);
+  transform: translate(0, 4px) !important;
+}
+
+.react-datepicker {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size-caption);
+  font-family: var(--font-main);
+  line-height: 0.75;
+  background-color: var(--card-input-color);
+  border: none;
+  border-radius: var(--border-raduis-main);
+}
+
+.react-datepicker__header {
+  padding-bottom: 0;
+  background-color: transparent;
+  border-bottom: none;
+}
+
+.react-datepicker__tab-loop {
+  position: relative;
+}
+
+.react-datepicker__day--selected {
+  color: inherit;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+}
+
+.react-datepicker__day:not([aria-disabled="true"]):hover {
+  background-color: var(--button-disabled-color);
+  border-radius: 50%;
+}
+
+.react-datepicker__day--keyboard-selected {
+  color: inherit;
+  background-color: transparent;
+  border-radius: 50%;
+}
+
+.react-datepicker__children-container {
+  width: 100%;
+  margin: auto;
+  margin-top: 16px;
+  padding: 0;
+}
+
+.react-datepicker__triangle {
+  display: none;
+}

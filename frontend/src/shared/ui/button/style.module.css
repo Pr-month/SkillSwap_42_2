@@ -1,0 +1,94 @@
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  max-height: 48px;
+  padding: 12px 24px;
+  color: var(--text-color);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size-main);
+  font-family: var(--font-main);
+  line-height: var(--line-height-main);
+  background-color: var(--card-input-color);
+  border: none;
+  border-radius: var(--border-raduis-main);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Базовые стили для иконок */
+
+.icon {
+  display: flex;
+  flex-shrink: 0; /* Запрещаем сжатие иконки */
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentcolor;
+  stroke: currentcolor;
+}
+
+/* Модификатор полной ширины */
+
+.button-full-width {
+  width: 100%;
+}
+
+/* Primary Button */
+
+.button-primary {
+  color: var(--text-color);
+  background-color: var(--accent-color);
+}
+
+.button-primary:hover {
+  background-color: var(--button-hover-color);
+}
+
+.button-primary:active {
+  color: var(--bg-color);
+  background-color: var(--button-pressed-color);
+}
+
+.button-primary:disabled {
+  color: var(--caption-color);
+  background-color: var(--button-disabled-color);
+  cursor: not-allowed;
+}
+
+/* Secondary Button */
+
+.button-secondary {
+  background-color: transparent;
+  border: 2px solid var(--accent-color);
+}
+
+.button-secondary:hover {
+  color: var(--caption-color);
+  border-color: var(--button-hover-color);
+}
+
+.button-secondary:active {
+  border-color: var(--button-pressed-color);
+}
+
+.button-secondary:disabled {
+  color: var(--text-disabled-color);
+  border-color: var(--button-disabled-color);
+  cursor: not-allowed;
+}
+
+/* Tertiary Button */
+
+.button-tertiary {
+  text-decoration: none;
+  background-color: var(--card-input-color);
+}

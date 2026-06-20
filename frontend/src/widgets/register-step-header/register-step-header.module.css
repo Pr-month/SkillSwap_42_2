@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.title {
+  color: var(--text-color);
+  font-weight: var(--font-weight-accent);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  letter-spacing: -0.31px;
+}
+
+.lines {
+  display: flex;
+  gap: 16px;
+}
+
+.line {
+  width: 60px;
+  height: 4px;
+  background: var(--button-disabled-color);
+  border-radius: 8px;
+}
+
+.active {
+  background: var(--accent-color);
+}

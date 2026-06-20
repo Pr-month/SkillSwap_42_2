@@ -1,0 +1,56 @@
+.container {
+  padding: 40px 60px;
+  background-color: var(--card-input-color);
+  border-radius: var(--border-raduis-main);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.section {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-self: stretch;
+  gap: 24px;
+}
+
+.calendar {
+  position: relative;
+  width: 206px;
+}
+
+.button_section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: stretch;
+  gap: 20px;
+  padding-top: 16px;
+}
+
+.label {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: stretch;
+  gap: 4px;
+  color: var(--text-color);
+  font-size: var(--font-size-main);
+  font-family: var(--font-main);
+  line-height: 1.5;
+}
+
+.element {
+  align-self: stretch;
+}
+
+.width {
+  width: 206px;
+}

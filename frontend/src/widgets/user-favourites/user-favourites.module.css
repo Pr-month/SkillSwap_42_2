@@ -1,0 +1,11 @@
+.headline {
+  color: var(--text-color);
+  font-size: var(--font-size-h1);
+  font-family: var(--font-accent);
+}
+
+.page__no_users {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
